@@ -84,7 +84,7 @@ section .container .box .sign-in {
     margin: 0 auto;
     width: 50%;
     max-width: 400px;
-    left: 25%;
+    /* left: 25%; */
     transition: .5s;
 }
 
@@ -166,7 +166,7 @@ input[type="password"]:focus {
     transform: scaleX(1.08);
 }
 
-input[type="button"] {
+input[type="submit"] {
     outline: none;
     text-transform: uppercase;
     font-size: 1.1em;
@@ -184,7 +184,7 @@ input[type="button"] {
     transition: .2s;
 }
 
-input[type="button"]:hover {
+input[type="submit"]:hover {
     background-color: var(--normalColor);
 }
 

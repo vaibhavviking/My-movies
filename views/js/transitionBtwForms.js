@@ -1,3 +1,7 @@
+var containerBox = document.querySelector('#cont');
+
+var height = containerBox.scrollHeight;
+var section = document.querySelector('section');
 var signIn = document.querySelector('.sign-in');
 var signUp = document.querySelector('.sign-up');
 var opened = false;
@@ -19,9 +23,5 @@ function formTrans() {
     }
 }
 
-var containerBox = document.querySelector('#cont');
-
-var height = containerBox.scrollHeight;
-var section = document.querySelector('section');
 
 section.style.height = height + "px";

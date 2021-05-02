@@ -13,14 +13,13 @@ const fetch = require('node-fetch')
 const axios = require('axios').default;
 const Mail = require("nodemailer/lib/mailer");
 const LocalStrategy = require('passport-local').Strategy;
-// const customStrategy = require('./config/custom-strategy');
+const customStrategy = require('./config/custom-strategy');
 const passportSetup = require('./config/passport-setup');
 require("dotenv").config();
 // const keys2 = require('./config/keys');
 const keys = require('./keys')
 const app = express();
 const Genre = require('./models/genres');
-app.use(cors());
 const port = process.env.PORT || 5000;
 
 app.use(cookieSession({
@@ -28,6 +27,7 @@ app.use(cookieSession({
     keys: [keys.sessionKey]
 }))
 
+app.use(cors());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
