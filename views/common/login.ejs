@@ -1,12 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Sen:400,700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a1fdd42e8e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>SignIn/SignUp</title>
 </head>
-<body>
-    <a href="<%=path%>auth/google"><button>Log In Using Google</button></a>
+
+<body class="darkMode">
+
+    <section>
+        <div class="container" id="cont">
+            <h1>REGISTRATION</h1>
+
+            <div class="box">
+                <div class="cont">
+                    <form class="sign-in">
+                        <h1>SIGN IN</h1>
+                        <input type="text" placeholder="Username" name="nameUser">
+                        <input type="password" placeholder="Password" name="passUser">
+                        <input type="button" value="SIGN IN">
+
+                        <div class="errorIn">
+                            <p> </p>
+                        </div>
+
+                        <p>Don't Have An Account? <a onclick="changeForms()">Click Here</a></p>
+                    </form>
+                    <form class="sign-up">
+                        <h1>SIGN UP</h1>
+                        <input type="text" placeholder="Username" name="nameUser">
+                        <input type="password" placeholder="Password" name="passUser">
+                        <input type="text" placeholder="E-Mail" name="emailUser">
+                        <input type="button" value="SIGN UP">
+
+                        <div class="errorUp">
+                            <p> </p>
+                        </div>
+                        <div class="acceptUp">
+                            <p> </p>
+                        </div>
+
+                        <p>Have An Account? <a onclick="changeForms()">Click Here</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="transitionBtwForms.js"></script>
 </body>
+
 </html>
