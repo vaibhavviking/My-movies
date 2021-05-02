@@ -1,0 +1,237 @@
+@font-face {
+    src: url(font/Sen-Regular.ttf);
+    font-family: sen;
+}
+
+.darkMode {
+    --textColor: rgb(242, 242, 242);
+    --back1: rgb(60, 60, 60);
+    --back2: rgb(7, 6, 44);
+    --webScrollColor: rgb(12, 12, 12);
+}
+
+body {
+    transition: .5s;
+    background-color: var(--back2);
+    position: relative;
+}
+
+ :root {
+    --normalColor: rgb(237, 78, 73);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'sen';
+}
+
+section {
+    background-color: var(--back2);
+    transition: .5s;
+    overflow: hidden;
+    width: 100%;
+}
+
+section .container {
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 150px;
+    color: var(--textColor);
+    font-family: arial, sans-serif;
+    text-align: center;
+}
+
+section .container h1 {
+    text-align: center;
+    font-size: 50px;
+    text-transform: uppercase;
+    border-bottom: 1px var(--normalColor) solid;
+    padding-bottom: 15px;
+}
+
+section .container h2 {
+    padding-top: 10px;
+    font-size: 30px;
+    text-align: center;
+}
+
+section .container p {
+    font-size: 20px;
+    color: var(--normalColor);
+}
+
+
+/* CONTAINER OF TWO SIDES */
+
+section .container .box {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+section .container .box .cont {
+    display: flex;
+}
+
+
+/* SIGN IN DESGIN */
+
+section .container .box .sign-in {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 50%;
+    max-width: 400px;
+    left: 25%;
+    transition: .5s;
+}
+
+section .container .box .sign-in h1 {
+    border: none;
+    margin: 0;
+    padding: 10px;
+}
+
+section .container .box .sign-in * {
+    margin-bottom: 15px;
+}
+
+section .container .box .sign-in p {
+    color: var(--textColor);
+}
+
+section .container .box .sign-in a {
+    text-decoration: underline;
+    cursor: pointer;
+    color: var(--normalColor);
+}
+
+section .container .box .sign-in a:hover {
+    text-decoration: none;
+}
+
+
+/* SIGN Up DESGIN */
+
+section .container .box .sign-up {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 50%;
+    max-width: 400px;
+    left: 100%;
+    transition: .5s;
+}
+
+section .container .box .sign-up h1 {
+    border: none;
+    margin: 0;
+    padding: 10px;
+}
+
+section .container .box .sign-up * {
+    margin-bottom: 15px;
+}
+
+section .container .box .sign-up p {
+    color: var(--textColor);
+}
+
+section .container .box .sign-up a {
+    text-decoration: underline;
+    cursor: pointer;
+    color: var(--normalColor);
+}
+
+section .container .box .sign-up a:hover {
+    text-decoration: none;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    transition: 0.3s;
+    outline: none;
+    color: var(--back1);
+    background-color: var(--textColor);
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    transform: scaleX(1.08);
+}
+
+input[type="button"] {
+    outline: none;
+    text-transform: uppercase;
+    font-size: 1.1em;
+    padding: 10px;
+    margin: 10px auto;
+    margin-bottom: 0;
+    width: 35%;
+    min-width: 100px;
+    max-width: 150px;
+    background-color: var(--back1);
+    border: 2px var(--textColor) solid;
+    color: var(--textColor);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+input[type="button"]:hover {
+    background-color: var(--normalColor);
+}
+
+
+/* ERROR MESSAGE SIGN UP */
+
+.errorUp {
+    display: none;
+}
+
+.errorIn {
+    display: none;
+}
+
+.acceptUp {
+    display: none;
+}
+
+.errorUp p {
+    text-align: center;
+    padding: 5px;
+    background-color: var(--normalColor);
+    color: var(--textColor);
+    border-radius: 5px;
+    border: 1px var(--textColor) solid;
+}
+
+.errorIn p {
+    text-align: center;
+    padding: 5px;
+    background-color: var(--normalColor);
+    color: var(--textColor);
+    border-radius: 5px;
+    border: 1px var(--textColor) solid;
+}
+
+.acceptUp p {
+    text-align: center;
+    padding: 5px;
+    background-color: rgb(76, 175, 80);
+    color: var(--textColor);
+    border-radius: 5px;
+    border: 1px var(--textColor) solid;
+}
+
+@media only screen and (max-width: 500px) {
+    section .container h1 {
+        font-size: 30px;
+    }
+}
