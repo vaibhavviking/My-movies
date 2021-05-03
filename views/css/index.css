@@ -1,0 +1,268 @@
+html, body{
+    margin: 0rem;
+    padding: 0rem;
+    background-color: rgb(16, 16, 41);
+    color: white;
+}
+#container{
+    padding: 0.01px 0.01px;
+    display: flex;
+}
+
+#nav{
+    height: 100vh;
+    z-index: 1000;
+}
+
+#navbar{
+    margin: 0.5rem;
+    padding: 1rem 0rem;
+    height: 93vh;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: fixed;
+    border: 0.2rem solid rgb(10, 10, 37);
+    border-radius: 1rem;
+    background-color: rgb(5, 5, 23);
+    box-shadow: 0 1rem 0.5rem 0 rgb(10, 10, 37), 0 1.5rem 1rem 0 rgb(10, 10, 37);
+}
+
+#navbar:hover{
+    box-shadow: 0 0.1rem 1rem 0 rgb(12, 128, 243), 0 0.5rem 2rem 0 rgb(12, 128, 243);
+}
+
+#profile{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+}
+
+#profilePicture{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#profilePicture img{
+    width: 5rem;
+    border-radius: 1000px;
+    margin-bottom: 2rem;
+}
+
+.navButton{
+    padding: 0.85rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Roboto Slab', serif;
+    border: 0.01rem solid rgb(10, 10, 37);
+}
+
+.navButton:hover{
+    background-color: rgb(16, 16, 41);
+}
+
+.navLink{
+    text-decoration: none;
+    color: white;
+}
+
+#genre{
+    width: 100%;
+    height: 75%;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+}
+
+.navHead{
+    margin: 1rem 0rem;
+    padding: 0.5rem 0rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(12, 128, 243);
+}
+
+#main{
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    flex-direction: column;
+}
+
+#title{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
+}
+
+#logoCont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#logo{
+    width: 12rem;
+    border-radius: 30rem;
+}
+
+#type{
+    margin: 2.5rem 1rem;
+    margin-left: 0rem;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 7rem;
+    width: 100%;
+    color: rgb(243 183 12);
+    font-size: 3rem;
+    font-family: 'Vollkorn', serif;
+}
+
+@media(min-width: 1311px){
+    #title{
+        flex-direction: row;
+    }
+}
+
+#carousels{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2rem 1rem;
+}
+
+.genreTitle{
+    margin: 3rem 2rem;
+    color: rgb(12, 128, 243);
+    font-size: 2.5rem;
+    font-family: 'Roboto Slab', serif;
+}
+
+@media(max-width: 900px){
+    #type{
+        font-size: 2rem;
+        height: 5rem;
+        margin-left: 1rem;
+    }
+}
+
+
+.banner{
+    width: 100%;
+    height: 75vh;
+    overflow: hidden;
+}
+
+.banner .carousel{
+    width: 16rem;
+    margin: 5rem auto 0;
+    overflow: visible;
+}
+
+.carousel img{
+    border-radius: 1rem;
+    height: 100%;
+    /* -webkit-box-reflect: below 0.5rem linear-gradient(rgba(255,255,255, 0), rgba(255,255,255, 0.1)); */
+}
+
+@media(max-width: 800px){
+    .genreTitle{
+        margin: 1.5rem 2rem;
+        margin-bottom: 0.5rem;
+    }
+    .banner{
+        height: unset;
+    }
+    .banner .carousel{
+        width: 10rem;
+        margin: 2rem auto 0;
+    }
+}
+
+.card{
+    display: flex;
+    height: 18rem;
+    align-items: stretch;
+    justify-content: stretch;
+    padding: 0.1rem 0.1rem;
+    background-color: rgb(5, 5, 23);
+    border-radius: 1rem;
+    border: 0.1rem solid rgb(243, 183, 12);
+}
+
+.card:hover{
+    box-shadow: 0 0.1rem 1rem 0 rgb(243, 183, 12), 0 0.5rem 2rem 0 rgb(243, 183, 12);
+}
+
+.cardImage{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardContent{
+    display: flex;
+    margin-left: 1rem;
+    width: 30%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.movieTitle{
+    margin: 1rem 1rem;
+    font-size: 2rem;
+    font-family: 'Roboto Slab', serif;
+    color: white;
+}
+
+.movieRating{
+    margin: 0.5rem 1rem;
+    font-size: 1rem;
+    font-family: 'Roboto Slab', serif;
+    color: rgb(243, 183, 12);
+}
+
+.carousel ul{
+    height: unset;
+}
+
+@media(max-width: 800px){
+    .card{
+        flex-direction: column;
+        height: unset;
+        width: 88vw;
+        height: 100%;
+    }
+    .cardImage{
+        height: unset;
+        width: 100%;
+    }
+    .cardContent{
+        width: unset;
+        margin-top: 2rem;
+        margin-left: unset;
+    }
+
+    .cardImage img{
+        height: 100%;
+    }
+}
+
