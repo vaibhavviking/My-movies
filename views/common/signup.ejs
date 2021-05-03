@@ -6,39 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Sen:400,700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a1fdd42e8e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="../css/signup.css">
-    <title>SignIn/SignUp</title>
+
+    <title>SignUp</title>
 </head>
 
 <body class="darkMode">
 
-    <section>
-        <div class="container" id="cont">
-            <h1>REGISTRATION</h1>
+    <div class="w3-container w3-center w3-animate-zoom">
 
-            <div class="box">
-                <div class="cont">
-                    <form class="sign-in" method="POST" action="<%=path%>auth/signup">
-                        <h1>SIGN UP</h1>
-                        <input type="text" placeholder="Name" name="name">
-                        <input type="email" placeholder="Email" name="email">
-                        <input type="password" placeholder="Password" name="password">
-                        <input type="password" placeholder="Re-enter Password" name="repassword">
+        <section>
+            <div class="container" id="cont">
+                <h1>REGISTRATION</h1>
+
+                <div class="box">
+                    <div class="cont">
+                        <form class="sign-in" method="POST" action="<%=path%>auth/signup">
+                            <h1>SIGN UP</h1>
+                            <input type="text" placeholder="Name" name="name">
+                            <input type="email" placeholder="Email" name="email">
+                            <input type="password" placeholder="Password" name="password">
+                            <input type="password" placeholder="Re-enter Password" name="repassword">
                             <input type="submit" value="SIGN UP">
 
-                        <div class="errorUp">
-                            <p><%=error%></p>
-                        </div>
-                        <div class="acceptUp">
-                            <p></p>
-                        </div>
+                            <div class="errorUp">
+                                <p>
+                                    <%=error%>
+                                </p>
+                            </div>
+                            <div class="acceptUp">
+                                <p></p>
+                            </div>
 
-                        <p>Have An Account? <a href="<%=path%>auth/login">Click Here</a></p>
-                    </form>
+                            <p>Have An Account? <a href="<%=path%>auth/login">Click Here</a></p>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+    </div>
     <!-- jQuery Latest Version 1.x -->
     <script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
 
