@@ -74,9 +74,6 @@ section .container .box .cont {
     display: flex;
 }
 
-
-
-
 section .container .box .sign-in {
     position: relative;
     display: flex;
@@ -111,7 +108,6 @@ section .container .box .sign-in a {
 section .container .box .sign-in a:hover {
     text-decoration: none;
 }
-
 
 input[type="text"],
 input[type="password"] {
