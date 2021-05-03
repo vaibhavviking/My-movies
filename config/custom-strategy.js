@@ -4,8 +4,9 @@ const CustomStrategy = passportCustom.Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const flash = require('connect-flash');
 const bcrypt = require('bcrypt');
+const User = require('../models/user');
 passport.serializeUser((user, done) => {
-    done(null, user.accountID);
+    done(null, user._id);
 });
 
 
@@ -18,33 +19,32 @@ const compare = async (pass, hash) => {
     })
 }
 
-passport.deserializeUser((id, done) => {
-    let sql = 'select * from account where accountID = ' + id;
-    connection.query(sql, (err, result) => {
-        done(null, result[0]);
-    })
+passport.deserializeUser(async (id, done) => {
+    let result = await User.findById(id);
+    if(result){
+        done(null,result);
+    }
 });
 
 
 passport.use('local', new LocalStrategy({ usernameField: 'email', passwordField: 'password', passReqToCallback: true },
-    (req, username, password, done) => {
+    async (req, username, password, done) => {
         // console.log(req);
         console.log(username, password);
-        let sql = `select * from account where email= ?;`;
-        connection.query(sql, [username, password],(err, result) => {
-            if (result.length) {
-                bcrypt.compare(password, result[0].password, (err, result2) => {
-                    if (result2 == true) {
-                        done(null, result[0]);
-                    } else {
-                        console.log('boom');
-                        done(null, false, req.flash("error", 'Wrong email or password'));
-                    }
-                })
-            } else {
+        let result = await User.find({"email" : username});
+        if(result.length){
+            let check = await bcrypt.compare(password, result[0].password);
+            console.log(check);
+            if(check){
+                done(null,result[0]);
+            }else{
                 console.log('boom');
                 done(null, false, req.flash("error", 'Wrong email or password'));
             }
-        })
+        }else{
+            console.log('boom');
+            done(null, false, req.flash("error", 'Wrong email or password'));
+        }
     }
-))
+    ))
+    

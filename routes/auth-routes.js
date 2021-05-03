@@ -32,13 +32,14 @@ router.get('/login', async (req, res) => {
     } else {
         let error = req.flash('error');
         let message = req.flash('message');
+        console.log(message);
         res.render(path + 'login', { path: href, error, message });
     }
 });
 
 router.post('/login', passport.authenticate('local', { failureRedirect: '/auth/login', failureFlash: true, passReqToCallback: true }), async (req, res) => {
     let id = req.user._id;
-    console.log('here', temp);
+    // console.log('here', req.user);
     res.redirect('/user/home');
 })
 
