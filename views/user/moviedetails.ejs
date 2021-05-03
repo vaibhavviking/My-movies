@@ -8,13 +8,13 @@
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600%7CUbuntu:300,400,500,700" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="css/nouislider.min.css">
-    <link rel="stylesheet" href="css/ionicons.min.css">
-    <link rel="stylesheet" href="css/plyr.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="/css/nouislider.min.css">
+    <link rel="stylesheet" href="/css/ionicons.min.css">
+    <link rel="stylesheet" href="/css/plyr.css">
+    <link rel="stylesheet" href="/css/main.css">
 
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" media="all" />
 
     <title>Movie Details</title>
 
@@ -31,7 +31,7 @@
                 <div class="row">
 
                     <div class="col-12">
-                        <h1 class="details__title">I Dream in Another Language</h1>
+                        <h1 class="details__title"></h1>
                     </div>
 
                     <div class="col-12 col-xl-6">
@@ -40,7 +40,7 @@
 
                                 <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-5">
                                     <div class="card__cover">
-                                        <img src="img/covers/cover.jpg" alt="">
+                                        <img class="poster" src="img/covers/cover.jpg" alt="">
                                     </div>
                                 </div>
 
@@ -52,57 +52,57 @@
                                                 <div class="transformers-left">
                                                     Genre:
                                                 </div>
-                                                <div class="transformers-right">
-                                                    <a href="#">Sci-Fic</a>
+                                                <div id="genre" class="transformers-right">
+                                                    
                                                 </div>
                                             </li>
 
                                             <li>
                                                 <div class="transformers-left">
-                                                    Writer:
+                                                    Starring:
                                                 </div>
-                                                <div class="transformers-right">
-                                                    Stephen McFeely, Christopher Markus
+                                                <div id="actors" class="transformers-right">
+                                                    
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="transformers-left">
                                                     Director:
                                                 </div>
-                                                <div class="transformers-right">
-                                                    Joe Johnston
+                                                <div id="director" class="transformers-right">
+                                                    
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="transformers-left">
                                                     Time:
                                                 </div>
-                                                <div class="transformers-right">
-                                                    190m
+                                                <div id="time" class="transformers-right">
+                                                    
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="transformers-left">
                                                     Release:
                                                 </div>
-                                                <div class="transformers-right">
-                                                    2018-07-22
+                                                <div id="release" class="transformers-right">
+                                                    
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="transformers-left">
                                                     Language:
                                                 </div>
-                                                <div class="transformers-right">
-                                                    English, Russian
+                                                <div id="language" class="transformers-right">
+                                                    
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="transformers-left">
-                                                    Rate:
+                                                    Rating:
                                                 </div>
                                                 <div class="transformers-right">
-                                                    <span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>
+                                                    <span class="card__rate"></span>
                                                 </div>
                                             </li>
                                             <li>
@@ -111,16 +111,22 @@
                                                 </div>
                                                 <div class="transformers-right">
                                                     <div class="social-btn">
-                                                        <a href="#" class="parent-btn"><i class="icon ion-ios-heart"></i></a>
+                                                        <a href="#" class="parent-btn"><i
+                                                                class="icon ion-ios-heart"></i></a>
                                                     </div>
                                                 </div>
                                             </li>
 
                                         </ul>
 
-                                        <div class="card__description card__description--details">
-                                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,
-                                            content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web
+                                        <div class="card__description card__description--details overview">
+                                            It is a long established fact that a reader will be distracted by the
+                                            readable content of a page when looking at its layout. The point of using
+                                            Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
+                                            opposed to using 'Content here,
+                                            content here', making it look like readable English. Many desktop publishing
+                                            packages and web page editors now use Lorem Ipsum as their default model
+                                            text, and a search for 'lorem ipsum' will uncover many web
                                             sites still in their infancy.
                                         </div>
                                     </div>
@@ -145,7 +151,10 @@
 						    <a href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" download>Download</a>
                         
                         </video> -->
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/gOaklQfD1z8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe id="trailer" width="560" height="315" src=""
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
                     </div>
 
                 </div>
@@ -184,10 +193,15 @@
                                                 <span class="reviews__name">Best Marvel movie in my opinion</span>
                                                 <span class="reviews__time">24.08.2018, 17:53 by John Doe</span>
 
-                                                <span class="reviews__rating"><i class="icon ion-ios-star"></i>8.4</span>
+                                                <span class="reviews__rating"><i
+                                                        class="icon ion-ios-star"></i>8.4</span>
                                             </div>
-                                            <p class="reviews__text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you
-                                                are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+                                            <p class="reviews__text">There are many variations of passages of Lorem
+                                                Ipsum available, but the majority have suffered alteration in some form,
+                                                by injected humour, or randomised words which don't look even slightly
+                                                believable. If you
+                                                are going to use a passage of Lorem Ipsum, you need to be sure there
+                                                isn't anything embarrassing hidden in the middle of text.</p>
                                         </li>
 
                                         <li class="reviews__item">
@@ -196,10 +210,15 @@
                                                 <span class="reviews__name">Best Marvel movie in my opinion</span>
                                                 <span class="reviews__time">24.08.2018, 17:53 by John Doe</span>
 
-                                                <span class="reviews__rating"><i class="icon ion-ios-star"></i>9.0</span>
+                                                <span class="reviews__rating"><i
+                                                        class="icon ion-ios-star"></i>9.0</span>
                                             </div>
-                                            <p class="reviews__text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you
-                                                are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+                                            <p class="reviews__text">There are many variations of passages of Lorem
+                                                Ipsum available, but the majority have suffered alteration in some form,
+                                                by injected humour, or randomised words which don't look even slightly
+                                                believable. If you
+                                                are going to use a passage of Lorem Ipsum, you need to be sure there
+                                                isn't anything embarrassing hidden in the middle of text.</p>
                                         </li>
 
                                         <li class="reviews__item">
@@ -208,10 +227,15 @@
                                                 <span class="reviews__name">Best Marvel movie in my opinion</span>
                                                 <span class="reviews__time">24.08.2018, 17:53 by John Doe</span>
 
-                                                <span class="reviews__rating"><i class="icon ion-ios-star"></i>7.5</span>
+                                                <span class="reviews__rating"><i
+                                                        class="icon ion-ios-star"></i>7.5</span>
                                             </div>
-                                            <p class="reviews__text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you
-                                                are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+                                            <p class="reviews__text">There are many variations of passages of Lorem
+                                                Ipsum available, but the majority have suffered alteration in some form,
+                                                by injected humour, or randomised words which don't look even slightly
+                                                believable. If you
+                                                are going to use a passage of Lorem Ipsum, you need to be sure there
+                                                isn't anything embarrassing hidden in the middle of text.</p>
                                         </li>
                                     </ul>
 
@@ -235,14 +259,62 @@
         </div>
     </section>
 
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.mCustomScrollbar.min.js"></script>
-    <script src="js/wNumb.js"></script>
-    <script src="js/nouislider.min.js"></script>
-    <script src="js/plyr.min.js"></script>
-    <script src="js/jquery.morelines.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/jquery.mCustomScrollbar.min.js"></script>
+    <script src="/js/wNumb.js"></script>
+    <script src="/js/nouislider.min.js"></script>
+    <script src="/js/plyr.min.js"></script>
+    <script src="/js/jquery.morelines.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script>
+        let urlParams = new URLSearchParams(window.location.search);
+        let id = urlParams.get('id');
+        const path = window.location.origin;
+        $(document).ready(() => {
+            $.ajax({
+                type: 'POST',
+                url: path + '/user/getmoviedetails',
+                data: {
+                    id
+                },
+                success: (result) => {
+                    console.log(result);
+                    $('.details__title').text(result['original_title']);
+                    $('.poster').attr('src', 'https://image.tmdb.org/t/p/w500'+result.poster_path);
+                    let len=result.genres.length;
+                    for(let i=0;i<len;i++){
+                        if(i<len-1){
+                            $('#genre').text(result.genres[i].name+',');
+                        }else{
+                            $('#genre').text(result.genres[i].name);
+
+                        }
+                    }
+                    $('#time').text(result.runtime+" minutes");
+                    $('#release').text(result.release_date);    
+                    $('#language').text(String(result.original_language).toUpperCase());
+                    $('.card__rate').text(result.vote_average);
+                    $('.overview').text(result.overview);
+                    let trurl = 'https://www.youtube.com/embed/';
+                    trurl += result.videos.results[0].key;
+                    $('#trailer').attr('src',trurl);
+                    let cast = result.credits.cast;
+                    let crew= result.credits.crew;
+                    let actors = cast[0].name + ', '+cast[1].name;
+                    len = crew.length;
+                    let director;
+                    for(let i=0;i<len;i++){
+                        if(crew[i].job == 'Director'){
+                            director=crew[i].name;
+                        }
+                    }
+                    $('#actors').text(actors);
+                    $('#director').text(director);
+                }
+            })
+        })
+    </script>
 </body>
 
 </html>

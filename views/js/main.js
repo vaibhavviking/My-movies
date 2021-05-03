@@ -161,8 +161,8 @@ $(document).ready(function () {
 		baseclass: 'b-description',
 		basejsclass: 'js-description',
 		classspecific: '_readmore',
-		buttontxtmore: "",
-		buttontxtless: "",
+		buttontxtmore: "Read more",
+		buttontxtless: "Hide",
 		animationspeed: 400
 	});
 
