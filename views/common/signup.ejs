@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Sen:400,700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a1fdd42e8e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="../css/signup.css">
+    <link rel="stylesheet" href="/css/signup.css">
 
     <title>SignUp</title>
 </head>
@@ -24,17 +24,18 @@
                     <div class="cont">
                         <form class="sign-in" method="POST" action="<%=path%>auth/signup">
                             <h1>SIGN UP</h1>
-                            <input type="text" placeholder="Name" name="name">
-                            <input type="email" placeholder="Email" name="email">
-                            <input type="password" placeholder="Password" name="password">
-                            <input type="password" placeholder="Re-enter Password" name="repassword">
+                            <input type="text" placeholder="Name" name="name" required="true">
+                            <input type="email" placeholder="Email" name="email" required="true">
+                            <input type="password" placeholder="Password" name="password" required="true">
+                            <input type="password" placeholder="Re-enter Password" name="repassword" required="true">
                             <input type="submit" value="SIGN UP">
-
-                            <div class="errorUp">
-                                <p>
-                                    <%=error%>
-                                </p>
-                            </div>
+                            <%if(error.length){%>
+                                <div class="alert alert-danger">
+                                    <p>
+                                        <%=error[0]%>
+                                    </p>
+                                </div>
+                            <%}%>
                             <div class="acceptUp">
                                 <p></p>
                             </div>

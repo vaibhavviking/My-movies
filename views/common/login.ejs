@@ -24,14 +24,19 @@
                     <div class="cont">
                         <form method="POST" class="sign-in">
                             <h1>Login IN</h1>
-                            <input type="email" placeholder="Email" name="email">
-                            <input type="password" placeholder="Password" name="password">
+                            <input type="email" placeholder="Email" name="email" required="true">
+                            <input type="password" placeholder="Password" name="password" required="true">
                             <input type="submit" value="LOG IN">
-
-                            <div class="errorIn">
-                                <p></p>
-                            </div>
-
+                            <%if(error.length){%>
+                                <div class="alert alert-danger">
+                                    <p><%=error[0]%></p>
+                                </div>
+                            <%}%>
+                            <%if(message.length){%>
+                                <div class="alert alert-success">
+                                    <p><%=message[0]%></p>
+                                </div>
+                            <%}%>
                             <p>Don't Have An Account? <a href="<%=path%>auth/signup">Click Here</a></p>
                         </form>
                     </div>

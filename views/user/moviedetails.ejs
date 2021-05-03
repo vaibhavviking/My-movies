@@ -1,15 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600%7CUbuntu:300,400,500,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="/css/nouislider.min.css">
+    <link rel="stylesheet" href="/css/ionicons.min.css">
+    <link rel="stylesheet" href="/css/plyr.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" media="all" />
+
+    <title>Movie Details</title>
+
 </head>
-<body>
-    <%=data%>
-    <h1><%=fav%></h1>
-    <h1><%=rating%></h1>
-    <h1><%=review%></h1>
+
+<body class="body">
+
+    <section class="section details">
+
+        <!-- <div class="details__bg" data-bg="img/home/home__bg.jpg"></div> -->
+
+        <div class="container">
+            <div class="transformers-box" style="background-color: #010913c4;">
+                <div class="row">
+
+                    <div class="col-12">
+                        <h1 class="details__title"></h1>
+                    </div>
+
+                    <div class="col-12 col-xl-6">
+                        <div class="card card--details" style="background-color: #010913c4;">
+                            <div class="row" style="background-color: #010913c4; ">
+
+                                <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-5">
+                                    <div class="card__cover">
+                                        <img class="poster" src="img/covers/cover.jpg" alt="">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-8 col-md-8 col-lg-9 col-xl-7">
+                                    <div class="card__content">
+
+                                        <ul class="card__meta">
+                                            <li>
+                                                <div class="transformers-left">
+                                                    Genre:
+                                                </div>
+                                                <div id="genre" class="transformers-right">
+                                                    
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="transformers-left">
+                                                    Starring:
+                                                </div>
+                                                <div id="actors" class="transformers-right">
+                                                    
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="transformers-left">
+                                                    Director:
+                                                </div>
+                                                <div id="director" class="transformers-right">
+                                                    
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="transformers-left">
+                                                    Time:
+                                                </div>
+                                                <div id="time" class="transformers-right">
+                                                    
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="transformers-left">
+                                                    Release:
+                                                </div>
+                                                <div id="release" class="transformers-right">
+                                                    
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="transformers-left">
+                                                    Language:
+                                                </div>
+                                                <div id="language" class="transformers-right">
+                                                    
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="transformers-left">
+                                                    Rating:
+                                                </div>
+                                                <div class="transformers-right">
+                                                    <span class="card__rate"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="transformers-left">
+                                                    Favourite:
+                                                </div>
+                                                <div class="transformers-right">
+                                                    <div class="social-btn">
+                                                        <a href="#" class="parent-btn"><i
+                                                                class="icon ion-ios-heart"></i></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                        </ul>
+
+                                        <div class="card__description card__description--details overview">
+                                            It is a long established fact that a reader will be distracted by the
+                                            readable content of a page when looking at its layout. The point of using
+                                            Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
+                                            opposed to using 'Content here,
+                                            content here', making it look like readable English. Many desktop publishing
+                                            packages and web page editors now use Lorem Ipsum as their default model
+                                            text, and a search for 'lorem ipsum' will uncover many web
+                                            sites still in their infancy.
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-xl-6">
+                        <!-- <video controls crossorigin playsinline poster="../../../cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg" id="player">
+                        						
+						    <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" type="video/mp4" size="576">
+						    <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4" type="video/mp4" size="720">
+						    <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4" type="video/mp4" size="1080">
+						    <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1440p.mp4" type="video/mp4" size="1440">
+
+						    <track kind="captions" label="English" srclang="en" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt"
+    						    default>
+	    					<track kind="captions" label="Français" srclang="fr" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt">
+
+						    <a href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" download>Download</a>
+                        
+                        </video> -->
+                        <iframe id="trailer" width="560" height="315" src=""
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+    <section class="content">
+        <div class="content__head">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+
+                        <h2 class="content__title">Reviews</h2><br>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-8 col-xl-8">
+
+                    <div class="tab-content" id="myTabContent">
+                        <div class="row">
+
+                            <div class="col-12">
+                                <div class="reviews">
+                                    <ul class="reviews__list">
+                                        <li class="reviews__item">
+                                            <div class="reviews__autor">
+                                                <img class="reviews__avatar" src="img/user.png" alt="">
+                                                <span class="reviews__name">Best Marvel movie in my opinion</span>
+                                                <span class="reviews__time">24.08.2018, 17:53 by John Doe</span>
+
+                                                <span class="reviews__rating"><i
+                                                        class="icon ion-ios-star"></i>8.4</span>
+                                            </div>
+                                            <p class="reviews__text">There are many variations of passages of Lorem
+                                                Ipsum available, but the majority have suffered alteration in some form,
+                                                by injected humour, or randomised words which don't look even slightly
+                                                believable. If you
+                                                are going to use a passage of Lorem Ipsum, you need to be sure there
+                                                isn't anything embarrassing hidden in the middle of text.</p>
+                                        </li>
+
+                                        <li class="reviews__item">
+                                            <div class="reviews__autor">
+                                                <img class="reviews__avatar" src="img/user.png" alt="">
+                                                <span class="reviews__name">Best Marvel movie in my opinion</span>
+                                                <span class="reviews__time">24.08.2018, 17:53 by John Doe</span>
+
+                                                <span class="reviews__rating"><i
+                                                        class="icon ion-ios-star"></i>9.0</span>
+                                            </div>
+                                            <p class="reviews__text">There are many variations of passages of Lorem
+                                                Ipsum available, but the majority have suffered alteration in some form,
+                                                by injected humour, or randomised words which don't look even slightly
+                                                believable. If you
+                                                are going to use a passage of Lorem Ipsum, you need to be sure there
+                                                isn't anything embarrassing hidden in the middle of text.</p>
+                                        </li>
+
+                                        <li class="reviews__item">
+                                            <div class="reviews__autor">
+                                                <img class="reviews__avatar" src="img/user.png" alt="">
+                                                <span class="reviews__name">Best Marvel movie in my opinion</span>
+                                                <span class="reviews__time">24.08.2018, 17:53 by John Doe</span>
+
+                                                <span class="reviews__rating"><i
+                                                        class="icon ion-ios-star"></i>7.5</span>
+                                            </div>
+                                            <p class="reviews__text">There are many variations of passages of Lorem
+                                                Ipsum available, but the majority have suffered alteration in some form,
+                                                by injected humour, or randomised words which don't look even slightly
+                                                believable. If you
+                                                are going to use a passage of Lorem Ipsum, you need to be sure there
+                                                isn't anything embarrassing hidden in the middle of text.</p>
+                                        </li>
+                                    </ul>
+
+                                    <form action="#" class="form">
+                                        <input type="text" class="form__input" placeholder="Title">
+                                        <textarea class="form__textarea" placeholder="Review"></textarea>
+                                        <div class="form__slider">
+                                            <div class="form__slider-rating" id="slider__rating"></div>
+                                            <div class="form__slider-value" id="form__slider-value"></div>
+                                        </div>
+                                        <button type="button" class="form__btn">Send</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/jquery.mCustomScrollbar.min.js"></script>
+    <script src="/js/wNumb.js"></script>
+    <script src="/js/nouislider.min.js"></script>
+    <script src="/js/plyr.min.js"></script>
+    <script src="/js/jquery.morelines.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script>
+        let urlParams = new URLSearchParams(window.location.search);
+        let id = urlParams.get('id');
+        const path = window.location.origin;
+        $(document).ready(() => {
+            $.ajax({
+                type: 'POST',
+                url: path + '/user/getmoviedetails',
+                data: {
+                    id
+                },
+                success: (result) => {
+                    console.log(result);
+                    $('.details__title').text(result['original_title']);
+                    $('.poster').attr('src', 'https://image.tmdb.org/t/p/w500'+result.poster_path);
+                    let len=result.genres.length;
+                    for(let i=0;i<len;i++){
+                        if(i<len-1){
+                            $('#genre').text(result.genres[i].name+',');
+                        }else{
+                            $('#genre').text(result.genres[i].name);
+
+                        }
+                    }
+                    $('#time').text(result.runtime+" minutes");
+                    $('#release').text(result.release_date);    
+                    $('#language').text(String(result.original_language).toUpperCase());
+                    $('.card__rate').text(result.vote_average);
+                    $('.overview').text(result.overview);
+                    let trurl = 'https://www.youtube.com/embed/';
+                    trurl += result.videos.results[0].key;
+                    $('#trailer').attr('src',trurl);
+                    let cast = result.credits.cast;
+                    let crew= result.credits.crew;
+                    let actors = cast[0].name + ', '+cast[1].name;
+                    len = crew.length;
+                    let director;
+                    for(let i=0;i<len;i++){
+                        if(crew[i].job == 'Director'){
+                            director=crew[i].name;
+                        }
+                    }
+                    $('#actors').text(actors);
+                    $('#director').text(director);
+                }
+            })
+        })
+    </script>
 </body>
+
 </html>
