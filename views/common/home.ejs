@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Movies</title>
+    <link rel="stylesheet" href="../css/jquery.flipster.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@1,500&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="../js/movies.js"></script>
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+
+<body onload="typeText()">
+    <div id="container">
+        <img id="collapse" onclick="toggle()"
+            style="width: 4rem; margin: 1rem 1rem; position: fixed; right: 0.5rem; top: 0.5rem;z-index: 1000; cursor: pointer; border-radius: 6px;"
+                src="../assets/img/hamburger.png" alt="">
+        <div id="nav">
+            <div id="navbar">
+                <a href="#" class="navLink">
+                    <div class="navButton" onclick="navClick()">
+                        SEARCH MOVIES
+                    </div>
+                </a>
+                <a href="<%=path%>auth/login" class="navLink">
+                    <div class="navButton" onclick="navClick()">
+                        LOG IN
+                    </div>
+                </a>
+                
+                <div class="navHead">
+                    GENRES
+                </div>
+                <div id="genre">
+                </div>
+            </div>
+        </div>
+        <script>
+            document.getElementById("navbar").style.display = "none";
+        </script>
+        <div id="main">
+            <div id="title">
+                <div id="logoCont" style="margin-top: 1rem; margin-left: 1.2rem;">
+                    <img src="../assets/img/logo.png" alt="" id="logo">
+                </div>
+                <div id="type"></div>
+            </div>
+        </div>
+        <script>
+            // Load Data into website
+            let path = window.location.origin;
+            var mapIndexToGenre = {
+                "0": "Action",
+                "1": "Adventure",
+                "2": "Animation",
+                "3": "Comedy",
+                "4": "Crime",
+                "5": "Documentary",
+                "6": "Drama",
+                "7": "Family",
+                "8": "Fantasy",
+                "9": "History",
+                "10": "Horror",
+                "11": "Music",
+                "12": "Mystery",
+                "13": "Romance",
+                "14": "Science-Fiction",
+                "15": "Thriller",
+                "16": "War",
+                "17": "Western"
+            };
+            var noOfGenres = 17;
+            var k = 0;
+            while (k < noOfGenres) {
+                document.getElementById("main").innerHTML += `
+                <div class="genreTitle" id="${mapIndexToGenre[k]}">
+                    ${mapIndexToGenre[k]}
+                    <hr>
+                </div>
+                <div class="banner">
+                    <div class="carousel">
+                        <ul>
+
+                        </ul>
+                    </div>
+                </div>
+                `;
+                document.getElementById("genre").innerHTML += `
+                <a href="#${mapIndexToGenre[k]}" class="navLink" onclick="navClick()">
+                        <div class="navButton">
+                            ${mapIndexToGenre[k]}
+                        </div>
+                    </a>
+                `;
+                k++;
+            }
+            var j = 0;
+            while (j < noOfGenres) {
+                console.log(`Started loading genre ${mapIndexToGenre[j]}`);
+                var obj = movies[mapIndexToGenre[j]];
+                if (obj == undefined) {
+                    let str1 = `
+                    <li>
+                        <a href=# style="text-decoration: none;">
+                            <card class="card" style="width: fit-content; width: -moz-fit-content">
+                                <div class="cardContent" style="width: 100%">
+                                    <div class="movieTitle" style="color:rgb(243, 183, 12);">Oops!</div>
+                                    <div class="movieTitle" style="color:rgb(243, 183, 12);">No Movies</div>
+                                </div>
+                            </card>
+                        </a>
+                    </li>
+                    `;
+                    document.getElementsByClassName("carousel")[j].childNodes[1].innerHTML += str1;
+                    j++;
+                    continue;
+                }
+                var n = obj.length;
+                var i = 0;
+                while (i < n) {
+                    var poster = "img/logo.png";
+                    var title = "Movie";
+                    var rating = 0;
+                    var id = obj[i].id;
+                    if (obj[i].poster_path != null) poster = obj[i].poster_path;
+                    else if (obj[i].backdrop_path != null) poster = obj[i].backdrop_path;
+                    if (obj[i].title != null) title = obj[i].title;
+                    if (obj[i].vote_average != null) rating = obj[i].vote_average;
+                    let str = `
+                    <li>
+                        <a href="${path}/user/moviedetails?id=${id}" style="text-decoration: none;">
+                            <card class="card">
+                                <div class="cardImage">
+                                    <img src=${'https://image.tmdb.org/t/p/w500'+poster} alt="">
+                                </div>
+                                <div class="cardContent">
+                                    <div class="movieTitle">${title}</div>
+                                    <div class="movieRating">
+                                        ${rating}
+                                        <span style="font-size: 1rem; color:rgb(243 183 12)">
+                                            &#9733
+                                        </span>
+                                    </div>
+                                </div>
+                            </card>
+                        </a>
+                    </li>
+                    `;
+                    document.getElementsByClassName("carousel")[j].childNodes[1].innerHTML += str;
+                    i++;
+                }
+                console.log("Genre loaded");
+                j++;
+            }
+        </script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="../js/jquery.flipster.min.js"></script>
+        <script>
+            $('.carousel').flipster({
+                itemContainer: 'ul',
+                itemSelector: 'li',
+                style: 'coverflow',
+                start: 'center',
+                fadeIn: 400,
+                loop: true,
+                autoplay: false,
+                pauseOnHover: true,
+                spacing: -0.6,
+                click: true,
+                keyboard: true,
+                scrollwheel: true,
+                touch: true,
+                buttons: false,
+            });
+        </script>
+    </div>
+    <div id="footer">
+
+    </div>
+</body>
+
+<script>
+    // Typing Effect
+    var texts = [`Welcome To My Movies `,
+        `Cherish Your Love For Cinema `,
+        `Explore A Range Of Genres `,
+        `Make Personal List of Favourites `,
+        `Rate And Review Any Movie `];
+    var textSelector = 0;
+    var typeDirection = 1;
+    var speed = 50;
+    var index = 0;
+    function typeText() {
+        if (typeDirection) {
+            document.getElementById("type").innerHTML += texts[textSelector].charAt(index);
+            index++;
+            if (index == texts[textSelector].length) {
+                typeDirection = 0;
+                index--;
+                pause(1000);
+            }
+            setTimeout(typeText, speed);
+        }
+        else {
+            let len = texts[textSelector].length;
+            document.getElementById("type").innerHTML = texts[textSelector].slice(0, -1 - (len - 1 - index));
+            index--;
+            if (index == -1) {
+                typeDirection = 1;
+                index = 0;
+                if (textSelector != texts.length - 1) textSelector++;
+                else textSelector = 0;
+            }
+            setTimeout(typeText, speed);
+        }
+    }
+
+    function pause(milliseconds) {
+        var dt = new Date();
+        while ((new Date()) - dt <= milliseconds) { /* Do nothing */ }
+    }
+
+</script>
+<script>
+    // Toggle Navbar
+    var smallWidth, defaultCollapse = 1;
+    if (screen.width < 900) {
+        smallWidth = 1;
+    }
+    else {
+        smallWidth = 0;
+    }
+    function toggle() {
+        if (smallWidth) {
+            if (defaultCollapse) {
+                document.getElementById("navbar").style.display = "flex";
+                document.getElementById("navbar").style.position = "fixed";
+                document.getElementById("navbar").style.width = "60vw";
+                defaultCollapse = 0;
+            }
+            else {
+                document.getElementById("navbar").style.display = "none";
+                defaultCollapse = 1;
+            }
+        }
+        else {
+            if (defaultCollapse) {
+                document.getElementById("navbar").style.display = "flex";
+                defaultCollapse = 0;
+            }
+            else {
+                document.getElementById("navbar").style.display = "none";
+                defaultCollapse = 1;
+            }
+        }
+    }
+    function navClick() {
+        if (screen.width < 900)
+            toggle();
+    }
+</script>
+
+</html>

@@ -15,6 +15,8 @@ const Mail = require("nodemailer/lib/mailer");
 const LocalStrategy = require('passport-local').Strategy;
 const customStrategy = require('./config/custom-strategy');
 const passportSetup = require('./config/passport-setup');
+const { updatelist,readlist } = require('./storage/update');
+var fs = require('fs');
 require("dotenv").config();
 // const keys2 = require('./config/keys');
 const keys = require('./keys')
@@ -52,7 +54,7 @@ mongoose.connect(keys.mongo_uri, { useNewUrlParser: true, useUnifiedTopology: tr
 
 const connection = mongoose.connection;
 connection.once("open", () => {
-	console.log("MongoDB database linked successfully!");
+    console.log("MongoDB database linked successfully!");
 });
 
 // var options = {
@@ -66,13 +68,13 @@ connection.once("open", () => {
 // };
 
 // app.get('/', (req, res) => {
-    // fetch('https://api.themoviedb.org/3/discover/movie?api_key=0aa29159f6dd2a6237127a2053adc853&language=en-US&sort_by=popularity.desc&page=1&with_cast=true').then(response => response.json()).then(data => {
-    //     // console.log(data); 
-    //     res.render('Home/Home.ejs', { data: JSON.stringify(data, null, 2) })
+// fetch('https://api.themoviedb.org/3/discover/movie?api_key=0aa29159f6dd2a6237127a2053adc853&language=en-US&sort_by=popularity.desc&page=1&with_cast=true').then(response => response.json()).then(data => {
+//     // console.log(data); 
+//     res.render('Home/Home.ejs', { data: JSON.stringify(data, null, 2) })
 
-    // })
 // })
-
+// })
+updatelist();
 
 const auth = (req, res, next) => {
     // console.log(req.user);
@@ -86,7 +88,7 @@ const auth = (req, res, next) => {
 
 app.use("/", homeRouter);
 app.use('/auth', authRouter);
-app.use('/user', auth,userRouter);
+app.use('/user', auth, userRouter);
 // app.use('/profile', auth, profileRouter);
 // app.use('/librarian', auth, librarianRouter);
 

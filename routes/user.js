@@ -6,8 +6,9 @@ const fetch = require('node-fetch');
 const keys = require('../keys');
 const movies= require('./movies');
 const href = domain.href;
-const {data1} = require('./moviedetailsdemo');
+// const {data1} = require('./moviedetailsdemo');
 const User = require('../models/user');
+const {readlist} = require('../storage/update');
 // let movies = {};
 router.get('/home', (req, res) => {
     // console.log(req.user);
@@ -15,23 +16,8 @@ router.get('/home', (req, res) => {
 })
 
 router.get('/homemovies',async (req,res)=>{
-    let arr = keys.genres;
-    if(JSON.stringify(movies) === JSON.stringify({})){
-        let len = arr.length;
-        // for(let i=0;i<len;i++){
-        //         let id = arr[i].id;
-        //         let name = arr[i].name;
-        //         // console.log(id,name);
-        //         let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=0aa29159f6dd2a6237127a2053adc853&language=en-US&sort_by=popularity.desc&with_genres=${id}`);
-        //         let data = await response.json();
-        //         data = data["results"];
-        //         // console.log(data);
-        //         movies[`${name}`] = data;
-    
-        // }
-    }
-    // console.log(movies);
-    res.send(movies.movies);
+    let movies = readlist();
+    res.send(movies);
 })
 
 router.get('/moviedetails', (req, res) => {
@@ -46,8 +32,8 @@ router.post('/getmoviedetails', async (req, res) => {
     let movieid = req.body.id;
     console.log(movieid);
     let email = req.user.email;
-    // let d1=await fetch(`https://api.themoviedb.org/3/movie/${movieid}?api_key=0aa29159f6dd2a6237127a2053adc853&language=en-US&append_to_response=videos,credits`);
-    // let data1 = await d1.json();
+    let d1=await fetch(`https://api.themoviedb.org/3/movie/${movieid}?api_key=0aa29159f6dd2a6237127a2053adc853&language=en-US&append_to_response=videos,credits`);
+    let data1 = await d1.json();
     
     let userdata = await Usermovies.find({ email, movieid });
     let fav = 0, rate = 0, review = "";
