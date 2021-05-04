@@ -5,7 +5,8 @@ const UsermoviesSchema = new Schema({
     email: String,
     movieid : String,
     favourite : Number,
-    review : String,
+    reviewtitle : String,
+    reviewtext : String,
     rating : Number
 })
 
