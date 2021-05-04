@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/css/main.css">
 
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css" media="all" />
-
+    <script src="https://kit.fontawesome.com/ad214375d6.js" crossorigin="anonymous"></script>
     <title>Movie Details</title>
 
 </head>
@@ -53,7 +53,7 @@
                                                     Genre:
                                                 </div>
                                                 <div id="genre" class="transformers-right">
-                                                    
+
                                                 </div>
                                             </li>
 
@@ -62,7 +62,7 @@
                                                     Starring:
                                                 </div>
                                                 <div id="actors" class="transformers-right">
-                                                    
+
                                                 </div>
                                             </li>
                                             <li>
@@ -70,7 +70,7 @@
                                                     Director:
                                                 </div>
                                                 <div id="director" class="transformers-right">
-                                                    
+
                                                 </div>
                                             </li>
                                             <li>
@@ -78,7 +78,7 @@
                                                     Time:
                                                 </div>
                                                 <div id="time" class="transformers-right">
-                                                    
+
                                                 </div>
                                             </li>
                                             <li>
@@ -86,7 +86,7 @@
                                                     Release:
                                                 </div>
                                                 <div id="release" class="transformers-right">
-                                                    
+
                                                 </div>
                                             </li>
                                             <li>
@@ -94,7 +94,7 @@
                                                     Language:
                                                 </div>
                                                 <div id="language" class="transformers-right">
-                                                    
+
                                                 </div>
                                             </li>
                                             <li>
@@ -109,11 +109,8 @@
                                                 <div class="transformers-left">
                                                     Favourite:
                                                 </div>
-                                                <div class="transformers-right">
-                                                    <div class="social-btn">
-                                                        <a href="#" class="parent-btn"><i
-                                                                class="icon ion-ios-heart"></i></a>
-                                                    </div>
+                                                <div id="favourite" class="transformers-right">
+
                                                 </div>
                                             </li>
 
@@ -151,8 +148,8 @@
 						    <a href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" download>Download</a>
                         
                         </video> -->
-                        <iframe id="trailer" width="560" height="315" src=""
-                            title="YouTube video player" frameborder="0"
+                        <iframe id="trailer" width="560" height="315" src="" title="YouTube video player"
+                            frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
                     </div>
@@ -187,66 +184,16 @@
                             <div class="col-12">
                                 <div class="reviews">
                                     <ul class="reviews__list">
-                                        <li class="reviews__item">
-                                            <div class="reviews__autor">
-                                                <img class="reviews__avatar" src="img/user.png" alt="">
-                                                <span class="reviews__name">Best Marvel movie in my opinion</span>
-                                                <span class="reviews__time">24.08.2018, 17:53 by John Doe</span>
-
-                                                <span class="reviews__rating"><i
-                                                        class="icon ion-ios-star"></i>8.4</span>
-                                            </div>
-                                            <p class="reviews__text">There are many variations of passages of Lorem
-                                                Ipsum available, but the majority have suffered alteration in some form,
-                                                by injected humour, or randomised words which don't look even slightly
-                                                believable. If you
-                                                are going to use a passage of Lorem Ipsum, you need to be sure there
-                                                isn't anything embarrassing hidden in the middle of text.</p>
-                                        </li>
-
-                                        <li class="reviews__item">
-                                            <div class="reviews__autor">
-                                                <img class="reviews__avatar" src="img/user.png" alt="">
-                                                <span class="reviews__name">Best Marvel movie in my opinion</span>
-                                                <span class="reviews__time">24.08.2018, 17:53 by John Doe</span>
-
-                                                <span class="reviews__rating"><i
-                                                        class="icon ion-ios-star"></i>9.0</span>
-                                            </div>
-                                            <p class="reviews__text">There are many variations of passages of Lorem
-                                                Ipsum available, but the majority have suffered alteration in some form,
-                                                by injected humour, or randomised words which don't look even slightly
-                                                believable. If you
-                                                are going to use a passage of Lorem Ipsum, you need to be sure there
-                                                isn't anything embarrassing hidden in the middle of text.</p>
-                                        </li>
-
-                                        <li class="reviews__item">
-                                            <div class="reviews__autor">
-                                                <img class="reviews__avatar" src="img/user.png" alt="">
-                                                <span class="reviews__name">Best Marvel movie in my opinion</span>
-                                                <span class="reviews__time">24.08.2018, 17:53 by John Doe</span>
-
-                                                <span class="reviews__rating"><i
-                                                        class="icon ion-ios-star"></i>7.5</span>
-                                            </div>
-                                            <p class="reviews__text">There are many variations of passages of Lorem
-                                                Ipsum available, but the majority have suffered alteration in some form,
-                                                by injected humour, or randomised words which don't look even slightly
-                                                believable. If you
-                                                are going to use a passage of Lorem Ipsum, you need to be sure there
-                                                isn't anything embarrassing hidden in the middle of text.</p>
-                                        </li>
-                                    </ul>
-
-                                    <form action="#" class="form">
-                                        <input type="text" class="form__input" placeholder="Title">
-                                        <textarea class="form__textarea" placeholder="Review"></textarea>
+                                        </ul>
+                                    <form id="rform" class="form">
+                                        <input required="true" type="text" name="title" class="form__input" placeholder="Title">
+                                        <textarea required="true" class="form__textarea" name="text" placeholder="Review"></textarea>
                                         <div class="form__slider">
                                             <div class="form__slider-rating" id="slider__rating"></div>
                                             <div class="form__slider-value" id="form__slider-value"></div>
                                         </div>
-                                        <button type="button" class="form__btn">Send</button>
+                                        <button onclick="submitform('rform')" type="button" class="form__btn">Send</button>
+                                        <div class="rmess"></div>
                                     </form>
                                 </div>
                             </div>
@@ -268,6 +215,9 @@
     <script src="/js/jquery.morelines.min.js"></script>
     <script src="/js/main.js"></script>
     <script>
+        function submitform(id) {
+            $('#rform').submit();
+        }
         let urlParams = new URLSearchParams(window.location.search);
         let id = urlParams.get('id');
         const path = window.location.origin;
@@ -281,36 +231,104 @@
                 success: (result) => {
                     console.log(result);
                     $('.details__title').text(result['original_title']);
-                    $('.poster').attr('src', 'https://image.tmdb.org/t/p/w500'+result.poster_path);
-                    let len=result.genres.length;
-                    for(let i=0;i<len;i++){
-                        if(i<len-1){
-                            $('#genre').text(result.genres[i].name+',');
-                        }else{
-                            $('#genre').text(result.genres[i].name);
+                    $('.poster').attr('src', 'https://image.tmdb.org/t/p/w500' + result.poster_path);
+                    let len = result.genres.length;
+                    for (let i = 0; i < len; i++) {
+                        if (i < len - 1) {
+                            $('#genre').append(result.genres[i].name + ', ');
+                        } else {
+                            $('#genre').append(result.genres[i].name);
 
                         }
                     }
-                    $('#time').text(result.runtime+" minutes");
-                    $('#release').text(result.release_date);    
+                    $('#time').text(result.runtime + " minutes");
+                    $('#release').text(result.release_date);
                     $('#language').text(String(result.original_language).toUpperCase());
-                    $('.card__rate').text(result.vote_average);
+                    $('.card__rate').text(result.vote_average+'/10');
                     $('.overview').text(result.overview);
                     let trurl = 'https://www.youtube.com/embed/';
                     trurl += result.videos.results[0].key;
-                    $('#trailer').attr('src',trurl);
+                    $('#trailer').attr('src', trurl);
                     let cast = result.credits.cast;
-                    let crew= result.credits.crew;
-                    let actors = cast[0].name + ', '+cast[1].name;
+                    let crew = result.credits.crew;
+                    let actors = cast[0].name + ', ' + cast[1].name;
                     len = crew.length;
                     let director;
-                    for(let i=0;i<len;i++){
-                        if(crew[i].job == 'Director'){
-                            director=crew[i].name;
+                    for (let i = 0; i < len; i++) {
+                        if (crew[i].job == 'Director') {
+                            director = crew[i].name;
                         }
                     }
                     $('#actors').text(actors);
                     $('#director').text(director);
+                    let fav = result.fav;
+                    $('#favourite').css('cursor', 'pointer');
+                    if (fav) {
+                        $('#favourite').html("<i class='fas fa-heart' style='color: red'></i>");
+                        $('#favourite').addClass('fav');
+                    } else {
+                        $('#favourite').html("<i class='far fa-heart'></i>");
+                        $('#favourite').addClass('notfav');
+                    }
+                    $(document).on('click', '.notfav', function (e) {
+                        $.ajax({
+                            type: 'POST',
+                            url: path + '/user/markfav',
+                            data: { id },
+                            success: (result) => {
+                                $(this).removeClass('notfav');
+                                $(this).addClass('fav');
+                                $(this).html("<i class='fas fa-heart' style='color: red'></i>");
+                                console.log(result);
+                            }
+                        })
+                    })
+                    $(document).on('click', '.fav', function (e) {
+                        console.log('removed from favourites');
+                        $.ajax({
+                            method: 'POST',
+                            url: path + "/user/unmarkfav",
+                            data: { id },
+                            success: (result) => {
+                                $(this).removeClass('fav');
+                                $(this).addClass('notfav');
+                                $(this).html("<i class='far fa-heart'></i>");
+                                console.log(result);
+                            }
+                        })
+                    })
+                    let reviews=result.reviews;
+                    len=reviews.length;
+                    let reviewhtml =``;
+                    for(let i=0;i<len;i++){
+                        reviewhtml+=`<li class="reviews__item">
+                                            <div class="reviews__autor">
+                                                <span class="reviews__name">${reviews[i].reviewtitle}</span>
+                                                <span class="reviews__time">by ${reviews[i].name}</span>
+                                                <span class="reviews__rating">
+                                                    ${reviews[i].rating}/10</span>
+                                            </div>
+                                            <p class="reviews__text">${reviews[i].reviewtext}</p>
+                                        </li>`
+                    }
+                    $('.reviews__list').html(reviewhtml);
+                    console.log(reviewhtml);
+                    $('#rform').submit(e=>{
+                        e.preventDefault();
+                        let fdata = $('#rform').serialize();
+                        fdata += '&rating='+$('#form__slider-value').text();
+                        console.log(fdata);
+                        $.ajax({
+                            type:'POST',
+                            url: path + '/user/submitreview',
+                            data:{
+                                data : fdata,
+                                id
+                            },success:(result)=>{
+                                $('.rmess').html(`<div class="mess">${result.message}</div>`);
+                            }
+                        })
+                    })
                 }
             })
         })

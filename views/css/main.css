@@ -2851,7 +2851,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .comments__autor {
     display: block;
     position: relative;
-    padding-left: 55px;
+    /* padding-left: 55px; */
     margin-bottom: 15px;
 }
 
@@ -3057,7 +3057,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .reviews__autor {
     display: block;
     position: relative;
-    padding-left: 55px;
+    /* padding-left: 55px; */
     margin-bottom: 15px;
     padding-right: 60px;
 }

@@ -590,3 +590,12 @@ input::-webkit-input-placeholder {
 .thumb-text h4 {
     margin-bottom: 2px;
 }
+
+.mess{
+    color: green;
+background-color: lightgreen;
+width: -moz-fit-content;
+padding: 8px;
+border-radius: 6px;
+margin-top: 15px;
+}

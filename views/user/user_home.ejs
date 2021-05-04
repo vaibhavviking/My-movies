@@ -18,9 +18,9 @@
 
 <body onload="typeText()">
     <div id="container">
-        <button id="collapse" onclick="toggle()"
-            style="width: 4rem; margin: 1rem 1rem; position: fixed; right: 0.5rem; top: 0.5rem;z-index: 1000;"><img
-                src="../assets/img/hamburger.png" alt="" style="width: 2.5rem;"></button>
+        <img id="collapse" onclick="toggle()"
+            style="width: 4rem; margin: 1rem 1rem; position: fixed; right: 0.5rem; top: 0.5rem;z-index: 1000; cursor: pointer; border-radius: 6px;"
+                src="../assets/img/hamburger.png" alt="">
         <div id="nav">
             <div id="navbar">
                 <a href="#" class="navLink">
@@ -35,7 +35,7 @@
                     <div id="profilePicture">
                         <img src="../assets/img/profile.png" alt="">
                     </div>
-                    <a href="#" class="navLink">
+                    <a href="<%=path%>user/userfavourite" class="navLink">
                         <div class="navButton" onclick="navClick()">
                             MY FAVOURITES
                         </div>

@@ -75,7 +75,7 @@ connection.once("open", () => {
 
 
 const auth = (req, res, next) => {
-    console.log(req.user);
+    // console.log(req.user);
     if (req.user) {
         next();
     } else {
@@ -86,7 +86,7 @@ const auth = (req, res, next) => {
 
 app.use("/", homeRouter);
 app.use('/auth', authRouter);
-app.use('/user', userRouter);
+app.use('/user', auth,userRouter);
 // app.use('/profile', auth, profileRouter);
 // app.use('/librarian', auth, librarianRouter);
 
