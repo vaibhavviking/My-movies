@@ -24,13 +24,18 @@ const updatelist = () => {
     // console.log(JSON.stringify(movies,null,4));
 }
 
-const readlist = () => {
-    fs.readFile('./storage/movieslist.json', (err, data) => {
-        if (err) throw err;
-        let obj = JSON.parse(data.toString());
-        console.log(obj);
-    })
+const readlist = async  ()=>{
+    return new Promise((resolve,reject)=>{
+        fs.readFile('./storage/movieslist.json', (err, data) => {
+            if (err) throw err;
+            let obj = JSON.parse(data.toString());
+            // console.log(obj);
+            resolve(obj);
+        })
+    }
+    )
 }
+
 
 exports.readlist = readlist;
 exports.updatelist = updatelist;

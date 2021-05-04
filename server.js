@@ -50,7 +50,13 @@ app.set('view engine', 'ejs');
 app.use(express.static('views'));
 app.set('views', __dirname + '/views');
 
-mongoose.connect(keys.mongo_uri, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
+if(process.env.NODE_ENV != 'test'){
+    console.log('not a test');
+    mongoose.connect(keys.mongo_uri1, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
+}else{
+    console.log('just a test');
+    mongoose.connect(keys.mongo_uri2, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
+}
 
 const connection = mongoose.connection;
 connection.once("open", () => {
@@ -74,7 +80,7 @@ connection.once("open", () => {
 
 // })
 // })
-updatelist();
+// updatelist();
 
 const auth = (req, res, next) => {
     // console.log(req.user);
@@ -92,9 +98,14 @@ app.use('/user', auth, userRouter);
 // app.use('/profile', auth, profileRouter);
 // app.use('/librarian', auth, librarianRouter);
 
-app.listen(port, () => {
-    console.log("Server is running at port : ", port);
-});
+if(process.env.NODE_ENV != 'test'){
+
+    app.listen(port, () => {
+        console.log("Server is running at port : ", port);
+    });
+}
+
+exports.app = app;
 
 // image https://image.tmdb.org/t/p/w500
 

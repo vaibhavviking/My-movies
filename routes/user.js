@@ -10,13 +10,13 @@ const href = domain.href;
 const User = require('../models/user');
 const {readlist} = require('../storage/update');
 // let movies = {};
-router.get('/home', (req, res) => {
+router.get('/home',async (req, res) => {
     // console.log(req.user);
-    res.render(path + 'user_home.ejs', { path: href });
+    let movies = await readlist();
+    res.render(path + 'user_home.ejs', { path: href, movies: JSON.stringify(movies) });
 })
 
 router.get('/homemovies',async (req,res)=>{
-    let movies = readlist();
     res.send(movies);
 })
 
@@ -62,7 +62,7 @@ router.post('/getmoviedetails', async (req, res) => {
             name : user.name,
             reviewtitle : temp[i].reviewtitle,
             reviewtext : temp[i].reviewtext,
-            rating : rate
+            rating : temp[i].rating
         };
         reviews.push(obj);
     }
@@ -179,28 +179,40 @@ router.post('/submitreview', async (req,res)=>{
     let title=obj.title;
     let text=obj.text;
     let rating=obj.rating;
-    let old=await Usermovies.findOne({movieid,email});
-    if(old){
-        console.log('found');
-        await Usermovies.updateOne({movieid,email},{$set : {"reviewtext":text,"reviewtitle":title,"rating":rating}});
-    }else{
-        let temp = new Usermovies({
-            movieid,
-            email,
-            reviewtext: text,
-            reviewtitle: title,
-            rating
+    if(text.length==0 && title.length==0){
+        console.log('here');
+        res.send({
+            message: 'Please Enter the review'
         })
-        temp.save()
+    }else{
+
+        let old=await Usermovies.findOne({movieid,email});
+        if(old){
+            console.log('found');
+            await Usermovies.updateOne({movieid,email},{$set : {"reviewtext":text,"reviewtitle":title,"rating":rating}});
+        }else{
+            let temp = new Usermovies({
+                movieid,
+                email,
+                reviewtext: text,
+                reviewtitle: title,
+                rating
+            })
+            temp.save()
+        }
+        console.log(obj);
+        res.send({
+            message: 'Review submitted successfully!'
+        })
     }
-    console.log(obj);
-    res.send({
-        message: 'Review submitted successfully!'
-    })
 })
 
 router.get('/userfavourite',async (req,res)=>{
     res.render(path+'user_favourite_movies.ejs',{path : href});
+})
+
+router.get('/raterev',(req,res)=>{
+    res.render(path + 'user_rate_reviews.ejs',{path : href});
 })
 
 module.exports = router;

@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@1,500&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="../js/movies.js"></script>
+    <!-- <script src="../js/movies.js"></script> -->
     <link rel="stylesheet" href="../css/index.css">
 </head>
 
@@ -52,6 +52,7 @@
                 <div id="type"></div>
             </div>
         </div>
+        <p style="display: none;" class="movies"><%=movies%></p>
         <script>
             // Load Data into website
             let path = window.location.origin;
@@ -103,6 +104,7 @@
             var j = 0;
             while (j < noOfGenres) {
                 console.log(`Started loading genre ${mapIndexToGenre[j]}`);
+                var movies = JSON.parse(document.getElementsByClassName('movies')[0].innerHTML);
                 var obj = movies[mapIndexToGenre[j]];
                 if (obj == undefined) {
                     let str1 = `
