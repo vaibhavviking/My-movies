@@ -179,6 +179,8 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="../js/jquery.flipster.min.js"></script>
         <script>
+            var displayButton = false;
+            if(screen.width > 900) displayButton = true;
             $('.carousel').flipster({
                 itemContainer: 'ul',
                 itemSelector: 'li',
@@ -193,7 +195,7 @@
                 keyboard: true,
                 scrollwheel: true,
                 touch: true,
-                buttons: false,
+                buttons: displayButton,
             });
         </script>
     </div>
