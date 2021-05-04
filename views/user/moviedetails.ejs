@@ -14,13 +14,86 @@
     <link rel="stylesheet" href="/css/plyr.css">
     <link rel="stylesheet" href="/css/main.css">
 
-    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/css/md.css" media="all" />
 
     <title>Movie Details</title>
+
+    <style>
+        #cont {
+            padding: 0.01px 0.01px;
+            display: flex;
+        }
+        
+        #main {
+            width: 100%;
+            display: flex;
+            align-items: stretch;
+            justify-content: stretch;
+            flex-direction: column;
+        }
+        
+        #title {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: stretch;
+        }
+        
+        #logoCont {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #logo {
+            width: 12rem;
+            border-radius: 30rem;
+        }
+        
+        #type {
+            margin: 2.5rem 1rem;
+            margin-left: 0rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 7rem;
+            width: 100%;
+            color: rgb(243 183 12);
+            font-size: 3rem;
+            font-family: 'Vollkorn', serif;
+        }
+        
+        @media(min-width: 1311px) {
+            #title {
+                flex-direction: row;
+            }
+        }
+        
+        @media(max-width: 900px) {
+            #type {
+                font-size: 2rem;
+                height: 5rem;
+                margin-left: 1rem;
+            }
+        }
+    </style>
 
 </head>
 
 <body class="body">
+
+    <div class="cont">
+        <div id="main">
+            <div id="title">
+                <div id="logoCont" style="margin-top: 1rem; margin-left: 1.2rem;">
+                    <img src="../assets/img/logo.png" alt="" id="logo">
+                </div>
+                <div id="type"></div>
+            </div>
+        </div>
+    </div>
 
     <section class="section details">
 
@@ -53,7 +126,7 @@
                                                     Genre:
                                                 </div>
                                                 <div id="genre" class="transformers-right">
-                                                    
+
                                                 </div>
                                             </li>
 
@@ -62,7 +135,7 @@
                                                     Starring:
                                                 </div>
                                                 <div id="actors" class="transformers-right">
-                                                    
+
                                                 </div>
                                             </li>
                                             <li>
@@ -70,7 +143,7 @@
                                                     Director:
                                                 </div>
                                                 <div id="director" class="transformers-right">
-                                                    
+
                                                 </div>
                                             </li>
                                             <li>
@@ -78,7 +151,7 @@
                                                     Time:
                                                 </div>
                                                 <div id="time" class="transformers-right">
-                                                    
+
                                                 </div>
                                             </li>
                                             <li>
@@ -86,7 +159,7 @@
                                                     Release:
                                                 </div>
                                                 <div id="release" class="transformers-right">
-                                                    
+
                                                 </div>
                                             </li>
                                             <li>
@@ -94,7 +167,7 @@
                                                     Language:
                                                 </div>
                                                 <div id="language" class="transformers-right">
-                                                    
+
                                                 </div>
                                             </li>
                                             <li>
@@ -120,13 +193,8 @@
                                         </ul>
 
                                         <div class="card__description card__description--details overview">
-                                            It is a long established fact that a reader will be distracted by the
-                                            readable content of a page when looking at its layout. The point of using
-                                            Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
-                                            opposed to using 'Content here,
-                                            content here', making it look like readable English. Many desktop publishing
-                                            packages and web page editors now use Lorem Ipsum as their default model
-                                            text, and a search for 'lorem ipsum' will uncover many web
+                                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,
+                                            content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web
                                             sites still in their infancy.
                                         </div>
                                     </div>
@@ -151,10 +219,7 @@
 						    <a href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" download>Download</a>
                         
                         </video> -->
-                        <iframe id="trailer" width="560" height="315" src=""
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
+                        <iframe id="trailer" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
 
                 </div>
@@ -196,12 +261,8 @@
                                                 <span class="reviews__rating"><i
                                                         class="icon ion-ios-star"></i>8.4</span>
                                             </div>
-                                            <p class="reviews__text">There are many variations of passages of Lorem
-                                                Ipsum available, but the majority have suffered alteration in some form,
-                                                by injected humour, or randomised words which don't look even slightly
-                                                believable. If you
-                                                are going to use a passage of Lorem Ipsum, you need to be sure there
-                                                isn't anything embarrassing hidden in the middle of text.</p>
+                                            <p class="reviews__text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you
+                                                are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
                                         </li>
 
                                         <li class="reviews__item">
@@ -213,12 +274,8 @@
                                                 <span class="reviews__rating"><i
                                                         class="icon ion-ios-star"></i>9.0</span>
                                             </div>
-                                            <p class="reviews__text">There are many variations of passages of Lorem
-                                                Ipsum available, but the majority have suffered alteration in some form,
-                                                by injected humour, or randomised words which don't look even slightly
-                                                believable. If you
-                                                are going to use a passage of Lorem Ipsum, you need to be sure there
-                                                isn't anything embarrassing hidden in the middle of text.</p>
+                                            <p class="reviews__text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you
+                                                are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
                                         </li>
 
                                         <li class="reviews__item">
@@ -230,12 +287,8 @@
                                                 <span class="reviews__rating"><i
                                                         class="icon ion-ios-star"></i>7.5</span>
                                             </div>
-                                            <p class="reviews__text">There are many variations of passages of Lorem
-                                                Ipsum available, but the majority have suffered alteration in some form,
-                                                by injected humour, or randomised words which don't look even slightly
-                                                believable. If you
-                                                are going to use a passage of Lorem Ipsum, you need to be sure there
-                                                isn't anything embarrassing hidden in the middle of text.</p>
+                                            <p class="reviews__text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you
+                                                are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
                                         </li>
                                     </ul>
 
@@ -281,32 +334,32 @@
                 success: (result) => {
                     console.log(result);
                     $('.details__title').text(result['original_title']);
-                    $('.poster').attr('src', 'https://image.tmdb.org/t/p/w500'+result.poster_path);
-                    let len=result.genres.length;
-                    for(let i=0;i<len;i++){
-                        if(i<len-1){
-                            $('#genre').text(result.genres[i].name+',');
-                        }else{
+                    $('.poster').attr('src', 'https://image.tmdb.org/t/p/w500' + result.poster_path);
+                    let len = result.genres.length;
+                    for (let i = 0; i < len; i++) {
+                        if (i < len - 1) {
+                            $('#genre').text(result.genres[i].name + ',');
+                        } else {
                             $('#genre').text(result.genres[i].name);
 
                         }
                     }
-                    $('#time').text(result.runtime+" minutes");
-                    $('#release').text(result.release_date);    
+                    $('#time').text(result.runtime + " minutes");
+                    $('#release').text(result.release_date);
                     $('#language').text(String(result.original_language).toUpperCase());
                     $('.card__rate').text(result.vote_average);
                     $('.overview').text(result.overview);
                     let trurl = 'https://www.youtube.com/embed/';
                     trurl += result.videos.results[0].key;
-                    $('#trailer').attr('src',trurl);
+                    $('#trailer').attr('src', trurl);
                     let cast = result.credits.cast;
-                    let crew= result.credits.crew;
-                    let actors = cast[0].name + ', '+cast[1].name;
+                    let crew = result.credits.crew;
+                    let actors = cast[0].name + ', ' + cast[1].name;
                     len = crew.length;
                     let director;
-                    for(let i=0;i<len;i++){
-                        if(crew[i].job == 'Director'){
-                            director=crew[i].name;
+                    for (let i = 0; i < len; i++) {
+                        if (crew[i].job == 'Director') {
+                            director = crew[i].name;
                         }
                     }
                     $('#actors').text(actors);
