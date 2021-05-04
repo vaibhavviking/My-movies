@@ -71,6 +71,7 @@
         </div>
         <script>
             // Load Data into website
+            let path = window.location.origin;
             var mapIndexToGenre = {
                 "0": "Action",
                 "1": "Adventure",
@@ -96,9 +97,8 @@
             while (k < noOfGenres) {
                 document.getElementById("main").innerHTML += `
                 <div class="genreTitle" id="${mapIndexToGenre[k]}">
-                    <hr>
                     ${mapIndexToGenre[k]}
-                    <hr style="color: rgb(243, 183, 12);">
+                    <hr>
                 </div>
                 <div class="banner">
                     <div class="carousel">
@@ -125,7 +125,7 @@
                     let str1 = `
                     <li>
                         <a href=# style="text-decoration: none;">
-                            <card class="card" style="min-width: fit-content;">
+                            <card class="card" style="width: fit-content; width: -moz-fit-content">
                                 <div class="cardContent" style="width: 100%">
                                     <div class="movieTitle" style="color:rgb(243, 183, 12);">Oops!</div>
                                     <div class="movieTitle" style="color:rgb(243, 183, 12);">No Movies</div>
@@ -147,14 +147,14 @@
                     var id = obj[i].id;
                     if (obj[i].poster_path != null) poster = obj[i].poster_path;
                     else if (obj[i].backdrop_path != null) poster = obj[i].backdrop_path;
-                    if (obj[i].original_title != null) title = obj[i].original_title;
+                    if (obj[i].title != null) title = obj[i].title;
                     if (obj[i].vote_average != null) rating = obj[i].vote_average;
                     let str = `
                     <li>
-                        <a href="window.location.origin/user/moviedetails?id=${id}" style="text-decoration: none;">
+                        <a href="${path}/user/moviedetails?id=${id}" style="text-decoration: none;">
                             <card class="card">
                                 <div class="cardImage">
-                                    <img src=${poster} alt="">
+                                    <img src=${'https://image.tmdb.org/t/p/w500'+poster} alt="">
                                 </div>
                                 <div class="cardContent">
                                     <div class="movieTitle">${title}</div>
@@ -179,6 +179,8 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="../js/jquery.flipster.min.js"></script>
         <script>
+            var displayButton = false;
+            if(screen.width > 900) displayButton = true;
             $('.carousel').flipster({
                 itemContainer: 'ul',
                 itemSelector: 'li',
@@ -193,7 +195,7 @@
                 keyboard: true,
                 scrollwheel: true,
                 touch: true,
-                buttons: false,
+                buttons: displayButton,
             });
         </script>
     </div>

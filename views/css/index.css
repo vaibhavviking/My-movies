@@ -1,20 +1,22 @@
-html, body{
+html,
+body {
     margin: 0rem;
     padding: 0rem;
     background-color: rgb(16, 16, 41);
     color: white;
 }
-#container{
+
+#container {
     padding: 0.01px 0.01px;
     display: flex;
 }
 
-#nav{
+#nav {
     height: 100vh;
     z-index: 1000;
 }
 
-#navbar{
+#navbar {
     margin: 0.5rem;
     padding: 1rem 0rem;
     height: 93vh;
@@ -29,11 +31,11 @@ html, body{
     box-shadow: 0 1rem 0.5rem 0 rgb(10, 10, 37), 0 1.5rem 1rem 0 rgb(10, 10, 37);
 }
 
-#navbar:hover{
+#navbar:hover {
     box-shadow: 0 0.1rem 1rem 0 rgb(12, 128, 243), 0 0.5rem 2rem 0 rgb(12, 128, 243);
 }
 
-#profile{
+#profile {
     width: 100%;
     display: flex;
     align-items: center;
@@ -42,19 +44,19 @@ html, body{
     align-items: stretch;
 }
 
-#profilePicture{
+#profilePicture {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#profilePicture img{
+#profilePicture img {
     width: 5rem;
     border-radius: 1000px;
     margin-bottom: 2rem;
 }
 
-.navButton{
+.navButton {
     padding: 0.85rem 1rem;
     display: flex;
     align-items: center;
@@ -63,16 +65,16 @@ html, body{
     border: 0.01rem solid rgb(10, 10, 37);
 }
 
-.navButton:hover{
+.navButton:hover {
     background-color: rgb(16, 16, 41);
 }
 
-.navLink{
+.navLink {
     text-decoration: none;
     color: white;
 }
 
-#genre{
+#genre {
     width: 100%;
     height: 75%;
     overflow: auto;
@@ -83,7 +85,7 @@ html, body{
     align-items: stretch;
 }
 
-.navHead{
+.navHead {
     margin: 1rem 0rem;
     padding: 0.5rem 0rem;
     display: flex;
@@ -92,7 +94,7 @@ html, body{
     background-color: rgb(12, 128, 243);
 }
 
-#main{
+#main {
     width: 100%;
     display: flex;
     align-items: stretch;
@@ -100,30 +102,31 @@ html, body{
     flex-direction: column;
 }
 
-#title{
+#title {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: stretch;
     justify-content: stretch;
+    margin-bottom: 6rem;
 }
 
-#logoCont{
+#logoCont {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-#logo{
+#logo {
     width: 12rem;
     border-radius: 30rem;
 }
 
-#type{
+#type {
     margin: 2.5rem 1rem;
     margin-left: 0rem;
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     height: 7rem;
@@ -133,13 +136,13 @@ html, body{
     font-family: 'Vollkorn', serif;
 }
 
-@media(min-width: 1311px){
-    #title{
+@media(min-width: 1311px) {
+    #title {
         flex-direction: row;
     }
 }
 
-#carousels{
+#carousels {
     width: 100%;
     display: flex;
     align-items: center;
@@ -148,7 +151,7 @@ html, body{
     padding: 2rem 1rem;
 }
 
-.genreTitle{
+.genreTitle {
     margin: 3rem 2rem;
     margin-top: 0rem;
     color: rgb(12, 128, 243);
@@ -156,51 +159,50 @@ html, body{
     font-family: 'Roboto Slab', serif;
 }
 
-@media(max-width: 900px){
-    #type{
+@media(max-width: 900px) {
+    #type {
         font-size: 2rem;
         height: 5rem;
         margin-left: 1rem;
     }
 }
 
-
-.banner{
+.banner {
     width: 100%;
     height: 75vh;
     overflow: hidden;
 }
 
-.banner .carousel{
+.banner .carousel {
     width: 16rem;
     margin: 5rem auto 0;
     overflow: visible;
 }
 
-.carousel img{
+.carousel img {
     border-radius: 1rem;
     height: 100%;
-    -webkit-box-reflect: below 0.5rem linear-gradient(rgba(255,255,255, 0), rgba(255,255,255, 0.1));
+    -webkit-box-reflect: below 0.5rem linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.1));
 }
 
-@media(max-width: 800px){
-    .genreTitle{
+@media(max-width: 800px) {
+    .genreTitle {
         margin: 1.5rem 2rem;
         margin-bottom: 0.5rem;
     }
-    .banner{
+    .banner {
         height: unset;
     }
-    .banner .carousel{
+    .banner .carousel {
         width: 10rem;
         margin: 2rem auto 0;
     }
-    .genreTitle{
+    .genreTitle {
         margin-top: 1rem;
     }
 }
 
-.card{
+.card {
     display: flex;
     height: 18rem;
     width: 500px;
@@ -212,18 +214,18 @@ html, body{
     border: 0.1rem solid rgb(243, 183, 12);
 }
 
-.card:hover{
+.card:hover {
     box-shadow: 0 0.1rem 1rem 0 rgb(243, 183, 12), 0 0.5rem 2rem 0 rgb(243, 183, 12);
 }
 
-.cardImage{
+.cardImage {
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.cardContent{
+.cardContent {
     display: flex;
     margin-left: 1rem;
     flex-direction: column;
@@ -231,52 +233,66 @@ html, body{
     justify-content: center;
 }
 
-.movieTitle{
+.movieTitle {
     margin: 1rem 1rem;
     font-size: x-large;
     font-family: 'Roboto Slab', serif;
     color: white;
 }
 
-.movieRating{
+.movieRating {
     margin: 0.5rem 1rem;
     font-size: 1rem;
     font-family: 'Roboto Slab', serif;
     color: rgb(243, 183, 12);
 }
 
-.carousel ul{
+.carousel ul {
     height: unset;
+}
+
+
+.flipster__button{
+    top: unset;
+    margin: unset;
+}
+
+.flipster__button svg{
+    fill: unset;
+    stroke: white;
 }
 
 @media(max-width: 800px){
     .card{
         flex-direction: column;
         height: unset;
-        width: 88vw !important; 
+        width: 88vw !important;
         height: 100%;
     }
-    .cardImage{
+    .cardImage {
         height: unset;
         width: 100%;
     }
-    .cardContent{
+    .cardContent {
         width: unset;
         margin-top: 2rem;
         margin-left: unset;
     }
 
     .cardImage img{
+
         height: 100%;
     }
-}
-
-@media(max-height: 600px){
-    #profilePicture{
-        display: none;
-    }
-    #profilePicture img{
+    .flipster__button{
         display: none;
     }
 }
 
+@media(max-height: 600px) {
+    #profilePicture {
+        display: none;
+    }
+    #profilePicture img {
+        display: none;
+    }
+}
