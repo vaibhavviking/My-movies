@@ -1,4 +1,4 @@
-var movies = {
+let movies = {
     "Action": [
         {
             "adult": false,
