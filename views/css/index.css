@@ -228,7 +228,7 @@ html, body{
 
 .movieTitle{
     margin: 1rem 1rem;
-    font-size: 2rem;
+    font-size: x-large;
     font-family: 'Roboto Slab', serif;
     color: white;
 }
