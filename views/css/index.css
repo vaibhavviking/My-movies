@@ -198,6 +198,7 @@ html, body{
 .card{
     display: flex;
     height: 18rem;
+    width: 500px;
     align-items: stretch;
     justify-content: stretch;
     padding: 0.1rem 0.1rem;
@@ -248,7 +249,7 @@ html, body{
     .card{
         flex-direction: column;
         height: unset;
-        width: 88vw;
+        width: 88vw !important; 
         height: 100%;
     }
     .cardImage{
