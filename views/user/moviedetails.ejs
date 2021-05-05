@@ -504,7 +504,11 @@
                             type: 'POST',
                             url: path + '/user/markfav',
                             data: {
-                                id
+                                id,
+                                name: result['original_title'],
+                                rating: result['vote_average'],
+                                poster: result['poster_path'],
+                                overview: result['overview']
                             },
                             success: (result) => {
                                 $(this).removeClass('notfav');
@@ -520,7 +524,7 @@
                             method: 'POST',
                             url: path + "/user/unmarkfav",
                             data: {
-                                id
+                                id,
                             },
                             success: (result) => {
                                 $(this).removeClass('fav');
@@ -557,7 +561,9 @@
                             data: {
                                 data: fdata,
                                 id,
-                                name:result['original_title']
+                                name: result['original_title'],
+                                poster: result['poster_path'],
+                                overview: result['overview']
                             },
                             success: (result) => {
                                 $('.rmess').html(`<div class="mess">${result.message}</div>`);

@@ -78,6 +78,9 @@ router.post('/markfav', async (req, res) => {
     let movieid = req.body.id;
     console.log(movieid);
     let email = req.user.email;
+    let {name,rating,poster,overview}=req.body;
+    await checkmovie(movieid,name,rating,poster,overview);
+    // console.log(movieid,name,rating,poster);
     let res1 = await Usermovies.find({ email, movieid });
     console.log(res1);
     if (res1.length) {
@@ -122,31 +125,6 @@ router.post('/unmarkfav', async (req, res) => {
     }
 })
 
-router.post('/rate', async (req, res) => {
-    let movieid = req.body.movieid;
-    let rating = req.body.rating;
-    let email = req.body.email;
-    console.log(email, rating);
-    let res1 = await Usermovies.find({ email, movieid });
-    console.log(res1);
-    if (res1.length) {
-        Usermovies.updateOne({ _id: res1[0]._id }, { $set: { "rating": rating } }, (err, result) => {
-            if (err) throw err;
-            res.send(result);
-        })
-    } else {
-        let obj = new Usermovies({
-            email,
-            movieid,
-            rating
-        })
-        console.log('here');
-        obj.save().then(result => {
-            res.send(result);
-        })
-    }
-})
-
 router.post('/review', async (req, res) => {
     let movieid = req.body.movieid;
     let review = req.body.review;
@@ -176,11 +154,12 @@ router.post('/submitreview', async (req,res)=>{
     let data = req.body.data;
     let email = req.user.email;
     let movieid=req.body.id;
-    let moviename=req.body.name;
+    let {name,poster,overview}=req.body;
     let obj = (Object.fromEntries([...new URLSearchParams(data)]));
     let title=obj.title;
     let text=obj.text;
     let rating=obj.rating;
+    await checkmovie(movieid,name,rating,poster);
     if(text.length==0 && title.length==0){
         console.log('here');
         res.send({
@@ -195,7 +174,6 @@ router.post('/submitreview', async (req,res)=>{
         }else{
             let temp = new Usermovies({
                 movieid,
-                moviename,
                 email,
                 reviewtext: text,
                 reviewtitle: title,
@@ -211,23 +189,40 @@ router.post('/submitreview', async (req,res)=>{
 })
 
 router.get('/userfavourite',async (req,res)=>{
-    res.render(path+'user_favourite_movies.ejs',{path : href});
+    let email = req.user.email;
+    let result = await Usermovies.find({email, favourite: 1});
+    let len=result.length;
+    let data = [];
+    console.log(result);
+    for(let i=0;i<len;i++){
+        let id=result[i].movieid;
+        let temp = await Movie.findOne({movieid:id});
+        let obj = {
+            movieid: id,
+            name:temp.name,
+            rating: temp.rating,
+            overview: temp.overview,
+            poster: temp.poster
+        }
+        data.push(obj);
+    }
+    // console.log(data);
+    res.render(path+'user_favourite_movies.ejs',{path : href, data});
 })
 
 router.get('/raterev',(req,res)=>{
     res.render(path + 'user_rate_reviews.ejs',{path : href});
 })
 
-const checkmovie = async (id) => {
+const checkmovie = async (id,name,rating,poster,overview) => {
     let result = await Movie.findOne({movieid: id});
     if(!result){
-        let data1=await fetch(`https://api.themoviedb.org/3/movie/${movieid}?api_key=0aa29159f6dd2a6237127a2053adc853&language=en-US`);
-        let d1 = await data1.json();
         let obj = new Movie({
             movieid: id,
-            name:d1['original_title'],
-            rating: d1['vote_average'],
-            poster:d1['poster_path']
+            name,
+            rating,
+            poster,
+            overview
         })
         await obj.save();
     }

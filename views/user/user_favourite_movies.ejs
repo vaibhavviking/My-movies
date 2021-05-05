@@ -124,38 +124,20 @@
             <div class="row ipad-width2">
                 <div class="col-md-9 col-sm-12 col-xs-12">
                     <div class="flex-wrap-movielist user-fav-list">
-
-                        <div class="movie-item-style-2">
-                            <img src="/assets/img/profile.png" alt="">
-                            <div class="mv-item-infor">
-                                <h6><a href="#">oblivion </a></h6>
-                                <p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
-                                <p class="describe">Earth's mightiest heroes must come together and learn to fight as a team if they are to stop the mischievous Loki and his alien army from enslaving humanity...
-                                </p>
+                        <%data.forEach(item =>{%>
+                            <div class="movie-item-style-2">
+                                <img style="width: 200px;" src="https://image.tmdb.org/t/p/w500<%=item.poster%>" alt="">
+                                <div class="mv-item-infor">
+                                    <h6><a href="<%=path%>user/moviedetails?id=<%=item.movieid%>"><%=item.name%> </a></h6>
+                                    <p class="rate"><i class="ion-android-star"></i><span><%=item.rating%></span> /10</p>
+                                    <p class="describe"><%=item.overview%>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="movie-item-style-2">
-                            <img src="/assets/img/profile.png" alt="">
-                            <div class="mv-item-infor">
-                                <h6><a href="#">into the wild </a></h6>
-                                <p class="rate"><i class="ion-android-star"></i><span>7.8</span> /10</p>
-                                <p class="describe">As Steve Rogers struggles to embrace his role in the modern world, he teams up with a fellow Avenger and S.H.I.E.L.D agent, Black Widow, to battle a new threat...</p>
-                            </div>
-                        </div>
-
-                        <div class="movie-item-style-2">
-                            <img src="/assets/img/profile.png" alt="">
-                            <div class="mv-item-infor">
-                                <h6><a href="#">blade runner </a></h6>
-                                <p class="rate"><i class="ion-android-star"></i><span>7.3</span> /10</p>
-                                <p class="describe">Armed with a super-suit with the astonishing ability to shrink in scale but increase in strength, cat burglar Scott Lang must embrace his inner hero and help...</p>
-                            </div>
-                        </div>
-
+                        <%})%>
                     </div>
 
-                    <div class="topbar-filter">
+                    <!-- <div class="topbar-filter">
                         <label>Movies per page:</label>
                         <div class="pagination2">
                             <span>Page 1 of 2:</span>
@@ -167,7 +149,7 @@
                             <a href="#">79</a>
                             <a href="#"><i class="ion-arrow-right-b"></i></a>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>
