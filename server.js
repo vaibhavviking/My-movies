@@ -94,11 +94,7 @@ const auth = (req, res, next) => {
 
 app.use("/", homeRouter);
 app.use('/auth', authRouter);
-<<<<<<< HEAD
 app.use('/user', userRouter);
-=======
-app.use('/user', auth, userRouter);
->>>>>>> b81ec1c429c45b98946efc548c29a3ae2aa1140b
 // app.use('/profile', auth, profileRouter);
 // app.use('/librarian', auth, librarianRouter);
 
