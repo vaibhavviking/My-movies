@@ -397,7 +397,8 @@
                             url: path + '/user/submitreview',
                             data: {
                                 data: fdata,
-                                id
+                                id,
+                                name:result['original_title']
                             },
                             success: (result) => {
                                 $('.rmess').html(`<div class="mess">${result.message}</div>`);

@@ -175,6 +175,7 @@ router.post('/submitreview', async (req,res)=>{
     let data = req.body.data;
     let email = req.user.email;
     let movieid=req.body.id;
+    let moviename=req.body.name;
     let obj = (Object.fromEntries([...new URLSearchParams(data)]));
     let title=obj.title;
     let text=obj.text;
@@ -193,6 +194,7 @@ router.post('/submitreview', async (req,res)=>{
         }else{
             let temp = new Usermovies({
                 movieid,
+                moviename,
                 email,
                 reviewtext: text,
                 reviewtitle: title,

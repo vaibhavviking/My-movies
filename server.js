@@ -18,14 +18,13 @@ const passportSetup = require('./config/passport-setup');
 const { updatelist,readlist } = require('./storage/update');
 var fs = require('fs');
 require("dotenv").config();
-// const keys2 = require('./config/keys');
 const keys = require('./keys')
 const app = express();
 const Genre = require('./models/genres');
 const port = process.env.PORT || 5000;
 
 app.use(cookieSession({
-    maxAge: 24 * 60 * 60 * 1000,
+    maxAge:  60 * 60 * 1000,
     keys: [keys.sessionKey]
 }))
 
@@ -52,7 +51,7 @@ app.set('views', __dirname + '/views');
 
 if(process.env.NODE_ENV != 'test'){
     console.log('not a test');
-    mongoose.connect(keys.mongo_uri1, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
+    mongoose.connect(keys.mongo_uricloud, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
 }else{
     console.log('just a test');
     mongoose.connect(keys.mongo_uri2, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
@@ -63,23 +62,6 @@ connection.once("open", () => {
     console.log("MongoDB database linked successfully!");
 });
 
-// var options = {
-//     method: 'GET',
-//     url: 'https://movie-database-imdb-alternative.p.rapidapi.com/',
-//     params: { s: 'Avengers Endgame', page: '1', r: 'json' },
-//     headers: {
-//         'x-rapidapi-key': '995509b1bcmsh464a63f549f320ap1f00a1jsnbe4725223c26',
-//         'x-rapidapi-host': 'movie-database-imdb-alternative.p.rapidapi.com'
-//     }
-// };
-
-// app.get('/', (req, res) => {
-// fetch('https://api.themoviedb.org/3/discover/movie?api_key=0aa29159f6dd2a6237127a2053adc853&language=en-US&sort_by=popularity.desc&page=1&with_cast=true').then(response => response.json()).then(data => {
-//     // console.log(data); 
-//     res.render('Home/Home.ejs', { data: JSON.stringify(data, null, 2) })
-
-// })
-// })
 // updatelist();
 
 const auth = (req, res, next) => {
@@ -95,8 +77,6 @@ const auth = (req, res, next) => {
 app.use("/", homeRouter);
 app.use('/auth', authRouter);
 app.use('/user', auth, userRouter);
-// app.use('/profile', auth, profileRouter);
-// app.use('/librarian', auth, librarianRouter);
 
 if(process.env.NODE_ENV != 'test'){
 
@@ -108,12 +88,3 @@ if(process.env.NODE_ENV != 'test'){
 exports.app = app;
 
 // image https://image.tmdb.org/t/p/w500
-
-// let genres = {"genres":[{"id":28,"name":"Action"},{"id":12,"name":"Adventure"},{"id":16,"name":"Animation"},{"id":35,"name":"Comedy"},{"id":80,"name":"Crime"},{"id":99,"name":"Documentary"},{"id":18,"name":"Drama"},{"id":10751,"name":"Family"},{"id":14,"name":"Fantasy"},{"id":36,"name":"History"},{"id":27,"name":"Horror"},{"id":10402,"name":"Music"},{"id":9648,"name":"Mystery"},{"id":10749,"name":"Romance"},{"id":878,"name":"SciFi"},{"id":53,"name":"Thriller"},{"id":10752,"name":"War"},{"id":37,"name":"Western"}]};
-
-// let arr =genres["genres"];
-// let temp = {};
-// arr.forEach(item => {
-//     temp[item.name] = item.id;
-// })
-// console.log(temp);
