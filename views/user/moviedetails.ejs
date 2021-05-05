@@ -14,13 +14,86 @@
     <link rel="stylesheet" href="/css/plyr.css">
     <link rel="stylesheet" href="/css/main.css">
 
-    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/css/md.css" media="all" />
     <script src="https://kit.fontawesome.com/ad214375d6.js" crossorigin="anonymous"></script>
     <title>Movie Details</title>
+
+    <style>
+        #cont {
+            padding: 0.01px 0.01px;
+            display: flex;
+        }
+
+        #main {
+            width: 100%;
+            display: flex;
+            align-items: stretch;
+            justify-content: stretch;
+            flex-direction: column;
+        }
+
+        #title {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: stretch;
+        }
+
+        #logoCont {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #logo {
+            width: 12rem;
+            border-radius: 30rem;
+        }
+
+        #type {
+            margin: 2.5rem 1rem;
+            margin-left: 0rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 7rem;
+            width: 100%;
+            color: rgb(243 183 12);
+            font-size: 3rem;
+            font-family: 'Vollkorn', serif;
+        }
+
+        @media(min-width: 1311px) {
+            #title {
+                flex-direction: row;
+            }
+        }
+
+        @media(max-width: 900px) {
+            #type {
+                font-size: 2rem;
+                height: 5rem;
+                margin-left: 1rem;
+            }
+        }
+    </style>
 
 </head>
 
 <body class="body">
+
+    <div class="cont">
+        <div id="main">
+            <div id="title">
+                <div id="logoCont" style="margin-top: 1rem; margin-left: 1.2rem;">
+                    <img src="../assets/img/logo.png" alt="" id="logo">
+                </div>
+                <div id="type"></div>
+            </div>
+        </div>
+    </div>
 
     <section class="section details">
 
@@ -117,14 +190,7 @@
                                         </ul>
 
                                         <div class="card__description card__description--details overview">
-                                            It is a long established fact that a reader will be distracted by the
-                                            readable content of a page when looking at its layout. The point of using
-                                            Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
-                                            opposed to using 'Content here,
-                                            content here', making it look like readable English. Many desktop publishing
-                                            packages and web page editors now use Lorem Ipsum as their default model
-                                            text, and a search for 'lorem ipsum' will uncover many web
-                                            sites still in their infancy.
+
                                         </div>
                                     </div>
                                 </div>
@@ -184,15 +250,19 @@
                             <div class="col-12">
                                 <div class="reviews">
                                     <ul class="reviews__list">
-                                        </ul>
+                                    </ul>
+
                                     <form id="rform" class="form">
-                                        <input required="true" type="text" name="title" class="form__input" placeholder="Title">
-                                        <textarea required="true" class="form__textarea" name="text" placeholder="Review"></textarea>
+                                        <input required="true" type="text" name="title" class="form__input"
+                                            placeholder="Title">
+                                        <textarea required="true" class="form__textarea" name="text"
+                                            placeholder="Review"></textarea>
                                         <div class="form__slider">
                                             <div class="form__slider-rating" id="slider__rating"></div>
                                             <div class="form__slider-value" id="form__slider-value"></div>
                                         </div>
-                                        <button onclick="submitform('rform')" type="button" class="form__btn">Send</button>
+                                        <button onclick="submitform('rform')" type="button"
+                                            class="form__btn">Send</button>
                                         <div class="rmess"></div>
                                     </form>
                                 </div>
@@ -244,7 +314,7 @@
                     $('#time').text(result.runtime + " minutes");
                     $('#release').text(result.release_date);
                     $('#language').text(String(result.original_language).toUpperCase());
-                    $('.card__rate').text(result.vote_average+'/10');
+                    $('.card__rate').text(result.vote_average + '/10');
                     $('.overview').text(result.overview);
                     let trurl = 'https://www.youtube.com/embed/';
                     trurl += result.videos.results[0].key;
@@ -274,7 +344,9 @@
                         $.ajax({
                             type: 'POST',
                             url: path + '/user/markfav',
-                            data: { id },
+                            data: {
+                                id
+                            },
                             success: (result) => {
                                 $(this).removeClass('notfav');
                                 $(this).addClass('fav');
@@ -288,7 +360,9 @@
                         $.ajax({
                             method: 'POST',
                             url: path + "/user/unmarkfav",
-                            data: { id },
+                            data: {
+                                id
+                            },
                             success: (result) => {
                                 $(this).removeClass('fav');
                                 $(this).addClass('notfav');
@@ -297,11 +371,11 @@
                             }
                         })
                     })
-                    let reviews=result.reviews;
-                    len=reviews.length;
-                    let reviewhtml =``;
-                    for(let i=0;i<len;i++){
-                        reviewhtml+=`<li class="reviews__item">
+                    let reviews = result.reviews;
+                    len = reviews.length;
+                    let reviewhtml = ``;
+                    for (let i = 0; i < len; i++) {
+                        reviewhtml += `<li class="reviews__item">
                                             <div class="reviews__autor">
                                                 <span class="reviews__name">${reviews[i].reviewtitle}</span>
                                                 <span class="reviews__time">by ${reviews[i].name}</span>
@@ -313,18 +387,19 @@
                     }
                     $('.reviews__list').html(reviewhtml);
                     console.log(reviewhtml);
-                    $('#rform').submit(e=>{
+                    $('#rform').submit(e => {
                         e.preventDefault();
                         let fdata = $('#rform').serialize();
-                        fdata += '&rating='+$('#form__slider-value').text();
+                        fdata += '&rating=' + $('#form__slider-value').text();
                         console.log(fdata);
                         $.ajax({
-                            type:'POST',
+                            type: 'POST',
                             url: path + '/user/submitreview',
-                            data:{
-                                data : fdata,
+                            data: {
+                                data: fdata,
                                 id
-                            },success:(result)=>{
+                            },
+                            success: (result) => {
                                 $('.rmess').html(`<div class="mess">${result.message}</div>`);
                             }
                         })

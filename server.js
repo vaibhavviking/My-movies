@@ -15,6 +15,8 @@ const Mail = require("nodemailer/lib/mailer");
 const LocalStrategy = require('passport-local').Strategy;
 const customStrategy = require('./config/custom-strategy');
 const passportSetup = require('./config/passport-setup');
+const { updatelist,readlist } = require('./storage/update');
+var fs = require('fs');
 require("dotenv").config();
 // const keys2 = require('./config/keys');
 const keys = require('./keys')
@@ -48,11 +50,17 @@ app.set('view engine', 'ejs');
 app.use(express.static('views'));
 app.set('views', __dirname + '/views');
 
-mongoose.connect(keys.mongo_uri, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
+if(process.env.NODE_ENV != 'test'){
+    console.log('not a test');
+    mongoose.connect(keys.mongo_uri1, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
+}else{
+    console.log('just a test');
+    mongoose.connect(keys.mongo_uri2, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
+}
 
 const connection = mongoose.connection;
 connection.once("open", () => {
-	console.log("MongoDB database linked successfully!");
+    console.log("MongoDB database linked successfully!");
 });
 
 // var options = {
@@ -66,13 +74,13 @@ connection.once("open", () => {
 // };
 
 // app.get('/', (req, res) => {
-    // fetch('https://api.themoviedb.org/3/discover/movie?api_key=0aa29159f6dd2a6237127a2053adc853&language=en-US&sort_by=popularity.desc&page=1&with_cast=true').then(response => response.json()).then(data => {
-    //     // console.log(data); 
-    //     res.render('Home/Home.ejs', { data: JSON.stringify(data, null, 2) })
+// fetch('https://api.themoviedb.org/3/discover/movie?api_key=0aa29159f6dd2a6237127a2053adc853&language=en-US&sort_by=popularity.desc&page=1&with_cast=true').then(response => response.json()).then(data => {
+//     // console.log(data); 
+//     res.render('Home/Home.ejs', { data: JSON.stringify(data, null, 2) })
 
-    // })
 // })
-
+// })
+// updatelist();
 
 const auth = (req, res, next) => {
     // console.log(req.user);
@@ -86,13 +94,22 @@ const auth = (req, res, next) => {
 
 app.use("/", homeRouter);
 app.use('/auth', authRouter);
+<<<<<<< HEAD
 app.use('/user', userRouter);
+=======
+app.use('/user', auth, userRouter);
+>>>>>>> b81ec1c429c45b98946efc548c29a3ae2aa1140b
 // app.use('/profile', auth, profileRouter);
 // app.use('/librarian', auth, librarianRouter);
 
-app.listen(port, () => {
-    console.log("Server is running at port : ", port);
-});
+if(process.env.NODE_ENV != 'test'){
+
+    app.listen(port, () => {
+        console.log("Server is running at port : ", port);
+    });
+}
+
+exports.app = app;
 
 // image https://image.tmdb.org/t/p/w500
 

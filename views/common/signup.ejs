@@ -24,13 +24,13 @@
                     <div class="cont">
                         <form class="sign-in" method="POST" action="<%=path%>auth/signup">
                             <h1>SIGN UP</h1>
-                            <input type="text" placeholder="Name" name="name" required="true">
-                            <input type="email" placeholder="Email" name="email" required="true">
+                            <input type="text" value="<%=name%>" placeholder="Name" name="name" required="true">
+                            <input type="email" value="<%=email%>" placeholder="Email" name="email" required="true">
                             <input type="password" placeholder="Password" name="password" required="true">
                             <input type="password" placeholder="Re-enter Password" name="repassword" required="true">
                             <input type="submit" value="SIGN UP">
                             <%if(error.length){%>
-                                <div class="alert alert-danger">
+                                <div class="mess">
                                     <p>
                                         <%=error[0]%>
                                     </p>

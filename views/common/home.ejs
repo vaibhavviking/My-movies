@@ -28,34 +28,12 @@
                         SEARCH MOVIES
                     </div>
                 </a>
-                <div class="navHead" style="margin-top: 0.5rem;">
-                    PROFILE
-                </div>
-                <div id="profile">
-                    <div id="profilePicture">
-                        <img src="../assets/img/profile.png" alt="">
+                <a href="<%=path%>auth/login" class="navLink">
+                    <div class="navButton" onclick="navClick()">
+                        LOG IN
                     </div>
-                    <a href="<%=path%>user/userfavourite" class="navLink">
-                        <div class="navButton" onclick="navClick()">
-                            MY FAVOURITES
-                        </div>
-                    </a>
-                    <a href="#" class="navLink" onclick="navClick()">
-                        <div class="navButton">
-                            MY RATINGS
-                        </div>
-                    </a>
-                    <a href="#" class="navLink" onclick="navClick()">
-                        <div class="navButton">
-                            MY REVIEWS
-                        </div>
-                    </a>
-                    <a href="<%=path%>auth/logout" class="navLink" onclick="navClick()">
-                        <div class="navButton">
-                            LOG OUT
-                        </div>
-                    </a>
-                </div>
+                </a>
+                
                 <div class="navHead">
                     GENRES
                 </div>
@@ -74,7 +52,7 @@
                 <div id="type"></div>
             </div>
         </div>
-        <p class="movies" style="display: none;"><%=movies%></p>
+        <p style="display: none;" class="movies"><%=movies%></p>
         <script>
             // Load Data into website
             let path = window.location.origin;
@@ -124,9 +102,9 @@
                 k++;
             }
             var j = 0;
-            var movies = JSON.parse(document.getElementsByClassName('movies')[0].innerHTML);
             while (j < noOfGenres) {
                 console.log(`Started loading genre ${mapIndexToGenre[j]}`);
+                var movies = JSON.parse(document.getElementsByClassName('movies')[0].innerHTML);
                 var obj = movies[mapIndexToGenre[j]];
                 if (obj == undefined) {
                     let str1 = `
@@ -186,8 +164,6 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="../js/jquery.flipster.min.js"></script>
         <script>
-            var displayButton = false;
-            if(screen.width > 900) displayButton = true;
             $('.carousel').flipster({
                 itemContainer: 'ul',
                 itemSelector: 'li',
@@ -202,7 +178,7 @@
                 keyboard: true,
                 scrollwheel: true,
                 touch: true,
-                buttons: displayButton,
+                buttons: false,
             });
         </script>
     </div>

@@ -6,32 +6,18 @@ const fetch = require('node-fetch');
 const keys = require('../keys');
 const movies= require('./movies');
 const href = domain.href;
-const {data1} = require('./moviedetailsdemo');
+// const {data1} = require('./moviedetailsdemo');
 const User = require('../models/user');
+const {readlist} = require('../storage/update');
 // let movies = {};
-router.get('/home', (req, res) => {
+router.get('/home',async (req, res) => {
     // console.log(req.user);
-    res.render(path + 'user_home.ejs', { path: href });
+    let movies = await readlist();
+    res.render(path + 'user_home.ejs', { path: href, movies: JSON.stringify(movies) });
 })
 
 router.get('/homemovies',async (req,res)=>{
-    let arr = keys.genres;
-    if(JSON.stringify(movies) === JSON.stringify({})){
-        let len = arr.length;
-        // for(let i=0;i<len;i++){
-        //         let id = arr[i].id;
-        //         let name = arr[i].name;
-        //         // console.log(id,name);
-        //         let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=0aa29159f6dd2a6237127a2053adc853&language=en-US&sort_by=popularity.desc&with_genres=${id}`);
-        //         let data = await response.json();
-        //         data = data["results"];
-        //         // console.log(data);
-        //         movies[`${name}`] = data;
-    
-        // }
-    }
-    // console.log(movies);
-    res.send(movies.movies);
+    res.send(movies);
 })
 
 router.get('/moviedetails', (req, res) => {
@@ -46,8 +32,8 @@ router.post('/getmoviedetails', async (req, res) => {
     let movieid = req.body.id;
     console.log(movieid);
     let email = req.user.email;
-    // let d1=await fetch(`https://api.themoviedb.org/3/movie/${movieid}?api_key=0aa29159f6dd2a6237127a2053adc853&language=en-US&append_to_response=videos,credits`);
-    // let data1 = await d1.json();
+    let d1=await fetch(`https://api.themoviedb.org/3/movie/${movieid}?api_key=0aa29159f6dd2a6237127a2053adc853&language=en-US&append_to_response=videos,credits`);
+    let data1 = await d1.json();
     
     let userdata = await Usermovies.find({ email, movieid });
     let fav = 0, rate = 0, review = "";
@@ -76,7 +62,7 @@ router.post('/getmoviedetails', async (req, res) => {
             name : user.name,
             reviewtitle : temp[i].reviewtitle,
             reviewtext : temp[i].reviewtext,
-            rating : rate
+            rating : temp[i].rating
         };
         reviews.push(obj);
     }
@@ -193,28 +179,40 @@ router.post('/submitreview', async (req,res)=>{
     let title=obj.title;
     let text=obj.text;
     let rating=obj.rating;
-    let old=await Usermovies.findOne({movieid,email});
-    if(old){
-        console.log('found');
-        await Usermovies.updateOne({movieid,email},{$set : {"reviewtext":text,"reviewtitle":title,"rating":rating}});
-    }else{
-        let temp = new Usermovies({
-            movieid,
-            email,
-            reviewtext: text,
-            reviewtitle: title,
-            rating
+    if(text.length==0 && title.length==0){
+        console.log('here');
+        res.send({
+            message: 'Please Enter the review'
         })
-        temp.save()
+    }else{
+
+        let old=await Usermovies.findOne({movieid,email});
+        if(old){
+            console.log('found');
+            await Usermovies.updateOne({movieid,email},{$set : {"reviewtext":text,"reviewtitle":title,"rating":rating}});
+        }else{
+            let temp = new Usermovies({
+                movieid,
+                email,
+                reviewtext: text,
+                reviewtitle: title,
+                rating
+            })
+            temp.save()
+        }
+        console.log(obj);
+        res.send({
+            message: 'Review submitted successfully!'
+        })
     }
-    console.log(obj);
-    res.send({
-        message: 'Review submitted successfully!'
-    })
 })
 
 router.get('/userfavourite',async (req,res)=>{
     res.render(path+'user_favourite_movies.ejs',{path : href});
+})
+
+router.get('/raterev',(req,res)=>{
+    res.render(path + 'user_rate_reviews.ejs',{path : href});
 })
 
 module.exports = router;
