@@ -213,31 +213,9 @@
                         SEARCH MOVIES
                     </div>
                 </a>
-                <div class="navHead" style="margin-top: 0.5rem;">
-                    PROFILE
-                </div>
-                <div id="profile">
-                    <div id="profilePicture">
-                        <img src="../assets/img/profile.png" alt="">
-                    </div>
-                    <a href="<%=path%>user/userfavourite" class="navLink">
-                        <div class="navButton" onclick="navClick()">
-                            MY FAVOURITES
-                        </div>
-                    </a>
-                    <a href="#" class="navLink" onclick="navClick()">
+                    <a href="<%=path%>auth/login" class="navLink" onclick="navClick()">
                         <div class="navButton">
-                            MY RATINGS
-                        </div>
-                    </a>
-                    <a href="#" class="navLink" onclick="navClick()">
-                        <div class="navButton">
-                            MY REVIEWS
-                        </div>
-                    </a>
-                    <a href="<%=path%>auth/logout" class="navLink" onclick="navClick()">
-                        <div class="navButton">
-                            LOG OUT
+                            LOG IN
                         </div>
                     </a>
                 </div>
@@ -346,14 +324,6 @@
                                                     <span class="card__rate"></span>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <div class="transformers-left">
-                                                    Favourite:
-                                                </div>
-                                                <div id="favourite" class="transformers-right">
-
-                                                </div>
-                                            </li>
 
                                         </ul>
 
@@ -407,22 +377,6 @@
                             <div class="reviews">
                                 <ul class="reviews__list">
                                 </ul>
-
-                                <form id="rform" class="form" style="background-color: rgb(26, 27, 29);">
-
-                                    <input required="true" type="text" name="title" class="form__input" placeholder="Title">
-
-                                    <textarea required="true" class="form__textarea" name="text" placeholder="Review"></textarea>
-
-                                    <div class="form__slider">
-                                        <div class="form__slider-rating" id="slider__rating"></div>
-                                        <div class="form__slider-value" id="form__slider-value"></div>
-                                    </div>
-
-                                    <button onclick="submitform('rform')" type="button" class="form__btn">Send</button>
-                                    <div class="rmess"></div>
-
-                                </form>
                             </div>
                         </div>
 
@@ -444,9 +398,6 @@
     <script src="/js/main.js"></script>
 
     <script>
-        function submitform(id) {
-            $('#rform').submit();
-        }
         let urlParams = new URLSearchParams(window.location.search);
         let id = urlParams.get('id');
         const path = window.location.origin;
@@ -490,46 +441,6 @@
                     }
                     $('#actors').text(actors);
                     $('#director').text(director);
-                    let fav = result.fav;
-                    $('#favourite').css('cursor', 'pointer');
-                    if (fav) {
-                        $('#favourite').html("<i class='fas fa-heart' style='color: red'></i>");
-                        $('#favourite').addClass('fav');
-                    } else {
-                        $('#favourite').html("<i class='far fa-heart'></i>");
-                        $('#favourite').addClass('notfav');
-                    }
-                    $(document).on('click', '.notfav', function(e) {
-                        $.ajax({
-                            type: 'POST',
-                            url: path + '/user/markfav',
-                            data: {
-                                id
-                            },
-                            success: (result) => {
-                                $(this).removeClass('notfav');
-                                $(this).addClass('fav');
-                                $(this).html("<i class='fas fa-heart' style='color: red'></i>");
-                                console.log(result);
-                            }
-                        })
-                    })
-                    $(document).on('click', '.fav', function(e) {
-                        console.log('removed from favourites');
-                        $.ajax({
-                            method: 'POST',
-                            url: path + "/user/unmarkfav",
-                            data: {
-                                id
-                            },
-                            success: (result) => {
-                                $(this).removeClass('fav');
-                                $(this).addClass('notfav');
-                                $(this).html("<i class='far fa-heart'></i>");
-                                console.log(result);
-                            }
-                        })
-                    })
                     let reviews = result.reviews;
                     len = reviews.length;
                     let reviewhtml = ``;
@@ -546,24 +457,6 @@
                     }
                     $('.reviews__list').html(reviewhtml);
                     console.log(reviewhtml);
-                    $('#rform').submit(e => {
-                        e.preventDefault();
-                        let fdata = $('#rform').serialize();
-                        fdata += '&rating=' + $('#form__slider-value').text();
-                        console.log(fdata);
-                        $.ajax({
-                            type: 'POST',
-                            url: path + '/user/submitreview',
-                            data: {
-                                data: fdata,
-                                id,
-                                name:result['original_title']
-                            },
-                            success: (result) => {
-                                $('.rmess').html(`<div class="mess">${result.message}</div>`);
-                            }
-                        })
-                    })
                 }
             })
         })

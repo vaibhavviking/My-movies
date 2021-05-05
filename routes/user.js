@@ -4,7 +4,8 @@ const Usermovies = require('../models/user_movies');
 const domain = require('./domain')
 const fetch = require('node-fetch');
 const keys = require('../keys');
-const movies= require('./movies');
+// const movies= require('./movies');
+const Movie = require('../models/movies');
 const href = domain.href;
 // const {data1} = require('./moviedetailsdemo');
 const User = require('../models/user');
@@ -216,5 +217,20 @@ router.get('/userfavourite',async (req,res)=>{
 router.get('/raterev',(req,res)=>{
     res.render(path + 'user_rate_reviews.ejs',{path : href});
 })
+
+const checkmovie = async (id) => {
+    let result = await Movie.findOne({movieid: id});
+    if(!result){
+        let data1=await fetch(`https://api.themoviedb.org/3/movie/${movieid}?api_key=0aa29159f6dd2a6237127a2053adc853&language=en-US`);
+        let d1 = await data1.json();
+        let obj = new Movie({
+            movieid: id,
+            name:d1['original_title'],
+            rating: d1['vote_average'],
+            poster:d1['poster_path']
+        })
+        await obj.save();
+    }
+}
 
 module.exports = router;
