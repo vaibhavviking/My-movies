@@ -251,19 +251,18 @@ body {
     height: unset;
 }
 
-
-.flipster__button{
+.flipster__button {
     top: unset;
     margin: unset;
 }
 
-.flipster__button svg{
+.flipster__button svg {
     fill: unset;
     stroke: white;
 }
 
-@media(max-width: 800px){
-    .card{
+@media(max-width: 800px) {
+    .card {
         flex-direction: column;
         height: unset;
         width: 88vw !important;
@@ -278,12 +277,10 @@ body {
         margin-top: 2rem;
         margin-left: unset;
     }
-
-    .cardImage img{
-
+    .cardImage img {
         height: 100%;
     }
-    .flipster__button{
+    .flipster__button {
         display: none;
     }
 }

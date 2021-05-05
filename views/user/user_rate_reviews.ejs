@@ -1,201 +1,125 @@
 <!DOCTYPE html>
-<!--[if IE 7]>
-<html class="ie ie7 no-js" lang="en-US">
-<![endif]-->
-<!--[if IE 8]>
-<html class="ie ie8 no-js" lang="en-US">
-<![endif]-->
-<!--[if !(IE 7) | !(IE 8)  ]><!-->
 <html lang="en" class="no-js">
 
-<!-- userrate14:04-->
-
 <head>
-    <!-- Basic need -->
-    <title>Open Pediatrics</title>
+    <title>My rating and review</title>
     <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
-    <link rel="profile" href="#">
-
-    <!--Google Font-->
-    <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
-    <!-- Mobile specific meta -->
     <meta name=viewport content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone-no">
 
-    <!-- CSS files -->
+    <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
+
     <link rel="stylesheet" href="/css/plugins.css">
     <link rel="stylesheet" href="/css/user_rate.css">
+
+    <link rel="stylesheet" href="/css/jquery.flipster.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@1,500&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="/css/index.css">
 
 </head>
 
 <body>
-    <!--preloading-
-<div id="preloader">
-    <img class="logo" src="images/logo1.png" alt="" width="119" height="58">
-    <div id="status">
-        <span></span>
-        <span></span>
-    </div>
-</div>-->
-    <!--end of preloading-->
-    <!--login form popup-->
-    <!---<div class="login-wrapper" id="login-content">
-    <div class="login-content">
-        <a href="#" class="close">x</a>
-        <h3>Login</h3>
-        <form method="post" action="#">
-        	<div class="row">
-        		 <label for="username">
-                    Username:
-                    <input type="text" name="username" id="username" placeholder="Hugh Jackman" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required="required" />
-                </label>
-        	</div>
-           
-            <div class="row">
-            	<label for="password">
-                    Password:
-                    <input type="password" name="password" id="password" placeholder="******" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
-                </label>
-            </div>
-            <div class="row">
-            	<div class="remember">
-					<div>
-						<input type="checkbox" name="remember" value="Remember me"><span>Remember me</span>
-					</div>
-            		<a href="#">Forget password ?</a>
-            	</div>
-            </div>
-           <div class="row">
-           	 <button type="submit">Login</button>
-           </div>
-        </form>
-        <div class="row">
-        	<p>Or via social</p>
-            <div class="social-btn-2">
-            	<a class="fb" href="#"><i class="ion-social-facebook"></i>Facebook</a>
-            	<a class="tw" href="#"><i class="ion-social-twitter"></i>twitter</a>
-            </div>
-        </div>
-    </div>
-</div>  --->
-    <!--end of login form popup-->
-    <!--signup form popup
-<div class="login-wrapper"  id="signup-content">
-    <div class="login-content">
-        <a href="#" class="close">x</a>
-        <h3>sign up</h3>
-        <form method="post" action="#">
-            <div class="row">
-                 <label for="username-2">
-                    Username:
-                    <input type="text" name="username" id="username-2" placeholder="Hugh Jackman" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required="required" />
-                </label>
-            </div>
-           
-            <div class="row">
-                <label for="email-2">
-                    your email:
-                    <input type="password" name="email" id="email-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
-                </label>
-            </div>
-             <div class="row">
-                <label for="password-2">
-                    Password:
-                    <input type="password" name="password" id="password-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
-                </label>
-            </div>
-             <div class="row">
-                <label for="repassword-2">
-                    re-type Password:
-                    <input type="password" name="password" id="repassword-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
-                </label>
-            </div>
-           <div class="row">
-             <button type="submit">sign up</button>
-           </div>
-        </form>
-    </div>
-</div>--->
-    <!--end of signup form popup-->
 
-    <!-- BEGIN | Header -->
-    <header class="ht-header">
-        <div class="container">
-            <nav class="navbar navbar-default navbar-custom">
-                <!-- /.navbar-collapse -->
-            </nav>
-
-            <!-- top search form -->
-            <div class="top-search">
-                <select>
-				<option value="united">Movie-Name</option>
-				<option value="saab">Others</option>
-			</select>
-                <input type="text" placeholder="Search for a movie, TV Show or celebrity that you are looking for">
-            </div>
-        </div>
-    </header>
-    <!-- END | Header -->
-
-    <div class="hero user-hero">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="hero-ct">
-                        <h1>MY Rating and reviews</h1>
-
+    <div id="container" style="height: 150px;">
+        <img id="collapse" onclick="toggle()" style="width: 4rem; margin: 1rem 1rem; position: fixed; right: 0.5rem; top: 0.5rem;z-index: 1000; cursor: pointer; border-radius: 6px;" src="../assets/img/hamburger.png" alt="">
+        <div id="nav">
+            <div id="navbar">
+                <a href="#" class="navLink">
+                    <div class="navButton" onclick="navClick()">
+                        SEARCH MOVIES
                     </div>
+                </a>
+                <div class="navHead" style="margin-top: 0.5rem;">
+                    PROFILE
                 </div>
+                <div id="profile">
+                    <div id="profilePicture">
+                        <img src="../assets/img/profile.png" alt="">
+                    </div>
+                    <a href="<%=path%>user/userfavourite" class="navLink">
+                        <div class="navButton" onclick="navClick()">
+                            MY FAVOURITES
+                        </div>
+                    </a>
+                    <a href="#" class="navLink" onclick="navClick()">
+                        <div class="navButton">
+                            MY RATINGS
+                        </div>
+                    </a>
+                    <a href="#" class="navLink" onclick="navClick()">
+                        <div class="navButton">
+                            MY REVIEWS
+                        </div>
+                    </a>
+                    <a href="<%=path%>auth/logout" class="navLink" onclick="navClick()">
+                        <div class="navButton">
+                            LOG OUT
+                        </div>
+                    </a>
+                </div>
+                <!-- <div class="navHead">
+                    GENRES
+                </div>
+                <div id="genre"></div> -->
+            </div>
+        </div>
+
+        <div id="main">
+            <div id="title">
+                <div id="logoCont" style="margin-top: 1rem; margin-left: 1.2rem;">
+                    <img src="/assets/img/logo.png" alt="" id="logo">
+                </div>
+                <div id="type"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="hero user-hero" style="height: 0%; ">
+        <div class="col-md-12" style="margin-top: 70px; background-color: rgb(16, 16, 41) !important">
+            <h1>My Rating and Review</h1>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-sm-12 col-xs-12" style="width: 60%; margin-top: 90px; position: relative; left: 20%;">
+        <div class="sidebar">
+            <div class="searh-form">
+                <!-- <h4 class="sb-title">Search for movie</h4> -->
+                <form class="form-style-1" action="#">
+                    <div class="row">
+                        <div class="col-md-12 form-it">
+                            <label>Search Movie</label>
+                            <input type="text" placeholder="Enter Movie Name">
+                        </div>
+                        <div class="col-md-12 " style="width: 54%; position: relative; left: 23%; ">
+                            <input class="submit" type="submit" value="submit" style="background-image: -webkit-linear-gradient(90deg, #ff55a5 0%, #ff5860 100%);">
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    <div class="page-single">
+
+    <div class="page-single" style="background-color: rgb(16, 16, 41) !important">
         <div class="container">
             <div class="row ipad-width2">
-                <div class="col-md-3 col-sm-12 col-xs-12">
-                    <div class="user-information">
-                        <div class="user-img">
-                            <a href="#"><img src="images/uploads/user-img.png" alt=""><br></a>
-                            <a href="#" class="redbtn">Change avatar</a>
-                        </div>
-                        <div class="user-fav">
-                            <p>Account Details</p>
-                            <ul>
-                                <li><a href="#">Profile</a></li>
-                                <li><a href="#">Favorite movies</a></li>
-                                <li class="active"><a href="#">Rated movies</a></li>
-                            </ul>
-                        </div>
-                        <div class="user-fav">
-                            <p>Others</p>
-                            <ul>
 
-                                <li><a href="#">Log out</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
                 <div class="col-md-9 col-sm-12 col-xs-12">
                     <div class="topbar-filter">
-                        <!---	<p>Found <span>3 rates</span> in total</p>
-					<label>Sort by:</label>
-					<select>
-						<option value="range">-- Choose option --</option>
-						<option value="saab">-- Choose option 2--</option>
-					</select>--->
                     </div>
                     <div class="movie-item-style-2 userrate">
-                        <img src="images/uploads/mv1.jpg" alt="">
+                        <img src="/assets/img/profile.png" alt="">
                         <div class="mv-item-infor">
-                            <h6><a href="#">oblivion <span>(2012)</span></a></h6>
-                            <p class="time sm-text">your rate:</p>
+                            <h6><a href="#"> oblivion </a></h6>
+                            <p class="time sm-text">your rate :</p><br>
                             <p class="rate"><i class="ion-android-star"></i><span>9.0</span> /10</p>
-                            <p class="time sm-text">your reviews:</p>
+                            <p class="time sm-text">your reviews :</p><br>
                             <h6>Best Marvel movie in my opinion</h6>
-                            <p class="time sm">02 April 2017</p>
+                            <!-- <p class="time sm">02 April 2017</p> -->
                             <p>“This is by far one of my favorite movies from the MCU. The introduction of new Characters both good and bad also makes the movie more exciting. giving the characters more of a back story can also help audiences relate more
                                 to different characters better, and it connects a bond between the audience and actors or characters. Having seen the movie three times does not bother me here as it is as thrilling and exciting every time I am watching
                                 it. In other words, the movie is by far better than previous movies (and I do love everything Marvel), the plotting is splendid (they really do out do themselves in each film, there are no problems watching it more than
@@ -204,36 +128,37 @@
                         </div>
                     </div>
                     <div class="movie-item-style-2 userrate">
-                        <img src="images/uploads/mv2.jpg" alt="">
+                        <img src="/assets/img/profile.png" alt="">
                         <div class="mv-item-infor">
-                            <h6><a href="#">into the wild <span>(2014)</span></a></h6>
-                            <p class="time sm-text">your rate:</p>
+                            <h6><a href="#">into the wild </a></h6>
+                            <p class="time sm-text">your rate :</p><br>
                             <p class="rate"><i class="ion-android-star"></i><span>7.0</span> /10</p>
                         </div>
                     </div>
                     <div class="movie-item-style-2 userrate last">
-                        <img src="images/uploads/mv3.jpg" alt="">
+                        <img src="/assets/img/profile.png" alt="">
                         <div class="mv-item-infor">
-                            <h6><a href="#">blade runner<span>(2015)</span></a></h6>
-                            <p class="time sm-text">your rate:</p>
+                            <h6><a href="#">blade runner</a></h6>
+                            <p class="time sm-text">your rate :</p><br>
                             <p class="rate"><i class="ion-android-star"></i><span>10.0</span> /10</p>
-                            <p class="time sm-text">your reviews:</p>
+                            <p class="time sm-text">your reviews :</p><br>
                             <h6>A masterpiece!</h6>
-                            <p class="time sm">01 February 2017</p>
+                            <!-- <p class="time sm">01 February 2017</p> -->
                             <p>“To put it simply, the movie is fascinating, exciting and fantastic. The dialog, the fight choreography, the way the story moves, the characters charisma, all and much more are combined together to deliver this masterpiece.
                                 Such an amazing flow, providing a fusion between the 90s and the new century, it's like the assassins are living in another world, with another mindset, without people understanding it. Just one advice for you though: Don't
                                 build an expectation of what you want to watch in this movie, if you do, then you will ruin it. This movie has it's own flow and movement, so watch it with a clear mind, and have fun.”</p>
                         </div>
                     </div>
-                    <div class="topbar-filter">
-                        <label>Movies per page:</label>
 
+                    <div class="topbar-filter">
+                        <label>Movies per page :</label>
                         <div class="pagination2">
                             <span>Page 1 of 1:</span>
                             <a class="active" href="#">1</a>
                             <a href="#"><i class="ion-arrow-right-b"></i></a>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -245,6 +170,41 @@
     <script src="/js/custom.js"></script>
 </body>
 
-<!-- userrate14:04-->
+
+<script>
+    var smallWidth, defaultCollapse = 1;
+    if (screen.width < 900) {
+        smallWidth = 1;
+    } else {
+        smallWidth = 0;
+    }
+
+    function toggle() {
+        if (smallWidth) {
+            if (defaultCollapse) {
+                document.getElementById("navbar").style.display = "flex";
+                document.getElementById("navbar").style.position = "fixed";
+                document.getElementById("navbar").style.width = "60vw";
+                defaultCollapse = 0;
+            } else {
+                document.getElementById("navbar").style.display = "none";
+                defaultCollapse = 1;
+            }
+        } else {
+            if (defaultCollapse) {
+                document.getElementById("navbar").style.display = "flex";
+                defaultCollapse = 0;
+            } else {
+                document.getElementById("navbar").style.display = "none";
+                defaultCollapse = 1;
+            }
+        }
+    }
+
+    function navClick() {
+        if (screen.width < 900)
+            toggle();
+    }
+</script>
 
 </html>
