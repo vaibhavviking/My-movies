@@ -23,22 +23,26 @@
                 <div class="box">
                     <div class="cont">
                         <form method="POST" class="sign-in">
-                            <h1>Login IN</h1>
+                            <h1>LOGIN</h1>
                             <input type="email" placeholder="Email" name="email" required="true">
                             <input type="password" placeholder="Password" name="password" required="true">
                             <input type="submit" value="LOG IN">
                             <a href="<%=path%>auth/google"><img src="/assets/img/google.png" alt=""></a>
                             <%if(error.length){%>
                                 <div class="mess">
-                                    <p><%=error[0]%></p>
+                                    <p>
+                                        <%=error[0]%>
+                                    </p>
                                 </div>
-                            <%}%>
-                            <%if(message.length){%>
-                                <div class="mess">
-                                    <p><%=message[0]%></p>
-                                </div>
-                            <%}%>
-                            <p>Don't Have An Account? <a href="<%=path%>auth/signup">Click Here</a></p>
+                                <%}%>
+                                    <%if(message.length){%>
+                                        <div class="mess">
+                                            <p>
+                                                <%=message[0]%>
+                                            </p>
+                                        </div>
+                                        <%}%>
+                                            <p>Don't Have An Account? <a href="<%=path%>auth/signup">Click Here</a></p>
                         </form>
                     </div>
                 </div>
