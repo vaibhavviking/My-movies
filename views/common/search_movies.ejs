@@ -111,6 +111,10 @@
                         <div class="col-md-12 form-it">
                             <label>Search Movie</label>
                             <input type="text" id="query" placeholder="Enter Movie Name">
+                            <select name="criteria" id="criteria">
+                                <option value="movie">Name</option>
+                                <option value="person">Person</option>
+                            </select>
                         </div>
                         <div class="col-md-12 " style="width: 54%; position: relative; left: 23%; ">
                             <input class="submit" type="submit" value="submit">
@@ -153,17 +157,21 @@
             $("#sform").submit(e => {
                 e.preventDefault();
                 let query = $('#query').val();
+                let c = $('#criteria').val();
+                console.log(c,query);
                 $.ajax({
                     type: 'POST',
                     url: path + '/searchmovie',
                     data: {
-                        query
+                        query,
+                        criteria: c
                     },
                     success: (result) => {
+                        console.log(result);
                         let str = ``;
                         result.forEach(item => {
-                            let img='https://image.tmdb.org/t/p/w500'+item.poster_path;
-                            if(item.poster_path==null){
+                            let img = 'https://image.tmdb.org/t/p/w500' + item.poster_path;
+                            if (item.poster_path == null) {
                                 img = 'https://www.indiaspora.org/wp-content/uploads/2018/10/image-not-available.jpg';
                             }
                             str += `

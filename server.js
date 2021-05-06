@@ -24,7 +24,7 @@ const Genre = require('./models/genres');
 const port = process.env.PORT || 5000;
 
 app.use(cookieSession({
-    maxAge:  60 * 60 * 1000,
+    maxAge: 3* 60 * 60 * 1000,
     keys: [keys.sessionKey]
 }))
 
