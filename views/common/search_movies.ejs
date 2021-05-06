@@ -24,11 +24,11 @@
         input[type="submit"] {
             background-color: rgb(12, 128, 243) !important;
         }
-        
+
         input[type="submit"]:hover {
             background-color: rgb(243, 183, 12) !important;
         }
-        
+
         .navButton:hover {
             color: white;
         }
@@ -39,7 +39,9 @@
 <body>
 
     <div id="container" style="height: 150px;">
-        <img id="collapse" onclick="toggle()" style="width: 4rem; margin: 1rem 1rem; position: fixed; right: 0.5rem; top: 0.5rem;z-index: 1000; cursor: pointer; border-radius: 6px;" src="../assets/img/hamburger.png" alt="">
+        <img id="collapse" onclick="toggle()"
+            style="width: 4rem; margin: 1rem 1rem; position: fixed; right: 0.5rem; top: 0.5rem;z-index: 1000; cursor: pointer; border-radius: 6px;"
+            src="../assets/img/hamburger.png" alt="">
         <div id="nav">
             <div id="navbar">
                 <a href="#" class="navLink">
@@ -54,7 +56,7 @@
                     <div id="profilePicture">
                         <img src="/assets/img/profile.png" alt="">
                     </div>
-                    <a href="<%=path%>user/userfavourite" class="navLink">
+                    <a href="<%=path%>user/favourite" class="navLink">
                         <div class="navButton" onclick="navClick()">
                             MY FAVOURITES
                         </div>
@@ -104,11 +106,11 @@
         <div class="sidebar">
             <div class="searh-form">
                 <!-- <h4 class="sb-title">Search for movie</h4> -->
-                <form class="form-style-1" action="#">
+                <form class="form-style-1" id="sform">
                     <div class="row">
                         <div class="col-md-12 form-it">
                             <label>Search Movie</label>
-                            <input type="text" placeholder="Enter Movie Name">
+                            <input type="text" id="query" placeholder="Enter Movie Name">
                         </div>
                         <div class="col-md-12 " style="width: 54%; position: relative; left: 23%; ">
                             <input class="submit" type="submit" value="submit">
@@ -123,39 +125,11 @@
         <div class="container">
             <div class="row ipad-width2">
                 <div class="col-md-9 col-sm-12 col-xs-12">
-                    <div class="flex-wrap-movielist user-fav-list">
-
-                        <div class="movie-item-style-2">
-                            <img src="/assets/img/profile.png" alt="">
-                            <div class="mv-item-infor">
-                                <h6><a href="#">oblivion </a></h6>
-                                <p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
-                                <p class="describe">Earth's mightiest heroes must come together and learn to fight as a team if they are to stop the mischievous Loki and his alien army from enslaving humanity...
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="movie-item-style-2">
-                            <img src="/assets/img/profile.png" alt="">
-                            <div class="mv-item-infor">
-                                <h6><a href="#">into the wild </a></h6>
-                                <p class="rate"><i class="ion-android-star"></i><span>7.8</span> /10</p>
-                                <p class="describe">As Steve Rogers struggles to embrace his role in the modern world, he teams up with a fellow Avenger and S.H.I.E.L.D agent, Black Widow, to battle a new threat...</p>
-                            </div>
-                        </div>
-
-                        <div class="movie-item-style-2">
-                            <img src="/assets/img/profile.png" alt="">
-                            <div class="mv-item-infor">
-                                <h6><a href="#">blade runner </a></h6>
-                                <p class="rate"><i class="ion-android-star"></i><span>7.3</span> /10</p>
-                                <p class="describe">Armed with a super-suit with the astonishing ability to shrink in scale but increase in strength, cat burglar Scott Lang must embrace his inner hero and help...</p>
-                            </div>
-                        </div>
+                    <div class="flex-wrap-movielist user-fav-list list">
 
                     </div>
 
-                    <div class="topbar-filter">
+                    <!-- <div class="topbar-filter">
                         <label>Movies per page:</label>
                         <div class="pagination2">
                             <span>Page 1 of 2:</span>
@@ -167,13 +141,50 @@
                             <a href="#">79</a>
                             <a href="#"><i class="ion-arrow-right-b"></i></a>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>
         </div>
     </div>
-
+    <script>
+        let path = window.location.origin;
+        $(document).ready(() => {
+            $("#sform").submit(e => {
+                e.preventDefault();
+                let query = $('#query').val();
+                $.ajax({
+                    type: 'POST',
+                    url: path + '/searchmovie',
+                    data: {
+                        query
+                    },
+                    success: (result) => {
+                        let str = ``;
+                        result.forEach(item => {
+                            let img='https://image.tmdb.org/t/p/w500'+item.poster_path;
+                            if(item.poster_path==null){
+                                img = 'https://www.indiaspora.org/wp-content/uploads/2018/10/image-not-available.jpg';
+                            }
+                            str += `
+                            <div class="movie-item-style-2">
+                            <img style="width: 200px;" src='${img}' alt="">
+                            <div class="mv-item-infor">
+                                <h6><a href="${path}/moviedetails?id=${item.id}">${item.title}</a></h6>
+                                <p class="rate"><i class="ion-android-star"></i><span>${item.vote_average}</span> /10</p>
+                                <p class="describe">${item.overview}
+                                </p>
+                            </div>
+                        </div>
+                            `;
+                        })
+                        console.log(result);
+                        $('.list').html(str);
+                    }
+                })
+            })
+        })
+    </script>
     <script src="/js/jquery.js"></script>
     <script src="/js/plugins.js"></script>
     <script src="/js/plugins2.js"></script>

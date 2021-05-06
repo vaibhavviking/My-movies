@@ -410,7 +410,7 @@
                 },
                 success: (result) => {
                     console.log(result);
-                    $('.details__title').text(result['original_title']);
+                    $('.details__title').text(result['title']);
                     $('.poster').attr('src', 'https://image.tmdb.org/t/p/w500' + result.poster_path);
                     let len = result.genres.length;
                     for (let i = 0; i < len; i++) {
