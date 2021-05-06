@@ -24,11 +24,11 @@
         input[type="submit"] {
             background-color: rgb(12, 128, 243) !important;
         }
-        
+
         input[type="submit"]:hover {
             background-color: rgb(243, 183, 12) !important;
         }
-        
+
         .navButton:hover {
             color: white;
         }
@@ -39,7 +39,9 @@
 <body>
 
     <div id="container" style="height: 150px;">
-        <img id="collapse" onclick="toggle()" style="width: 4rem; margin: 1rem 1rem; position: fixed; right: 0.5rem; top: 0.5rem;z-index: 1000; cursor: pointer; border-radius: 6px;" src="../assets/img/hamburger.png" alt="">
+        <img id="collapse" onclick="toggle()"
+            style="width: 4rem; margin: 1rem 1rem; position: fixed; right: 0.5rem; top: 0.5rem;z-index: 1000; cursor: pointer; border-radius: 6px;"
+            src="../assets/img/hamburger.png" alt="">
         <div id="nav">
             <div id="navbar">
                 <a href="#" class="navLink">
@@ -108,7 +110,7 @@
                     <div class="row">
                         <div class="col-md-12 form-it">
                             <label>Search Movie</label>
-                            <input type="text" placeholder="Enter Movie Name">
+                            <input onkeyup="searchName()" type="text" id="search" placeholder="Enter Movie Name">
                         </div>
                         <div class="col-md-12 " style="width: 54%; position: relative; left: 23%; ">
                             <input class="submit" type="submit" value="submit">
@@ -126,62 +128,63 @@
                 <div class="col-md-9 col-sm-12 col-xs-12">
                     <div class="topbar-filter">
                     </div>
+                    <%data.forEach(item =>{%>
 
-                    <div class="movie-item-style-2 userrate">
-                        <img src="/assets/img/profile.png" alt="">
+                    <div class="movie movie-item-style-2 userrate">
+                        <img src="https://image.tmdb.org/t/p/w500<%=item.poster%>" alt="">
                         <div class="mv-item-infor">
-                            <h6><a href="#"> oblivion </a></h6>
-                            <p class="time sm-text">your rate :</p><br>
-                            <p class="rate"><i class="ion-android-star"></i><span>9.0</span> /10</p>
+                            <h6><a class="moviename" href="<%=path%>moviedetails?id=<%=item.movieid%>"> <%=item.name%> </a></h6>
+                            <p class="time sm-text">your rate : <%=item.userrating%>/10</p><br>
+                            <p class="rate"><i class="ion-android-star"></i><span><%=item.rating%></span> /10</p>
                             <p class="time sm-text">your reviews :</p><br>
-                            <h6>Best Marvel movie in my opinion</h6>
+                            <h6><%=item.title%></h6>
                             <!-- <p class="time sm">02 April 2017</p> -->
-                            <p>“This is by far one of my favorite movies from the MCU. The introduction of new Characters both good and bad also makes the movie more exciting. giving the characters more of a back story can also help audiences relate more
-                                to different characters better, and it connects a bond between the audience and actors or characters. Having seen the movie three times does not bother me here as it is as thrilling and exciting every time I am watching
-                                it. In other words, the movie is by far better than previous movies (and I do love everything Marvel), the plotting is splendid (they really do out do themselves in each film, there are no problems watching it more than
-                                once.”
-                            </p>
+                            <p><%=item.text%></p>
                         </div>
                     </div>
+                    <%})%>
 
-                    <div class="movie-item-style-2 userrate">
-                        <img src="/assets/img/profile.png" alt="">
-                        <div class="mv-item-infor">
-                            <h6><a href="#">into the wild </a></h6>
-                            <p class="time sm-text">your rate :</p><br>
-                            <p class="rate"><i class="ion-android-star"></i><span>7.0</span> /10</p>
-                        </div>
-                    </div>
-
-                    <div class="movie-item-style-2 userrate last">
-                        <img src="/assets/img/profile.png" alt="">
-                        <div class="mv-item-infor">
-                            <h6><a href="#">blade runner</a></h6>
-                            <p class="time sm-text">your rate :</p><br>
-                            <p class="rate"><i class="ion-android-star"></i><span>10.0</span> /10</p>
-                            <p class="time sm-text">your reviews :</p><br>
-                            <h6>A masterpiece!</h6>
-                            <!-- <p class="time sm">01 February 2017</p> -->
-                            <p>“To put it simply, the movie is fascinating, exciting and fantastic. The dialog, the fight choreography, the way the story moves, the characters charisma, all and much more are combined together to deliver this masterpiece.
-                                Such an amazing flow, providing a fusion between the 90s and the new century, it's like the assassins are living in another world, with another mindset, without people understanding it. Just one advice for you though: Don't
-                                build an expectation of what you want to watch in this movie, if you do, then you will ruin it. This movie has it's own flow and movement, so watch it with a clear mind, and have fun.”</p>
-                        </div>
-                    </div>
-
-                    <div class="topbar-filter">
+                    <!-- <div class="topbar-filter">
                         <label>Movies per page :</label>
                         <div class="pagination2">
                             <span>Page 1 of 1:</span>
                             <a class="active" href="#">1</a>
                             <a href="#"><i class="ion-arrow-right-b"></i></a>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        function searchName() {
+            var mess = (document.getElementById('search').value);
+            mess=mess.toUpperCase();
+            if (mess != '') {
+                var i = 0;
+                while (document.getElementsByClassName('movie')[i]) {
+                    // console.log(document.getElementsByClassName('friendname')[i].innerHTML, document.getElementsByClassName('friendname')[i].innerHTML.indexOf(mess));
+                    if (document.getElementsByClassName('moviename')[i].innerHTML.toUpperCase().indexOf(mess) != -1 ) {
+                        document.getElementsByClassName('movie')[i].style.display = '';
 
+                    }
+                    else {
+                        document.getElementsByClassName('movie')[i].style.display = 'none';
+                    }
+                    i = i + 1;
+                }
+            }
+            else {
+                var i = 0;
+                while (document.getElementsByClassName('moviename')[i]) {
+                    document.getElementsByClassName('movie')[i].style.display = '';
+
+                    i = i + 1;
+                }
+            }
+        }
+    </script>
     <script src="/js/jquery.js"></script>
     <script src="/js/plugins.js"></script>
     <script src="/js/plugins2.js"></script>

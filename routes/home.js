@@ -56,14 +56,17 @@ router.post('/getmoviedetails', async (req, res) => {
     let len = temp.length;
     console.log(len);
     for (let i = 0; i < len; i++) {
-        let user = await User.findOne({ email: temp[i].email });
-        let obj = {
-            name: user.name,
-            reviewtitle: temp[i].reviewtitle,
-            reviewtext: temp[i].reviewtext,
-            rating: temp[i].rating
-        };
-        reviews.push(obj);
+        if(temp[i].reviewtitle){
+
+            let user = await User.findOne({ email: temp[i].email });
+            let obj = {
+                name: user.name,
+                reviewtitle: temp[i].reviewtitle,
+                reviewtext: temp[i].reviewtext,
+                rating: temp[i].rating
+            };
+            reviews.push(obj);
+        }
     }
     console.log(reviews);
     data1.reviews = reviews;

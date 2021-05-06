@@ -58,14 +58,16 @@ router.post('/getmoviedetails', async (req, res) => {
     let len = temp.length;
     console.log(len);
     for(let i=0;i<len;i++){
-        let user = await User.findOne({email : temp[i].email});
-        let obj = {
-            name : user.name,
-            reviewtitle : temp[i].reviewtitle,
-            reviewtext : temp[i].reviewtext,
-            rating : temp[i].rating
-        };
-        reviews.push(obj);
+        if(temp[i].reviewtitle){
+            let user = await User.findOne({email : temp[i].email});
+            let obj = {
+                name : user.name,
+                reviewtitle : temp[i].reviewtitle,
+                reviewtext : temp[i].reviewtext,
+                rating : temp[i].rating
+            };
+            reviews.push(obj);
+        }
     }
     console.log(reviews);
     data1.reviews = reviews;
@@ -156,6 +158,7 @@ router.post('/submitreview', async (req,res)=>{
     let movieid=req.body.id;
     let {name,poster,overview}=req.body;
     let obj = (Object.fromEntries([...new URLSearchParams(data)]));
+    // console.log(obj);
     let title=obj.title;
     let text=obj.text;
     let rating=obj.rating;
@@ -188,7 +191,7 @@ router.post('/submitreview', async (req,res)=>{
     }
 })
 
-router.get('/userfavourite',async (req,res)=>{
+router.get('/favourite',async (req,res)=>{
     let email = req.user.email;
     let result = await Usermovies.find({email, favourite: 1});
     let len=result.length;
@@ -210,8 +213,24 @@ router.get('/userfavourite',async (req,res)=>{
     res.render(path+'user_favourite_movies.ejs',{path : href, data});
 })
 
-router.get('/raterev',(req,res)=>{
-    res.render(path + 'user_rate_reviews.ejs',{path : href});
+router.get('/raterev',async (req,res)=>{
+    let email = req.user.email;
+    let result = await Usermovies.find({email});
+    let len=result.length;
+    let data = [];
+    for(let i=0;i<len;i++){
+        if(result[i].rating){
+            let temp = {}
+            temp = await Movie.findOne({movieid: result[i].movieid});
+            temp.userrating = result[i].rating;
+            temp.title=result[i].reviewtitle;
+            temp.text=result[i].reviewtext;
+            // console.log(temp);
+            data.push(temp);
+        }
+    }
+    console.log(data);
+    res.render(path + 'user_rate_reviews.ejs',{path : href, data});
 })
 
 const checkmovie = async (id,name,rating,poster,overview) => {

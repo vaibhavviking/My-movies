@@ -220,7 +220,7 @@
                     <div id="profilePicture">
                         <img src="../assets/img/profile.png" alt="">
                     </div>
-                    <a href="<%=path%>user/userfavourite" class="navLink">
+                    <a href="<%=path%>user/favourite" class="navLink">
                         <div class="navButton" onclick="navClick()">
                             MY FAVOURITES
                         </div>
@@ -453,7 +453,7 @@
         $(document).ready(() => {
             $.ajax({
                 type: 'POST',
-                url: path + '/getmoviedetails',
+                url: path + '/user/getmoviedetails',
                 data: {
                     id
                 },
