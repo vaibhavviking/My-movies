@@ -1,46 +1,65 @@
 // const {cquery} = require('../user');
-const {app} = require('../server');
+const { app } = require('../server');
 const request = require('supertest');
 const User = require('../models/user');
+const { readlist } = require('../storage/update');
+const Usermovies = require('../models/user_movies');
 
-
-test('database should be working (Create/Read)', async()=>{
+test('database should be working (Create/Read)', async () => {
     await User.deleteMany({});
     let obj = new User({
-        name : 'abc',
-        email : 'abc@d.com',
-        password : 'pass'
+        name: 'abc',
+        email: 'abc@d.com',
+        password: 'pass'
     })
     await obj.save();
-    let result = await User.findOne({email : 'abc@d.com'});
+    let result = await User.findOne({ email: 'abc@d.com' });
     expect(result.email).toBe('abc@d.com');
 })
 
-test('database should be working (Update)', async()=>{
-    await User.updateOne({email: 'abc@d.com'},{$set : {"email" : 'ab@d.com'}});
-    let result = await User.findOne({email : 'ab@d.com'});
+test('database should be working (Update)', async () => {
+    await User.updateOne({ email: 'abc@d.com' }, { $set: { "email": 'ab@d.com' } });
+    let result = await User.findOne({ email: 'ab@d.com' });
     expect(result.email).toBe('ab@d.com');
 })
 
-test('database should be working (Delete)', async()=>{
-    await User.deleteOne({email: 'ab@d.com'});
-    let result = await User.findOne({email : 'ab@d.com'});
+test('database should be working (Delete)', async () => {
+    await User.deleteOne({ email: 'ab@d.com' });
+    let result = await User.findOne({ email: 'ab@d.com' });
     expect(result).toBe(null);
 })
 
-test('Homepage renders', async ()=>{
-        let res = await request(app).get('/');
-        expect(res.status).toBe(200);
+test('Homepage renders', async () => {
+    let res = await request(app).get('/');
+    expect(res.status).toBe(200);
 })
 
-test('Homepage movies received', async ()=>{
-        let res = await request(app).get('/homemovies');
-        // expect(res.status).toBe(200);
-        console.log(res.body);
-        expect(res.body).toBe({});
+test('Homepage movies received', async () => {
+    let res = await readlist();
+    expect(res).not.toBe({});
 })
 
+test('favourite working', async () => {
+    let data = {
+        movieid: -1,
+    }
+    let output = await request(app).post('/user/markfav').send(data);
+    let result = await Usermovies.findOne({"email":'test', "favourite" : 1});
+    console.log(result);
+    expect(result).not.toBe({});
+    expect(result.favourite).toBe(1);
+})
 
+test('umark favourite working', async () => {
+    let data = {
+        movieid: -1,
+    }
+    let output = await request(app).post('/user/unmarkfav').send(data);
+    let result = await Usermovies.findOne({"email":'test', "favourite" : 0});
+    console.log(result);
+    expect(result).not.toBe({});
+    expect(result.favourite).toBe(0);
+})
 
 // test('rate route',async()=>{
 //     let data = {

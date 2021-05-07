@@ -77,7 +77,7 @@ router.post('/getmoviedetails', async (req, res) => {
 })
 
 router.get('/search', async (req, res) => {
-    res.render(path + 'search_movies.ejs', { path: href });
+    res.render(path + 'search_movies.ejs', { path: href, user: req.user });
 })
 
 router.post('/searchmovie', async (req, res) => {

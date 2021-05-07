@@ -14,7 +14,7 @@ const axios = require('axios').default;
 const Mail = require("nodemailer/lib/mailer");
 const LocalStrategy = require('passport-local').Strategy;
 const customStrategy = require('./config/custom-strategy');
-
+const schedule = require('node-schedule');
 const passportSetup = require('./config/passport-setup');
 const { updatelist,readlist } = require('./storage/update');
 var fs = require('fs');
@@ -77,7 +77,16 @@ const auth = (req, res, next) => {
 
 app.use("/", homeRouter);
 app.use('/auth', authRouter);
-app.use('/user', auth, userRouter);
+if(process.env.NODE_ENV != 'test'){
+    app.use('/user', auth, userRouter);
+}else{
+    app.use('/user', userRouter);
+}
+
+schedule.scheduleJob('0 0 0 * * *', async ()=>{
+    updatelist();
+})
+
 
 if(process.env.NODE_ENV != 'test'){
 

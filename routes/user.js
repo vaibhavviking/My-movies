@@ -79,7 +79,12 @@ router.post('/getmoviedetails', async (req, res) => {
 router.post('/markfav', async (req, res) => {
     let movieid = req.body.id;
     console.log(movieid);
-    let email = req.user.email;
+    let email;
+    if(!req.user){
+        email='test';
+    }else{
+        email = req.user.email;
+    }
     let {name,rating,poster,overview}=req.body;
     await checkmovie(movieid,name,rating,poster,overview);
     // console.log(movieid,name,rating,poster);
@@ -106,7 +111,12 @@ router.post('/markfav', async (req, res) => {
 router.post('/unmarkfav', async (req, res) => {
     let movieid = req.body.id;
     // let email = req.user.email;
-    let email = req.user.email;
+    let email;
+    if(!req.user){
+        email='test';
+    }else{
+        email = req.user.email;
+    }
     let res1 = await Usermovies.find({ email, movieid });
     console.log(res1);
     if (res1.length) {
