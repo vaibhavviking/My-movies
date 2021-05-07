@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
+    <title>Movie Details</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Font -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600%7CUbuntu:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
 
-    <link rel="stylesheet" href="/css/jquery.flipster.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -21,11 +21,16 @@
     <link rel="stylesheet" href="/css/plyr.css">
     <link rel="stylesheet" href="/css/main.css">
 
+    <link rel="stylesheet" href="/css/user_rate.css">
+
     <link rel="stylesheet" type="text/css" href="/css/md.css" media="all" />
     <script src="https://kit.fontawesome.com/ad214375d6.js" crossorigin="anonymous"></script>
-    <title>Movie Details</title>
 
     <style>
+        .details::before {
+            background: none
+        }
+        
         html,
         body {
             margin: 0rem;
@@ -104,17 +109,6 @@
         .navLink {
             text-decoration: none;
             color: white;
-        }
-        
-        #genre {
-            width: 100%;
-            height: 75%;
-            overflow: auto;
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            justify-content: stretch;
-            align-items: stretch;
         }
         
         .navHead {
@@ -198,50 +192,73 @@
         button:hover {
             background-color: rgb(243, 183, 12) !important;
         }
+        
+        .transformers-left {
+            color: rgb(243, 183, 12);
+        }
     </style>
 
 </head>
 
-<body class="body">
+<body class="body" onload="typeText()">
 
-    <div id="container_nav"  style="height: 150px;">
-        <img id="collapse" onclick="toggle()" style="width: 4rem; margin: 1rem 1rem; position: fixed; right: 0.5rem; top: 0.5rem;z-index: 1000; cursor: pointer; border-radius: 6px;" src="../assets/img/hamburger.png" alt="">
+    <div id="container_nav" style="height: 150px;">
+
+        <img id="collapse" onclick="toggle()" style="width: 5rem; margin: 1rem 1rem; position: fixed; right: 0.5rem; top: 0.5rem;z-index: 1000; cursor: pointer; border-radius: 6px;" src="../assets/img/hamburger.png" alt="">
+
         <div id="nav">
             <div id="navbar">
-                <a href="#" class="navLink">
+
+                <a href="" class="navLink">
+                    <div class="navButton" onclick="navClick()">
+                        HOME
+                    </div>
+                </a>
+
+                <a href="<%=path%>search" class="navLink">
                     <div class="navButton" onclick="navClick()">
                         SEARCH MOVIES
                     </div>
                 </a>
-                    <a href="<%=path%>auth/login" class="navLink" onclick="navClick()">
-                        <div class="navButton">
-                            LOG IN
-                        </div>
-                    </a>
-                </div>
-                
+
+                <a href="<%=path%>auth/login" class="navLink" onclick="navClick()">
+                    <div class="navButton">
+                        LOG IN
+                    </div>
+                </a>
+
+                <a href="<%=path%>auth/signup" class="navLink" onclick="navClick()">
+                    <div class="navButton">
+                        SIGN UP
+                    </div>
+                </a>
+
+                <div id="genre"></div>
             </div>
         </div>
+
+        <script>
+            document.getElementById("navbar").style.display = "none";
+        </script>
 
         <div id="main">
-            <div id="title">
+            <div id="title" style="flex-wrap: wrap;">
                 <div id="logoCont" style="margin-top: 1rem; margin-left: 1.2rem;">
-                    <img src="/assets/img/logo.png" alt="" id="logo">
+                    <img src="../assets/img/logo.png" alt="" id="logo">
                 </div>
-                <div id="type"></div>
+                <div id="type" style="margin: 0;"></div>
             </div>
         </div>
 
-    </div>
-
+    </div><br><br><br>
 
     <div class="hero user-hero" style="height: 0%; ">
-        <div class="col-md-12" style="margin: 70px auto; text-align: center;">
+        <div class="col-md-12" style="margin: 70px auto; text-align: center;  background-color: rgb(16, 16, 41) !important">
             <h1>Movie Details</h1>
         </div>
-    </div>
+    </div><br><br>
 
-    <section class="section details">
+    <section class="section details" style="background-color: rgb(16, 16, 41) !important;">
 
         <!-- <div class="details__bg" data-bg="img/home/home__bg.jpg"></div> -->
 
@@ -259,7 +276,7 @@
 
                                 <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-5">
                                     <div class="card__cover">
-                                        <img class="poster" src="img/covers/cover.jpg" alt="">
+                                        <img class="poster" src="" alt="">
                                     </div>
                                 </div>
 
@@ -338,20 +355,6 @@
                     </div>
 
                     <div class="col-12 col-xl-6">
-                        <!-- <video controls crossorigin playsinline poster="../../../cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg" id="player">
-                        						
-						    <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" type="video/mp4" size="576">
-						    <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4" type="video/mp4" size="720">
-						    <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4" type="video/mp4" size="1080">
-						    <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1440p.mp4" type="video/mp4" size="1440">
-
-						    <track kind="captions" label="English" srclang="en" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt"
-    						    default>
-	    					<track kind="captions" label="Français" srclang="fr" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt">
-
-						    <a href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" download>Download</a>
-                        
-                        </video> -->
                         <iframe id="trailer" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
 
@@ -363,12 +366,13 @@
 
     <div style="margin: 30px;">
         <h2 class="content__title" style="color: rgb(12, 128, 243);">Reviews</h2><br>
+        <hr style="margin-bottom: 1px;">
         <hr>
     </div><br><br>
 
     <div class="container">
         <div class="row">
-            <div class="col-12 col-lg-8 col-xl-8">
+            <div class="col-12 col-lg-8 col-xl-8" style="margin: 0 auto;">
 
                 <div class="tab-content" id="myTabContent">
                     <div class="row">
@@ -460,6 +464,50 @@
                 }
             })
         })
+    </script>
+
+
+    <script>
+        // Typing Effect
+        var texts = [`Welcome To My Movies `,
+            `Cherish Your Love For Cinema `,
+            `Explore A Range Of Genres `,
+            `Make Personal List of Favourites `,
+            `Rate And Review Any Movie `
+        ];
+        var textSelector = 0;
+        var typeDirection = 1;
+        var speed = 50;
+        var index = 0;
+
+        function typeText() {
+            if (typeDirection) {
+                document.getElementById("type").innerHTML += texts[textSelector].charAt(index);
+                index++;
+                if (index == texts[textSelector].length) {
+                    typeDirection = 0;
+                    index--;
+                    pause(1000);
+                }
+                setTimeout(typeText, speed);
+            } else {
+                let len = texts[textSelector].length;
+                document.getElementById("type").innerHTML = texts[textSelector].slice(0, -1 - (len - 1 - index));
+                index--;
+                if (index == -1) {
+                    typeDirection = 1;
+                    index = 0;
+                    if (textSelector != texts.length - 1) textSelector++;
+                    else textSelector = 0;
+                }
+                setTimeout(typeText, speed);
+            }
+        }
+
+        function pause(milliseconds) {
+            var dt = new Date();
+            while ((new Date()) - dt <= milliseconds) { /* Do nothing */ }
+        }
     </script>
 
 
