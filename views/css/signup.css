@@ -4,9 +4,9 @@
 }
 
 .darkMode {
-    --textColor: rgb(242, 242, 242);
-    --back1: rgb(60, 60, 60);
-    --back2: rgb(7, 6, 44);
+    --textColor: rgb(255, 255, 255);
+    --back1: rgb(12, 128, 243);
+    --back2: rgb(16, 16, 41);
     --webScrollColor: rgb(12, 12, 12);
 }
 
@@ -17,7 +17,7 @@ body {
 }
 
  :root {
-    --normalColor: rgb(237, 78, 73);
+    --normalColor: rgb(243, 183, 12);
 }
 
 * {
