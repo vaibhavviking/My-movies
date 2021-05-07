@@ -2,7 +2,7 @@
 <html lang="en" class="no-js">
 
 <head>
-    <title>My rating and review</title>
+    <title>Search Movies</title>
     <meta charset="UTF-8">
     <meta name=viewport content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone-no">
@@ -65,43 +65,29 @@
 
         <div id="nav">
             <div id="navbar">
-                <a href="#" class="navLink">
+                <a href="" class="navLink">
+                    <div class="navButton" onclick="navClick()">
+                        HOME
+                    </div>
+                </a>
+
+                <a href="<%=path%>search" class="navLink">
                     <div class="navButton" onclick="navClick()">
                         SEARCH MOVIES
                     </div>
                 </a>
-                <div class="navHead" style="margin-top: 0.5rem;">
-                    PROFILE
-                </div>
-                <div id="profile">
-                    <div id="profilePicture">
-                        <img src="../assets/img/profile.png" alt="">
+
+                <a href="<%=path%>auth/login" class="navLink" onclick="navClick()">
+                    <div class="navButton">
+                        LOG IN
                     </div>
+                </a>
 
-                    <a href="#" class="navLink">
-                        <div class="navButton" onclick="navClick()">
-                            HOME
-                        </div>
-                    </a>
-
-                    <a href="<%=path%>user/favourite" class="navLink">
-                        <div class="navButton" onclick="navClick()">
-                            MY FAVOURITES
-                        </div>
-                    </a>
-
-                    <a href="#" class="navLink" onclick="navClick()">
-                        <div class="navButton">
-                            MY RATING AND REVIEW
-                        </div>
-                    </a>
-
-                    <a href="<%=path%>auth/logout" class="navLink" onclick="navClick()">
-                        <div class="navButton">
-                            LOG OUT
-                        </div>
-                    </a>
-                </div>
+                <a href="<%=path%>auth/signup" class="navLink" onclick="navClick()">
+                    <div class="navButton">
+                        SIGN UP
+                    </div>
+                </a>
                 <div id="genre"></div>
             </div>
         </div>
@@ -141,7 +127,7 @@
                                     <input type="text" placeholder="Enter Keywords">
                                 </div>
                                 <div class="col-md-6">
-                                    <select name="criteria" id="criteria" style="background-image: url(./drop-icon.png)">
+                                    <select name="criteria" id="criteria" style="background-image: url(../assets/img/drop-icon.png)">
                                         <option value="movie"> Search By Name</option> 
                                         <option value="person"> Search By Person</option>
                                     </select>
@@ -156,6 +142,9 @@
             </div>
         </div>
     </div>
+
+
+
 
 
 

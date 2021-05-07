@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
+    <title>Movie Details</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Font -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600%7CUbuntu:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
 
-    <link rel="stylesheet" href="/css/jquery.flipster.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -21,11 +21,16 @@
     <link rel="stylesheet" href="/css/plyr.css">
     <link rel="stylesheet" href="/css/main.css">
 
+    <link rel="stylesheet" href="/css/user_rate.css">
+
     <link rel="stylesheet" type="text/css" href="/css/md.css" media="all" />
     <script src="https://kit.fontawesome.com/ad214375d6.js" crossorigin="anonymous"></script>
-    <title>Movie Details</title>
 
     <style>
+        .details::before {
+            background: none
+        }
+        
         html,
         body {
             margin: 0rem;
@@ -198,72 +203,89 @@
         button:hover {
             background-color: rgb(243, 183, 12) !important;
         }
+        
+        .transformers-left {
+            color: rgb(243, 183, 12);
+        }
     </style>
 
 </head>
 
-<body class="body">
+<body class="body" onload="typeText()">
 
     <div id="container_nav" style="height: 150px;">
-        <img id="collapse" onclick="toggle()" style="width: 4rem; margin: 1rem 1rem; position: fixed; right: 0.5rem; top: 0.5rem;z-index: 1000; cursor: pointer; border-radius: 6px;" src="../assets/img/hamburger.png" alt="">
+
+        <img id="collapse" onclick="toggle()" style="width: 5rem; margin: 1rem 1rem; position: fixed; right: 0.5rem; top: 0.5rem;z-index: 1000; cursor: pointer; border-radius: 6px;" src="../assets/img/hamburger.png" alt="">
+
         <div id="nav">
             <div id="navbar">
-                <a href="#" class="navLink">
+                <a href="<%=path%>search" class="navLink">
                     <div class="navButton" onclick="navClick()">
                         SEARCH MOVIES
                     </div>
                 </a>
+
                 <div class="navHead" style="margin-top: 0.5rem;">
                     PROFILE
                 </div>
+
                 <div id="profile">
                     <div id="profilePicture">
                         <img src="../assets/img/profile.png" alt="">
                     </div>
+
+                    <a href="#" class="navLink">
+                        <div class="navButton" onclick="navClick()">
+                            HOME
+                        </div>
+                    </a>
+
                     <a href="<%=path%>user/favourite" class="navLink">
                         <div class="navButton" onclick="navClick()">
                             MY FAVOURITES
                         </div>
                     </a>
-                    <a href="#" class="navLink" onclick="navClick()">
+
+                    <a href="<%=path%>user/raterev" class="navLink" onclick="navClick()">
                         <div class="navButton">
-                            MY RATINGS
+                            MY RATING AND REVIEW
                         </div>
                     </a>
-                    <a href="#" class="navLink" onclick="navClick()">
-                        <div class="navButton">
-                            MY REVIEWS
-                        </div>
-                    </a>
+
                     <a href="<%=path%>auth/logout" class="navLink" onclick="navClick()">
                         <div class="navButton">
                             LOG OUT
                         </div>
                     </a>
                 </div>
-                
+                <div id="genre"></div>
+
             </div>
         </div>
 
+        <script>
+            document.getElementById("navbar").style.display = "none";
+        </script>
+
         <div id="main">
-            <div id="title">
+            <div id="title" style="flex-wrap: wrap;">
                 <div id="logoCont" style="margin-top: 1rem; margin-left: 1.2rem;">
                     <img src="/assets/img/logo.png" alt="" id="logo">
                 </div>
-                <div id="type"></div>
+                <div id="type" style="margin: 0;"></div>
             </div>
         </div>
 
-    </div>
+    </div><br><br><br>
 
 
     <div class="hero user-hero" style="height: 0%; ">
-        <div class="col-md-12" style="margin: 70px auto; text-align: center;">
+        <div class="col-md-12" style="margin-top: 70px; text-align: center; background-color: rgb(16, 16, 41) !important">
             <h1>Movie Details</h1>
         </div>
-    </div>
+    </div><br><br>
 
-    <section class="section details">
+    <section class="section details" style="background-color: rgb(16, 16, 41) !important;">
 
         <!-- <div class="details__bg" data-bg="img/home/home__bg.jpg"></div> -->
 
@@ -281,7 +303,7 @@
 
                                 <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-5">
                                     <div class="card__cover">
-                                        <img class="poster" src="img/covers/cover.jpg" alt="">
+                                        <img class="poster" src="" alt="">
                                     </div>
                                 </div>
 
@@ -393,12 +415,13 @@
 
     <div style="margin: 30px;">
         <h2 class="content__title" style="color: rgb(12, 128, 243);">Reviews</h2><br>
+        <hr style="margin-bottom: 1px;">
         <hr>
     </div><br><br>
 
     <div class="container">
         <div class="row">
-            <div class="col-12 col-lg-8 col-xl-8">
+            <div class="col-12 col-lg-8 col-xl-8" style="margin: 0 auto;">
 
                 <div class="tab-content" id="myTabContent">
                     <div class="row">
@@ -406,6 +429,8 @@
                         <div class="col-12">
                             <div class="reviews">
                                 <ul class="reviews__list">
+
+
                                 </ul>
 
                                 <form id="rform" class="form" style="background-color: rgb(26, 27, 29);">
@@ -419,7 +444,7 @@
                                         <div class="form__slider-value" id="form__slider-value"></div>
                                     </div>
 
-                                    <button onclick="submitform('rform')" type="button" class="form__btn">Send</button>
+                                    <button onclick="submitform('rform')" type="button" class="form__btn"> POST </button>
                                     <div class="rmess"></div>
 
                                 </form>
@@ -575,6 +600,49 @@
         })
     </script>
 
+
+    <script>
+        // Typing Effect
+        var texts = [`Welcome To My Movies `,
+            `Cherish Your Love For Cinema `,
+            `Explore A Range Of Genres `,
+            `Make Personal List of Favourites `,
+            `Rate And Review Any Movie `
+        ];
+        var textSelector = 0;
+        var typeDirection = 1;
+        var speed = 50;
+        var index = 0;
+
+        function typeText() {
+            if (typeDirection) {
+                document.getElementById("type").innerHTML += texts[textSelector].charAt(index);
+                index++;
+                if (index == texts[textSelector].length) {
+                    typeDirection = 0;
+                    index--;
+                    pause(1000);
+                }
+                setTimeout(typeText, speed);
+            } else {
+                let len = texts[textSelector].length;
+                document.getElementById("type").innerHTML = texts[textSelector].slice(0, -1 - (len - 1 - index));
+                index--;
+                if (index == -1) {
+                    typeDirection = 1;
+                    index = 0;
+                    if (textSelector != texts.length - 1) textSelector++;
+                    else textSelector = 0;
+                }
+                setTimeout(typeText, speed);
+            }
+        }
+
+        function pause(milliseconds) {
+            var dt = new Date();
+            while ((new Date()) - dt <= milliseconds) { /* Do nothing */ }
+        }
+    </script>
 
     <script>
         var smallWidth, defaultCollapse = 1;

@@ -21,22 +21,28 @@
         <img id="collapse" onclick="toggle()" style="width: 4rem; margin: 1rem 1rem; position: fixed; right: 0.5rem; top: 0.5rem;z-index: 1000; cursor: pointer; border-radius: 6px;" src="../assets/img/hamburger.png" alt="">
         <div id="nav">
             <div id="navbar">
-                <a href="#" class="navLink">
+                <a href="<%=path%>search" class="navLink">
                     <div class="navButton" onclick="navClick()">
                         SEARCH MOVIES
                     </div>
                 </a>
+
                 <a href="<%=path%>auth/login" class="navLink">
                     <div class="navButton" onclick="navClick()">
                         LOG IN
                     </div>
                 </a>
 
+                <a href="<%=path%>auth/signup" class="navLink" onclick="navClick()">
+                    <div class="navButton">
+                        SIGN UP
+                    </div>
+                </a>
+
                 <div class="navHead">
                     GENRES
                 </div>
-                <div id="genre">
-                </div>
+                <div id="genre"> </div>
             </div>
         </div>
         <script>
