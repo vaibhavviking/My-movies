@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../css/style.css">
 
     <title>SignIn</title>
+
 </head>
 
 <body class="darkMode">
@@ -18,6 +19,9 @@
 
         <section>
             <div class="container" id="cont">
+
+                <a href="#"><input type="submit" value="HOME" style="margin: 0; position: absolute; left: 4%; top: 4%;"></a>
+
                 <h1>REGISTRATION</h1>
 
                 <div class="box">
@@ -26,25 +30,42 @@
                             <h1>LOGIN</h1>
                             <input type="email" placeholder="Email" name="email" required="true">
                             <input type="password" placeholder="Password" name="password" required="true">
-                            <input type="submit" value="LOG IN">
+                            <input type="submit" value="LOGIN">
                             <a href="<%=path%>auth/google"><img src="/assets/img/google.png" alt=""></a>
                             <%if(error.length){%>
                                 <div class="mess">
-                                    <p>
-                                        <%=error[0]%>
-                                    </p>
+                                    <div class="w3-container">
+
+                                        <div class="w3-panel w3-red w3-display-container">
+                                            <span onclick="this.parentElement.style.display='none'" class="w3-button w3-large w3-display-topright">&times;</span>
+                                            <h3>Alert</h3>
+                                            <p>
+                                                <%=error[0]%>
+                                            </p>
+                                        </div>
+
+                                    </div>
                                 </div>
                                 <%}%>
                                     <%if(message.length){%>
                                         <div class="mess">
-                                            <p>
-                                                <%=message[0]%>
-                                            </p>
+                                            <div class="w3-container">
+
+                                                <div class="w3-panel w3-green w3-display-container">
+                                                    <span onclick="this.parentElement.style.display='none'" class="w3-button w3-large w3-display-topright">&times;</span>
+                                                    <h3>Warning!</h3>
+                                                    <p>
+                                                        <%=message[0]%>
+                                                    </p>
+                                                </div>
+
+                                            </div>
                                         </div>
                                         <%}%>
-                                            <p>Don't Have An Account? <a href="<%=path%>auth/signup">Click Here</a></p>
+                                            <p>Don't Have An Account? <a href="<%=path%>auth/signup" style="color: rgb(243, 183, 12);">Click Here</a></p><br>
                         </form>
                     </div>
+
                 </div>
             </div>
         </section>
@@ -55,6 +76,7 @@
 
     <!-- jQuery UI -->
     <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+
 
 </body>
 
