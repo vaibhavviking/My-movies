@@ -2,7 +2,7 @@
 <html lang="en" class="no-js">
 
 <head>
-    <title>My rating and review</title>
+    <title>Search Movies</title>
     <meta charset="UTF-8">
     <meta name=viewport content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone-no">
@@ -12,95 +12,107 @@
     <link rel="stylesheet" href="/css/plugins.css">
     <link rel="stylesheet" href="/css/user_rate.css">
 
-    <link rel="stylesheet" href="/css/jquery.flipster.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@1,500&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/jquery.flipster.min.css">
 
     <style>
         input[type="submit"] {
             background-color: rgb(12, 128, 243) !important;
         }
-
+        
         input[type="submit"]:hover {
             background-color: rgb(243, 183, 12) !important;
         }
-
+        
         .navButton:hover {
             color: white;
+        }
+        
+        .col-md-9 {
+            position: relative;
+            width: 75%;
+            left: 12.5%;
+        }
+        
+        .nav-tabs>li.active>a,
+        .nav-tabs>li.active>a:hover,
+        .nav-tabs>li.active>a:focus {
+            border: none !important;
+            background-color: transparent !important;
+            color: #dcf836 !important;
+        }
+        
+        .nav-tabs>li>a:hover,
+        .nav-tabs>li>a:focus {
+            border: none !important;
+            background-color: transparent !important;
+            color: #dcf836 !important;
         }
     </style>
 
 </head>
 
-<body>
+<body onload="typeText()">
 
     <div id="container" style="height: 150px;">
-        <img id="collapse" onclick="toggle()"
-            style="width: 4rem; margin: 1rem 1rem; position: fixed; right: 0.5rem; top: 0.5rem;z-index: 1000; cursor: pointer; border-radius: 6px;"
-            src="../assets/img/hamburger.png" alt="">
+
+        <img id="collapse" onclick="toggle()" style="width: 5rem; margin: 1rem 1rem; position: fixed; right: 0.5rem; top: 0.5rem;z-index: 1000; cursor: pointer; border-radius: 6px;" src="../assets/img/hamburger.png" alt="">
+
         <div id="nav">
             <div id="navbar">
-                <a href="#" class="navLink">
+                <a href="" class="navLink">
+                    <div class="navButton" onclick="navClick()">
+                        HOME
+                    </div>
+                </a>
+
+                <a href="<%=path%>search" class="navLink">
                     <div class="navButton" onclick="navClick()">
                         SEARCH MOVIES
                     </div>
                 </a>
-                <div class="navHead" style="margin-top: 0.5rem;">
-                    PROFILE
-                </div>
-                <div id="profile">
-                    <div id="profilePicture">
-                        <img src="/assets/img/profile.png" alt="">
+
+                <a href="<%=path%>auth/login" class="navLink" onclick="navClick()">
+                    <div class="navButton">
+                        LOG IN
                     </div>
-                    <a href="<%=path%>user/favourite" class="navLink">
-                        <div class="navButton" onclick="navClick()">
-                            MY FAVOURITES
-                        </div>
-                    </a>
-                    <a href="#" class="navLink" onclick="navClick()">
-                        <div class="navButton">
-                            MY RATINGS
-                        </div>
-                    </a>
-                    <a href="#" class="navLink" onclick="navClick()">
-                        <div class="navButton">
-                            MY REVIEWS
-                        </div>
-                    </a>
-                    <a href="<%=path%>auth/logout" class="navLink" onclick="navClick()">
-                        <div class="navButton">
-                            LOG OUT
-                        </div>
-                    </a>
-                </div>
-                <!-- <div class="navHead">
-                    GENRES
-                </div>
-                <div id="genre"></div> -->
+                </a>
+
+                <a href="<%=path%>auth/signup" class="navLink" onclick="navClick()">
+                    <div class="navButton">
+                        SIGN UP
+                    </div>
+                </a>
+                <div id="genre"></div>
             </div>
         </div>
 
+        <script>
+            document.getElementById("navbar").style.display = "none";
+        </script>
+
         <div id="main">
-            <div id="title">
+            <div id="title" style="flex-wrap: wrap;">
                 <div id="logoCont" style="margin-top: 1rem; margin-left: 1.2rem;">
                     <img src="/assets/img/logo.png" alt="" id="logo">
                 </div>
-                <div id="type"></div>
+                <div id="type" style="margin: 0;"></div>
             </div>
         </div>
 
-    </div>
+    </div><br><br><br>
 
 
     <div class="hero user-hero" style="height: 0%; ">
         <div class="col-md-12" style="margin-top: 70px; background-color: rgb(16, 16, 41) !important">
             <h1>Search Movies</h1>
         </div>
-    </div>
+    </div><br><br>
 
     <div class="col-md-4 col-sm-12 col-xs-12" style="width: 60%; margin-top: 90px; position: relative; left: 20%;">
         <div class="sidebar">
@@ -110,20 +122,192 @@
                     <div class="row">
                         <div class="col-md-12 form-it">
                             <label>Search Movie</label>
-                            <input type="text" id="query" placeholder="Enter Movie Name">
-                            <select name="criteria" id="criteria">
-                                <option value="movie">Name</option>
-                                <option value="person">Person</option>
-                            </select>
+                            <div class="row">
+                                <div class="col-md-6" style="margin-bottom: 20px;">
+                                    <input type="text" placeholder="Enter Keywords">
+                                </div>
+                                <div class="col-md-6">
+                                    <select name="criteria" id="criteria" style="background-image: url(../assets/img/drop-icon.png)">
+                                        <option value="movie"> Search By Name</option> 
+                                        <option value="person"> Search By Person</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md-12 " style="width: 54%; position: relative; left: 23%; ">
-                            <input class="submit" type="submit" value="submit">
+                            <input class="submit" type="submit" value="search">
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="page-single" style="background-color: rgb(16, 16, 41) !important; ">
+        <div class="container">
+            <div class="row ipad-width2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="tab-content">
+
+                                <div id="tab1" class="tab-pane fade in active">
+
+                                    <div class="col-md-9 col-sm-12 col-xs-12">
+                                        <div class="flex-wrap-movielist user-fav-list" id="tab1" class="tab-pane fade in active">
+                                            <div class="movie-item-style-2">
+                                                <img src="../assets/img/profile.png" alt="">
+                                                <div class="mv-item-infor">
+                                                    <h6><a href="#">oblivion </a></h6>
+                                                    <p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+                                                    <p class="describe">Earth's mightiest heroes must come together and learn to fight as a team if they are to stop the mischievous Loki and his alien army from enslaving humanity...
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="movie-item-style-2">
+                                                <img src="../assets/img/profile.png" alt="">
+                                                <div class="mv-item-infor">
+                                                    <h6><a href="#">into the wild </a></h6>
+                                                    <p class="rate"><i class="ion-android-star"></i><span>7.8</span> /10</p>
+                                                    <p class="describe">As Steve Rogers struggles to embrace his role in the modern world, he teams up with a fellow Avenger and S.H.I.E.L.D agent, Black Widow, to battle a new threat...</p>
+                                                </div>
+                                            </div>
+                                            <div class="movie-item-style-2">
+                                                <img src="../assets/img/profile.png" alt="">
+                                                <div class="mv-item-infor">
+                                                    <h6><a href="#">blade runner </a></h6>
+                                                    <p class="rate"><i class="ion-android-star"></i><span>7.3</span> /10</p>
+                                                    <p class="describe">Armed with a super-suit with the astonishing ability to shrink in scale but increase in strength, cat burglar Scott Lang must embrace his inner hero and help...</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div id="tab2" class="tab-pane fade in">
+
+                                    <div class="col-md-9 col-sm-12 col-xs-12">
+                                        <div class="flex-wrap-movielist user-fav-list" id="tab1" class="tab-pane fade in active">
+                                            <div class="movie-item-style-2">
+                                                <img src="../assets/img/profile.png" alt="">
+                                                <div class="mv-item-infor">
+                                                    <h6><a href="#">oblivion </a></h6>
+                                                    <p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+                                                    <p class="describe">Earth's mightiest heroes must come together and learn to fight as a team if they are to stop the mischievous Loki and his alien army from enslaving humanity...
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="movie-item-style-2">
+                                                <img src="../assets/img/profile.png" alt="">
+                                                <div class="mv-item-infor">
+                                                    <h6><a href="#">blade runner </a></h6>
+                                                    <p class="rate"><i class="ion-android-star"></i><span>7.3</span> /10</p>
+                                                    <p class="describe">Armed with a super-suit with the astonishing ability to shrink in scale but increase in strength, cat burglar Scott Lang must embrace his inner hero and help...</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div id="tab3" class="tab-pane fade in">
+
+                                    <div class="col-md-9 col-sm-12 col-xs-12">
+                                        <div class="flex-wrap-movielist user-fav-list" id="tab1" class="tab-pane fade in active">
+                                            <div class="movie-item-style-2">
+                                                <img src="../assets/img/profile.png" alt="">
+                                                <div class="mv-item-infor">
+                                                    <h6><a href="#">oblivion </a></h6>
+                                                    <p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+                                                    <p class="describe">Earth's mightiest heroes must come together and learn to fight as a team if they are to stop the mischievous Loki and his alien army from enslaving humanity...
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-9 col-sm-12 col-xs-12">
+                    <div class="topbar-filter">
+                        <label>Page number :</label>
+                        <div class="pagination2">
+                            <!-- <span>Page 1 of 2:</span> -->
+                            <ul class="nav nav-tabs" style="border: none;">
+                                <li class="active"><a data-toggle="tab" href="#tab1">1</a></li>
+                                <li><a data-toggle="tab" href="#tab2">2</a></li>
+                                <li><a data-toggle="tab" href="#tab3">3</a></li>
+                                <li><a data-toggle="tab" href="#tab4">4</a></li>
+                                <li><a data-toggle="tab" href="#tab5">5</a></li>
+
+                                <!-- <a href="#">...</a>
+                                <a href="#">78</a>
+                                <a href="#">79</a> 
+                                <li><a href="#"><i class="ion-arrow-right-b"></i></a></li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <div class="page-single" style="background-color: rgb(16, 16, 41) !important">
         <div class="container">
@@ -133,24 +317,12 @@
 
                     </div>
 
-                    <!-- <div class="topbar-filter">
-                        <label>Movies per page:</label>
-                        <div class="pagination2">
-                            <span>Page 1 of 2:</span>
-                            <a class="active" href="#">1</a>
-                            <a href="#">2</a>
-                            <a href="#">3</a>
-                            <a href="#">...</a>
-                            <a href="#">78</a>
-                            <a href="#">79</a>
-                            <a href="#"><i class="ion-arrow-right-b"></i></a>
-                        </div>
-                    </div> -->
 
                 </div>
             </div>
         </div>
     </div>
+
     <script>
         let path = window.location.origin;
         $(document).ready(() => {
@@ -158,7 +330,7 @@
                 e.preventDefault();
                 let query = $('#query').val();
                 let c = $('#criteria').val();
-                console.log(c,query);
+                console.log(c, query);
                 $.ajax({
                     type: 'POST',
                     url: path + '/searchmovie',
@@ -199,8 +371,51 @@
     <script src="/js/custom.js"></script>
 </body>
 
+<script>
+    // Typing Effect
+    var texts = [`Welcome To My Movies `,
+        `Cherish Your Love For Cinema `,
+        `Explore A Range Of Genres `,
+        `Make Personal List of Favourites `,
+        `Rate And Review Any Movie `
+    ];
+    var textSelector = 0;
+    var typeDirection = 1;
+    var speed = 50;
+    var index = 0;
+
+    function typeText() {
+        if (typeDirection) {
+            document.getElementById("type").innerHTML += texts[textSelector].charAt(index);
+            index++;
+            if (index == texts[textSelector].length) {
+                typeDirection = 0;
+                index--;
+                pause(1000);
+            }
+            setTimeout(typeText, speed);
+        } else {
+            let len = texts[textSelector].length;
+            document.getElementById("type").innerHTML = texts[textSelector].slice(0, -1 - (len - 1 - index));
+            index--;
+            if (index == -1) {
+                typeDirection = 1;
+                index = 0;
+                if (textSelector != texts.length - 1) textSelector++;
+                else textSelector = 0;
+            }
+            setTimeout(typeText, speed);
+        }
+    }
+
+    function pause(milliseconds) {
+        var dt = new Date();
+        while ((new Date()) - dt <= milliseconds) { /* Do nothing */ }
+    }
+</script>
 
 <script>
+    // Toggle Navbar
     var smallWidth, defaultCollapse = 1;
     if (screen.width < 900) {
         smallWidth = 1;
