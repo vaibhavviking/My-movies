@@ -36,7 +36,11 @@ passport.use('local', new LocalStrategy({ usernameField: 'email', passwordField:
             let check = await bcrypt.compare(password, result[0].password);
             console.log(check);
             if(check){
-                done(null,result[0]);
+                if(result[0].active!=true){
+                    done(null,false,req.flash("error", 'Please complete verification for '+username));
+                }else{
+                    done(null,result[0]);
+                }
             }else{
                 console.log('boom');
                 done(null, false, req.flash("error", 'Wrong email or password'));
