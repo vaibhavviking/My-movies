@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en">
 
 <head>
+
     <title>My rating and review</title>
     <meta charset="UTF-8">
     <meta name=viewport content="width=device-width, initial-scale=1">
@@ -9,16 +10,16 @@
 
     <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
 
-    <link rel="stylesheet" href="/css/plugins.css">
-    <link rel="stylesheet" href="/css/user_rate.css">
+    <link rel="stylesheet" href="../css/plugins.css">
+    <link rel="stylesheet" href="../css/user_rate.css">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@1,500&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/css/jquery.flipster.min.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/jquery.flipster.min.css">
 
     <style>
         input[type="submit"] {
@@ -58,7 +59,6 @@
 </head>
 
 <body onload="typeText()">
-
     <div id="container" style="height: 150px;">
 
         <img id="collapse" onclick="toggle()" style="width: 5rem; margin: 1rem 1rem; position: fixed; right: 0.5rem; top: 0.5rem;z-index: 1000; cursor: pointer; border-radius: 6px;" src="../assets/img/hamburger.png" alt="">
@@ -77,28 +77,19 @@
                     <div id="profilePicture">
                         <img src="../assets/img/profile.png" alt="">
                     </div>
-
                     <a href="#" class="navLink">
                         <div class="navButton" onclick="navClick()">
                             HOME
                         </div>
                     </a>
-
-                    <a href="<%=path%>user/favourite" class="navLink">
+                    <a href="#" class="navLink">
                         <div class="navButton" onclick="navClick()">
                             MY FAVOURITES
                         </div>
                     </a>
-
                     <a href="#" class="navLink" onclick="navClick()">
                         <div class="navButton">
                             MY RATING AND REVIEW
-                        </div>
-                    </a>
-
-                    <a href="<%=path%>auth/logout" class="navLink" onclick="navClick()">
-                        <div class="navButton">
-                            LOG OUT
                         </div>
                     </a>
                 </div>
@@ -113,7 +104,7 @@
         <div id="main">
             <div id="title" style="flex-wrap: wrap;">
                 <div id="logoCont" style="margin-top: 1rem; margin-left: 1.2rem;">
-                    <img src="/assets/img/logo.png" alt="" id="logo">
+                    <img src="../assets/img/logo.png" alt="" id="logo">
                 </div>
                 <div id="type" style="margin: 0;"></div>
             </div>
@@ -121,10 +112,9 @@
 
     </div><br><br><br>
 
-
     <div class="hero user-hero" style="height: 0%; ">
         <div class="col-md-12" style="margin-top: 70px; background-color: rgb(16, 16, 41) !important">
-            <h1>Search Movies</h1>
+            <h1> Search Movies </h1>
         </div>
     </div><br><br>
 
@@ -132,7 +122,7 @@
         <div class="sidebar">
             <div class="searh-form">
                 <!-- <h4 class="sb-title">Search for movie</h4> -->
-                <form class="form-style-1" id="sform">
+                <form class="form-style-1" action="#">
                     <div class="row">
                         <div class="col-md-12 form-it">
                             <label>Search Movie</label>
@@ -148,7 +138,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 " style="width: 54%; position: relative; left: 23%; ">
+
+                        <div class="col-md-12 " style="width: 56%; position: relative; left: 22%; margin-top: 20px; ">
                             <input class="submit" type="submit" value="search">
                         </div>
                     </div>
@@ -156,29 +147,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <div class="page-single" style="background-color: rgb(16, 16, 41) !important; ">
         <div class="container">
@@ -298,88 +266,10 @@
     </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="page-single" style="background-color: rgb(16, 16, 41) !important">
-        <div class="container">
-            <div class="row ipad-width2">
-                <div class="col-md-9 col-sm-12 col-xs-12">
-                    <div class="flex-wrap-movielist user-fav-list list">
-
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        let path = window.location.origin;
-        $(document).ready(() => {
-            $("#sform").submit(e => {
-                e.preventDefault();
-                let query = $('#query').val();
-                let c = $('#criteria').val();
-                console.log(c, query);
-                $.ajax({
-                    type: 'POST',
-                    url: path + '/searchmovie',
-                    data: {
-                        query,
-                        criteria: c
-                    },
-                    success: (result) => {
-                        console.log(result);
-                        let str = ``;
-                        result.forEach(item => {
-                            let img = 'https://image.tmdb.org/t/p/w500' + item.poster_path;
-                            if (item.poster_path == null) {
-                                img = 'https://www.indiaspora.org/wp-content/uploads/2018/10/image-not-available.jpg';
-                            }
-                            str += `
-                            <div class="movie-item-style-2">
-                            <img style="width: 200px;" src='${img}' alt="">
-                            <div class="mv-item-infor">
-                                <h6><a href="${path}/moviedetails?id=${item.id}">${item.title}</a></h6>
-                                <p class="rate"><i class="ion-android-star"></i><span>${item.vote_average}</span> /10</p>
-                                <p class="describe">${item.overview}
-                                </p>
-                            </div>
-                        </div>
-                            `;
-                        })
-                        console.log(result);
-                        $('.list').html(str);
-                    }
-                })
-            })
-        })
-    </script>
-    <script src="/js/jquery.js"></script>
-    <script src="/js/plugins.js"></script>
-    <script src="/js/plugins2.js"></script>
-    <script src="/js/custom.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/plugins.js"></script>
+    <script src="../js/plugins2.js"></script>
+    <script src="../js/custom.js"></script>
 </body>
 
 <script>
