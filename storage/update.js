@@ -1,5 +1,5 @@
 const fs = require('fs');
-const keys = require('../keys');
+const keys = require('../keys2');
 const fetch = require('node-fetch');
 
 const updatelist = () => {
