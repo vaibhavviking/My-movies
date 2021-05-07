@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/signup.css">
 
     <title>SignUp</title>
+
 </head>
 
 <body class="darkMode">
@@ -18,6 +19,9 @@
 
         <section>
             <div class="container" id="cont">
+
+                <a href="#"><input type="submit" value="HOME" style="margin: 0; position: absolute; left: 4%; top: 4%;"></a>
+
                 <h1>REGISTRATION</h1>
 
                 <div class="box">
@@ -31,16 +35,24 @@
                             <input type="submit" value="SIGN UP">
                             <%if(error.length){%>
                                 <div class="mess">
-                                    <p>
-                                        <%=error[0]%>
-                                    </p>
-                                </div>
-                            <%}%>
-                            <div class="acceptUp">
-                                <p></p>
-                            </div>
+                                    <div class="w3-container">
 
-                            <p>Have An Account? <a href="<%=path%>auth/login">Click Here</a></p>
+                                        <div class="w3-panel w3-red w3-display-container">
+                                            <span onclick="this.parentElement.style.display='none'" class="w3-button w3-large w3-display-topright">&times;</span>
+                                            <h3>Alert</h3>
+                                            <p>
+                                                <%=error[0]%>
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <%}%>
+                                    <div class="acceptUp">
+                                        <p></p>
+                                    </div>
+
+                                    <p>Have An Account? <a href="<%=path%>auth/login" style="color: rgb(243, 183, 12);">Click Here</a></p><br>
                         </form>
                     </div>
                 </div>
