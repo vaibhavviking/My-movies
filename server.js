@@ -14,6 +14,7 @@ const axios = require('axios').default;
 const Mail = require("nodemailer/lib/mailer");
 const LocalStrategy = require('passport-local').Strategy;
 const customStrategy = require('./config/custom-strategy');
+
 const passportSetup = require('./config/passport-setup');
 const { updatelist,readlist } = require('./storage/update');
 var fs = require('fs');
