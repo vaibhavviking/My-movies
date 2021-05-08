@@ -24,7 +24,7 @@
     "random-hash": "^4.0.1"
   },
   "nodemonConfig": {
-    "ext": "js",
+    "ext": "js, ejs, css",
     "ignore": [
       "storage/movieslist.json"
     ],

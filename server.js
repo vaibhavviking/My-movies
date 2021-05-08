@@ -52,7 +52,7 @@ app.set('views', __dirname + '/views');
 
 if(process.env.NODE_ENV != 'test'){
     console.log('not a test');
-    mongoose.connect(keys.mongo_uri1, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
+    mongoose.connect(keys.mongo_uricloud, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
 }else{
     console.log('just a test');
     mongoose.connect(keys.mongo_uri2, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
@@ -77,7 +77,7 @@ const auth = (req, res, next) => {
 
 app.use("/", homeRouter);
 app.use('/auth', authRouter);
-app.use('/user', userRouter);
+app.use('/user', auth, userRouter);
 // app.use('/profile', auth, profileRouter);
 // app.use('/librarian', auth, librarianRouter);
 
