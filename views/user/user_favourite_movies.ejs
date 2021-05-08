@@ -53,6 +53,54 @@
             background-color: transparent !important;
             color: #dcf836 !important;
         }
+        
+        .gallery {
+            width: 100%;
+            padding: 30px 15px;
+        }
+        
+        .gallery .gallery-items .item.hide {
+            display: none;
+        }
+        
+        .gallery .gallery-items .item.show {
+            display: block;
+            animation: show .5s ease;
+        }
+        
+        .gallery .pagination {
+            width: 100%;
+            float: left;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .gallery .pagination div {
+            display: inline-block;
+            margin: 0 10px;
+        }
+        
+        .gallery .pagination .page {
+            color: gray;
+        }
+        
+        .gallery .pagination .prev,
+        .gallery .pagination .next {
+            color: #000;
+            border: 1px solid #000;
+            border-radius: 5px;
+            font-size: 15px;
+            padding: 7px 13px;
+            cursor: pointer;
+        }
+        
+        .gallery .pagination .prev.disabled,
+        .gallery .pagination .next.disabled {
+            border-color: gray;
+            background-color: rgb(115, 115, 165) !important;
+            color: rgb(31, 3, 3);
+            pointer-events: none;
+        }
     </style>
 
 </head>
@@ -142,15 +190,15 @@
                             <label>Search Movie</label>
                             <div class="row">
 
-                                <div class="col-md-6" style="margin-bottom: 20px;">
+                                <div class="col-md-12" style="margin-bottom: 20px;">
                                     <input onkeyup="searchName()" type="text" id="search" placeholder="Enter Movie Name">
                                 </div>
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
                                     <select name="criteria" id="criteria" style="background-image: url(../assets/img/drop-icon.png)">
                                         <option value="movie"> Search By Name</option> 
                                         <option value="person"> Search By Person</option>
                                     </select>
-                                </div>
+                                </div> -->
 
                             </div>
 
@@ -194,126 +242,91 @@
 
 
 
-
-
-
-
-    <div class="page-single" style="background-color: rgb(16, 16, 41) !important; ">
+    <section class="gallery">
         <div class="container">
-            <div class="row ipad-width2">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="tab-content">
+            <div class="page-single" style="background-color: rgb(16, 16, 41) !important; ">
+                <div class="gallery-items">
 
-                                <div id="tab1" class="tab-pane fade in active">
-
-                                    <div class="col-md-9 col-sm-12 col-xs-12">
-                                        <div class="flex-wrap-movielist user-fav-list" id="tab1" class="tab-pane fade in active">
-                                            <div class="movie-item-style-2">
-                                                <img src="../assets/img/profile.png" alt="">
-                                                <div class="mv-item-infor">
-                                                    <h6><a href="#">oblivion </a></h6>
-                                                    <p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
-                                                    <p class="describe">Earth's mightiest heroes must come together and learn to fight as a team if they are to stop the mischievous Loki and his alien army from enslaving humanity...
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="movie-item-style-2">
-                                                <img src="../assets/img/profile.png" alt="">
-                                                <div class="mv-item-infor">
-                                                    <h6><a href="#">into the wild </a></h6>
-                                                    <p class="rate"><i class="ion-android-star"></i><span>7.8</span> /10</p>
-                                                    <p class="describe">As Steve Rogers struggles to embrace his role in the modern world, he teams up with a fellow Avenger and S.H.I.E.L.D agent, Black Widow, to battle a new threat...</p>
-                                                </div>
-                                            </div>
-                                            <div class="movie-item-style-2">
-                                                <img src="../assets/img/profile.png" alt="">
-                                                <div class="mv-item-infor">
-                                                    <h6><a href="#">blade runner </a></h6>
-                                                    <p class="rate"><i class="ion-android-star"></i><span>7.3</span> /10</p>
-                                                    <p class="describe">Armed with a super-suit with the astonishing ability to shrink in scale but increase in strength, cat burglar Scott Lang must embrace his inner hero and help...</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                    <div class="col-md-9 col-sm-12 col-xs-12 item">
+                        <div class="flex-wrap-movielist user-fav-list" style="display: block;">
+                            <div class="movie-item-style-2 ">
+                                <img src="./assets/img/profile.png" alt="">
+                                <div class="mv-item-infor">
+                                    <h6><a href="#">oblivion </a></h6>
+                                    <p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+                                    <p class="describe">Earth's mightiest heroes must come together and learn to fight as a team if they are to stop the mischievous Loki and his alien army from enslaving humanity...
+                                    </p>
                                 </div>
-
-                                <div id="tab2" class="tab-pane fade in">
-
-                                    <div class="col-md-9 col-sm-12 col-xs-12">
-                                        <div class="flex-wrap-movielist user-fav-list" id="tab1" class="tab-pane fade in active">
-                                            <div class="movie-item-style-2">
-                                                <img src="../assets/img/profile.png" alt="">
-                                                <div class="mv-item-infor">
-                                                    <h6><a href="#">oblivion </a></h6>
-                                                    <p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
-                                                    <p class="describe">Earth's mightiest heroes must come together and learn to fight as a team if they are to stop the mischievous Loki and his alien army from enslaving humanity...
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="movie-item-style-2">
-                                                <img src="../assets/img/profile.png" alt="">
-                                                <div class="mv-item-infor">
-                                                    <h6><a href="#">blade runner </a></h6>
-                                                    <p class="rate"><i class="ion-android-star"></i><span>7.3</span> /10</p>
-                                                    <p class="describe">Armed with a super-suit with the astonishing ability to shrink in scale but increase in strength, cat burglar Scott Lang must embrace his inner hero and help...</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div id="tab3" class="tab-pane fade in">
-
-                                    <div class="col-md-9 col-sm-12 col-xs-12">
-                                        <div class="flex-wrap-movielist user-fav-list" id="tab1" class="tab-pane fade in active">
-                                            <div class="movie-item-style-2">
-                                                <img src="../assets/img/profile.png" alt="">
-                                                <div class="mv-item-infor">
-                                                    <h6><a href="#">oblivion </a></h6>
-                                                    <p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
-                                                    <p class="describe">Earth's mightiest heroes must come together and learn to fight as a team if they are to stop the mischievous Loki and his alien army from enslaving humanity...
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
                             </div>
                         </div>
                     </div>
-                </div>
 
-
-                <div class="col-md-9 col-sm-12 col-xs-12">
-                    <div class="topbar-filter">
-                        <label>Page number :</label>
-                        <div class="pagination2">
-                            <!-- <span>Page 1 of 2:</span> -->
-                            <ul class="nav nav-tabs" style="border: none;">
-                                <li class="active"><a data-toggle="tab" href="#tab1">1</a></li>
-                                <li><a data-toggle="tab" href="#tab2">2</a></li>
-                                <li><a data-toggle="tab" href="#tab3">3</a></li>
-                                <li><a data-toggle="tab" href="#tab4">4</a></li>
-                                <li><a data-toggle="tab" href="#tab5">5</a></li>
-
-                                <!-- <a href="#">...</a>
-                                <a href="#">78</a>
-                                <a href="#">79</a> 
-                                <li><a href="#"><i class="ion-arrow-right-b"></i></a></li> -->
-                            </ul>
+                    <div class="col-md-9 col-sm-12 col-xs-12 item">
+                        <div class="flex-wrap-movielist user-fav-list">
+                            <div class="movie-item-style-2 ">
+                                <img src="./assets/img/profile.png" alt="">
+                                <div class="mv-item-infor">
+                                    <h6><a href="#">into the wild </a></h6>
+                                    <p class="rate"><i class="ion-android-star"></i><span>7.8</span> /10</p>
+                                    <p class="describe">As Steve Rogers struggles to embrace his role in the modern world, he teams up with a fellow Avenger and S.H.I.E.L.D agent, Black Widow, to battle a new threat...</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                    <div class="col-md-9 col-sm-12 col-xs-12 item">
+                        <div class="flex-wrap-movielist user-fav-list">
+                            <div class="movie-item-style-2 ">
+                                <img src="./assets/img/profile.png" alt="">
+                                <div class="mv-item-infor">
+                                    <h6><a href="#">blade runner </a></h6>
+                                    <p class="rate"><i class="ion-android-star"></i><span>7.3</span> /10</p>
+                                    <p class="describe">Armed with a super-suit with the astonishing ability to shrink in scale but increase in strength, cat burglar Scott Lang must embrace his inner hero and help...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-9 col-sm-12 col-xs-12 item">
+                        <div class="flex-wrap-movielist user-fav-list">
+                            <div class="movie-item-style-2 ">
+                                <img src="./assets/img/profile.png" alt="">
+                                <div class="mv-item-infor">
+                                    <h6><a href="#">blade runner </a></h6>
+                                    <p class="rate"><i class="ion-android-star"></i><span>7.3</span> /10</p>
+                                    <p class="describe">Armed with a super-suit with the astonishing ability to shrink in scale but increase in strength, cat burglar Scott Lang must embrace his inner hero and help...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-9 col-sm-12 col-xs-12 item">
+                        <div class="flex-wrap-movielist user-fav-list">
+                            <div class="movie-item-style-2 ">
+                                <img src="./assets/img/profile.png" alt="">
+                                <div class="mv-item-infor">
+                                    <h6><a href="#">blade runner </a></h6>
+                                    <p class="rate"><i class="ion-android-star"></i><span>7.3</span> /10</p>
+                                    <p class="describe">Armed with a super-suit with the astonishing ability to shrink in scale but increase in strength, cat burglar Scott Lang must embrace his inner hero and help...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
+
+            <div class="pagination">
+                <input type="submit" class="prev" value="Prev">
+                <div class="page">Page <span class="page-num"></span> </div>
+                <input type="submit" class="next" value="Next">
+            </div>
+
         </div>
-    </div>
+    </section>
+
+
+
 
 
 
@@ -418,6 +431,76 @@
     <script src="/js/plugins.js"></script>
     <script src="/js/plugins2.js"></script>
     <script src="/js/custom.js"></script>
+
+
+
+
+
+
+    <script>
+        const galleryItems = document.querySelector(".gallery-items").children;
+        const prev = document.querySelector(".prev");
+        const next = document.querySelector(".next");
+        const page = document.querySelector(".page-num");
+        const maxItem = 3;
+        let index = 1;
+
+        const pagination = Math.ceil(galleryItems.length / maxItem);
+        console.log(pagination)
+
+        prev.addEventListener("click", function() {
+            index--;
+            check();
+            showItems();
+        })
+        next.addEventListener("click", function() {
+            index++;
+            check();
+            showItems();
+        })
+
+        function check() {
+            if (index == pagination) {
+                next.classList.add("disabled");
+            } else {
+                next.classList.remove("disabled");
+            }
+
+            if (index == 1) {
+                prev.classList.add("disabled");
+            } else {
+                prev.classList.remove("disabled");
+            }
+        }
+
+        function showItems() {
+            for (let i = 0; i < galleryItems.length; i++) {
+                galleryItems[i].classList.remove("show");
+                galleryItems[i].classList.add("hide");
+
+
+                if (i >= (index * maxItem) - maxItem && i < index * maxItem) {
+                    // if i greater than and equal to (index*maxItem)-maxItem;
+                    // means  (1*8)-8=0 if index=2 then (2*8)-8=8
+                    galleryItems[i].classList.remove("hide");
+                    galleryItems[i].classList.add("show");
+                }
+                page.innerHTML = index;
+            }
+
+
+        }
+
+        window.onload = function() {
+            showItems();
+            check();
+        }
+    </script>
+
+
+
+
+
 </body>
 
 <script>
