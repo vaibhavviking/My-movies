@@ -40,35 +40,42 @@ test('Homepage movies received', async () => {
 })
 
 test('favourite working', async () => {
+    await Usermovies.deleteOne({movie:-1,email: 'test'});
     let data = {
-        movieid: -1,
+        id: -1,
     }
     let output = await request(app).post('/user/markfav').send(data);
-    let result = await Usermovies.findOne({"email":'test', "favourite" : 1});
-    console.log(result);
+    let result = await Usermovies.findOne({"email":'test', movieid: -1});
+    // console.log(result);
     expect(result).not.toBe({});
     expect(result.favourite).toBe(1);
 })
 
 test('umark favourite working', async () => {
     let data = {
-        movieid: -1,
+        id: -1,
     }
     let output = await request(app).post('/user/unmarkfav').send(data);
-    let result = await Usermovies.findOne({"email":'test', "favourite" : 0});
-    console.log(result);
+    let result = await Usermovies.findOne({"email":'test', movieid:-1});
+    // console.log(result);
     expect(result).not.toBe({});
     expect(result.favourite).toBe(0);
 })
 
-// test('rate route',async()=>{
-//     let data = {
-//         isbn : 1,
-//         rating : 2
-//     }
-//     let output = await request(app).post('/rate').send(data);
-//     // let message = output.message;
-//     // const { message } = JSON.parse(output._getData());
-//     console.log(output.json);
-//     expect(output.status).toBe(200);
-// })
+test('rate/review movie working', async ()=>{
+    await Usermovies.deleteOne({movie:-1,email: 'test'});
+    let data = {
+        rating: 7,
+        title: 'TITLE',
+        text: 'TEXT'
+    };
+    data = new URLSearchParams(data).toString();
+    // console.log(data);
+    let output = await request(app).post('/user/submitreview').send({id:-1,data:data});
+    let result = await Usermovies.findOne({email:"test", movieid: -1});
+    expect(result).not.toBe({});
+    expect(result.rating).toBe(7);
+    expect(result.reviewtext).toBe("TEXT");
+    expect(result.reviewtitle).toBe("TITLE");
+})
+

@@ -164,8 +164,14 @@ router.post('/review', async (req, res) => {
 
 router.post('/submitreview', async (req,res)=>{
     let data = req.body.data;
-    let email = req.user.email;
+    let email;
+    if(req.user){
+        email = req.user.email;
+    }else{
+        email='test';
+    }
     let movieid=req.body.id;
+    console.log(movieid);
     let {name,poster,overview}=req.body;
     let obj = (Object.fromEntries([...new URLSearchParams(data)]));
     // console.log(obj);
