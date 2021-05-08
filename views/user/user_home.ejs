@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@1,500&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <!-- <script src="../js/movies.js"></script> -->
+    <script src="../js/movieBG.js"></script>
     <link rel="stylesheet" href="../css/index.css">
 </head>
 
@@ -22,7 +22,7 @@
             style="width: 4rem; margin: 1rem 1rem; position: fixed; right: 0.5rem; top: 0.5rem;z-index: 1000; cursor: pointer; border-radius: 6px;"
                 src="../assets/img/hamburger.png" alt="">
         <div id="nav">
-            <div id="navbar">
+            <div id="navbarInv">
                 <a href="<%=path%>search" class="navLink">
                     <div class="navButton" onclick="navClick()">
                         SEARCH MOVIES
@@ -58,18 +58,40 @@
                 </div>
             </div>
         </div>
-        <script>
-            document.getElementById("navbar").style.display = "none";
-        </script>
         <div id="main">
-            <div id="title">
-                <div id="logoCont" style="margin-top: 1rem; margin-left: 1.2rem;">
-                    <img src="../assets/img/logo.png" alt="" id="logo">
+            <div id="movieBGDiv">
+                <video autoplay muted loop id="movieBG" preload="metadata">
+                    <source src="" type="video/mp4">
+                </video>
+                <div id="title">
+                    <div id="logoCont" style="margin-top: 1rem; margin-left: 1.2rem;">
+                        <img src="../assets/img/logo.png" alt="" id="logo">
+                    </div>
+                    <div id="type"></div>
                 </div>
-                <div id="type"></div>
+            </div>
+            <div id="genreHead">
+                GENRES
+            </div>
+            <div id="backToTop">
+                <a href="#movieBGDiv">
+                    <img src="../assets/img/backToTop.png" alt="" id="backToTopLogo">
+                </a>
             </div>
         </div>
         <p class="movies" style="display: none;"><%=movies%></p>
+        <script>
+            // Change background movie
+
+            function loadMovieBG(){
+                let randomIndex = Math.floor(Math.random()*movieBG.length);
+                console.log(movieBG[randomIndex]);
+                document.getElementById("movieBG").childNodes[1].src = movieBG[randomIndex];
+                console.log(document.getElementById("movieBG").childNodes[1].src);
+            }
+
+            loadMovieBG();
+        </script>
         <script>
             // Load Data into website
             let path = window.location.origin;
@@ -260,23 +282,18 @@
     function toggle() {
         if (smallWidth) {
             if (defaultCollapse) {
-                document.getElementById("navbar").style.display = "flex";
-                document.getElementById("navbar").style.position = "fixed";
-                document.getElementById("navbar").style.width = "60vw";
+                $('#navbarInv').removeAttr('id').attr('id', "navbar");
                 defaultCollapse = 0;
-            }
-            else {
-                document.getElementById("navbar").style.display = "none";
+            } else {
+                $('#navbar').removeAttr('id').attr('id', "navbarInv");
                 defaultCollapse = 1;
             }
-        }
-        else {
+        } else {
             if (defaultCollapse) {
-                document.getElementById("navbar").style.display = "flex";
+                $('#navbarInv').removeAttr('id').attr('id', "navbar");
                 defaultCollapse = 0;
-            }
-            else {
-                document.getElementById("navbar").style.display = "none";
+            } else {
+                $('#navbar').removeAttr('id').attr('id', "navbarInv");
                 defaultCollapse = 1;
             }
         }
@@ -286,5 +303,48 @@
             toggle();
     }
 </script>
-
+<script>
+    var scroll = window.requestAnimationFrame || function(callback){ window.setTimeout(callback, 1000/40)};
+    var elementsToShow1 = document.querySelectorAll('.genreTitle');
+    var elementsToShow2 = document.querySelectorAll('.banner');
+    function isElementInViewport(el) {
+        // special bonus for those using jQuery
+        if (typeof jQuery === "function" && el instanceof jQuery) {
+            el = el[0];
+        }
+        var rect = el.getBoundingClientRect();
+        return (
+            (rect.top <= 0
+            && rect.bottom >= 0)
+            ||
+            (rect.bottom >= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.top <= (window.innerHeight || document.documentElement.clientHeight))
+            ||
+            (rect.top >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight))
+        );
+    }
+    function loop() {
+        elementsToShow1.forEach(function (element) {
+            if (isElementInViewport(element)) {
+                element.style.opacity = 0;
+                element.classList.add('visibleGenreTitle');
+                element.style.opacity = 1;
+            } else {
+                element.classList.remove('visibleGenreTitle');
+            }
+        });
+        elementsToShow2.forEach(function(element){
+            if (isElementInViewport(element)) {
+                element.style.opacity = 0;
+                element.classList.add('visibleGenreTitle2');
+                element.style.opacity = 1;
+            } else {
+                element.classList.remove('visibleGenreTitle2');
+            }
+        });
+        scroll(loop);
+    }
+    loop();
+</script>
 </html>
