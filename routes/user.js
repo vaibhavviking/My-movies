@@ -231,6 +231,7 @@ router.get('/favourite',async (req,res)=>{
 
 router.get('/raterev',async (req,res)=>{
     let email = req.user.email;
+    console.log(email); 
     let result = await Usermovies.find({email});
     let len=result.length;
     let data = [];
@@ -241,11 +242,11 @@ router.get('/raterev',async (req,res)=>{
             temp.userrating = result[i].rating;
             temp.title=result[i].reviewtitle;
             temp.text=result[i].reviewtext;
-            // console.log(temp);
+            console.log(temp);
             data.push(temp);
         }
     }
-    console.log(data);
+    console.log('here',result);
     res.render(path + 'user_rate_reviews.ejs',{path : href, data});
 })
 

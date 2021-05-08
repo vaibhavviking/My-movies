@@ -4,6 +4,7 @@ body {
     padding: 0rem;
     background-color: rgb(16, 16, 41);
     color: white;
+    overflow-x: hidden;
 }
 
 #container {
@@ -14,6 +15,10 @@ body {
 #nav {
     height: 100vh;
     z-index: 1000;
+}
+
+#navbarInv{
+    display: none;
 }
 
 #navbar {
@@ -29,6 +34,16 @@ body {
     border-radius: 1rem;
     background-color: rgb(5, 5, 23);
     box-shadow: 0 1rem 0.5rem 0 rgb(10, 10, 37), 0 1.5rem 1rem 0 rgb(10, 10, 37);
+    animation: navToggle 1s ease-in-out 0s 1;
+}
+
+@keyframes navToggle{
+    from{
+        height: 0vh;
+    }
+    to{
+        height: 93vh;
+    }
 }
 
 #navbar:hover {
@@ -61,7 +76,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Ubuntu', serif;
     border: 0.01rem solid rgb(10, 10, 37);
 }
 
@@ -104,6 +119,7 @@ body {
 
 #title {
     width: 100%;
+    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -130,15 +146,25 @@ body {
     align-items: center;
     justify-content: center;
     height: 7rem;
-    width: 100%;
-    color: rgb(243 183 12);
+    width: 95%;
+    color: rgb(243, 183, 12);
     font-size: 3rem;
-    font-family: 'Vollkorn', serif;
+    font-family: 'Ubuntu', serif;
+    font-weight: 450;
+}
+
+@media(min-width: 800px){
+    #type{
+        font-size: 2rem;
+    }
+    #title{
+        flex-direction: row;
+    }
 }
 
 @media(min-width: 1311px) {
-    #title {
-        flex-direction: row;
+    #type {
+        font-size: 3rem;
     }
 }
 
@@ -155,8 +181,39 @@ body {
     margin: 3rem 2rem;
     margin-top: 0rem;
     color: rgb(12, 128, 243);
+    opacity: 0;
     font-size: 2.5rem;
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Ubuntu', serif;
+}
+
+.visibleGenreTitle{
+    animation: fadeInLeft ease-in-out 1s;
+}
+
+.visibleGenreTitle2{
+    animation: fadeInRight ease-in-out 1s;
+}
+
+@keyframes fadeInLeft {
+    from{
+        opacity: 0;
+        transform: translateX(-10rem);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0rem);
+    }
+}
+
+@keyframes fadeInRight {
+    from{
+        opacity: 0;
+        transform: translateX(10rem);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0rem);
+    }
 }
 
 @media(max-width: 900px) {
@@ -199,6 +256,9 @@ body {
     }
     .genreTitle {
         margin-top: 1rem;
+    }
+    #navbar{
+        width: 60vw;
     }
 }
 
@@ -293,3 +353,62 @@ body {
         display: none;
     }
 }
+
+#backToTop{
+    border-radius: 10rem;
+    position: fixed;
+    bottom: 2rem;
+    right: 1.5rem;
+    z-index: 2000;
+}
+
+#backToTop a{
+    text-decoration: none;
+}
+
+#backToTopLogo{
+    width: 4rem;
+}
+
+#backToTop a:active{
+    color:rgb(12, 128, 243);
+}
+
+#movieBGDiv{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4rem;
+}
+
+#movieBG{
+    opacity: 0.4;
+    width: 100%;
+    -webkit-box-reflect: below 0.5rem linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.1));
+}
+
+#genreHead{
+    color:rgb(243, 183, 12);
+    font-size: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    font-family: 'Ubuntu', serif;
+}
+
+@media(max-width: 1250px){
+    #movieBG{
+        display: none;
+    }
+    #title{
+        position: unset;
+    }
+    #genreHead{
+        display: none;
+    }
+}
+
+
+
