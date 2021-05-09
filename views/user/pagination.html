@@ -2,23 +2,23 @@
 <html lang="en" class="no-js">
 
 <head>
-    <title>My rating and review</title>
+    <title>My Favourites</title>
     <meta charset="UTF-8">
     <meta name=viewport content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone-no">
 
     <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
 
-    <link rel="stylesheet" href="/css/plugins.css">
-    <link rel="stylesheet" href="/css/user_rate.css">
+    <link rel="stylesheet" href="../css/plugins.css">
+    <link rel="stylesheet" href="../css/user_rate.css">
 
-    <link rel="stylesheet" href="/css/jquery.flipster.min.css">
+    <link rel="stylesheet" href="../css/jquery.flipster.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@1,500&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="../css/index.css">
 
     <style>
         input[type="submit"] {
@@ -26,6 +26,14 @@
         }
         
         input[type="submit"]:hover {
+            background-color: rgb(243, 183, 12) !important;
+        }
+        
+        input[type="button"] {
+            background-color: rgb(12, 128, 243) !important;
+        }
+        
+        input[type="button"]:hover {
             background-color: rgb(243, 183, 12) !important;
         }
         
@@ -37,21 +45,6 @@
             position: relative;
             width: 75%;
             left: 12.5%;
-        }
-        
-        .nav-tabs>li.active>a,
-        .nav-tabs>li.active>a:hover,
-        .nav-tabs>li.active>a:focus {
-            border: none !important;
-            background-color: transparent !important;
-            color: #dcf836 !important;
-        }
-        
-        .nav-tabs>li>a:hover,
-        .nav-tabs>li>a:focus {
-            border: none !important;
-            background-color: transparent !important;
-            color: #dcf836 !important;
         }
         
         .gallery {
@@ -82,20 +75,31 @@
         
         .gallery .pagination .page {
             color: gray;
+            margin-bottom: 30px;
         }
         
-        .gallery .pagination .prev,
-        .gallery .pagination .next {
-            color: #000;
+        .gallery .pagination .first,
+        .gallery .pagination .next,
+        .gallery .pagination .previous,
+        .gallery .pagination .last {
+            color: #fff;
             border: 1px solid #000;
             border-radius: 5px;
             font-size: 15px;
             padding: 7px 13px;
+            margin-right: 3px;
+            margin-bottom: 30px;
             cursor: pointer;
         }
         
-        .gallery .pagination .prev.disabled,
-        .gallery .pagination .next.disabled {
+        .pagination {
+            margin-top: 0px;
+        }
+        
+        .gallery .pagination .first.disabled,
+        .gallery .pagination .next.disabled,
+        .gallery .pagination .previous.disabled,
+        .gallery .pagination .last.disabled {
             border-color: gray;
             background-color: rgb(115, 115, 165) !important;
             color: rgb(31, 3, 3);
@@ -105,7 +109,7 @@
 
 </head>
 
-<body onload="typeText()">
+<body>
 
     <div id="container" style="height: 150px;">
 
@@ -118,12 +122,7 @@
                         SEARCH MOVIES
                     </div>
                 </a>
-
-
-
                 <div id="profile">
-
-
                     <a href="<%=path%>user/home" class="navLink">
                         <div class="navButton" onclick="navClick()">
                             HOME
@@ -160,9 +159,9 @@
         <div id="main">
             <div id="title" style="flex-wrap: wrap;">
                 <div id="logoCont" style="margin-top: 1rem; margin-left: 1.2rem;">
-                    <img src="/assets/img/logo.png" alt="" id="logo">
+                    <img src="../assets/img/logo.png" alt="" id="logo">
                 </div>
-                <div id="type" style="margin: 0;"></div>
+                <div id="type" style="margin: 0; width: 100%;"></div>
             </div>
         </div>
 
@@ -203,89 +202,29 @@
         </div>
     </div>
 
+
+
+
+
+
     <section class="gallery">
         <div class="page-single" style="background-color: rgb(16, 16, 41) !important; ">
             <div class="container">
-                <div class="gallery-items">
-
-                    <div class="col-md-9 col-sm-12 col-xs-12 item">
-                        <!-- <div class="topbar-filter">
-                        </div> -->
-                        <%data.forEach(item=>{%>
-
-                            <div class="movie movie-item-style-2 userrate">
-                                <img src="https://image.tmdb.org/t/p/w500<%=item.poster%>" alt="">
-                                <div class="mv-item-infor">
-                                    <h6>
-                                        <a class="moviename" href="<%=path%>moviedetails?id=<%=item.movieid%>">
-                                            <%=item.name%>
-                                        </a>
-                                    </h6>
-                                    <p class="time sm-text">Your Rate :
-                                        <%=item.userrating%>/10
-                                    </p><br>
-                                    <p class="rate"><i class="ion-android-star"></i><span>
-                                            <%=item.rating%>
-                                        </span> /10</p>
-                                    <p class="time sm-text">Your reviews :</p><br>
-                                    <h6>
-                                        <%=item.title%>
-                                    </h6>
-                                    <!-- <p class="time sm">02 April 2017</p> -->
-                                    <p>
-                                        <%=item.text%>
-                                    </p>
-                                </div>
-                            </div>
-                            <%})%>
-                    </div>
-
+                <div class="gallery-items" id="list">
 
                 </div>
             </div>
-
         </div>
+
+        <div class="pagination">
+            <input type="submit" id="first" class="first" onclick="firstPage()" value="First" />
+            <input type="submit" id="next" class="next" onclick="nextPage()" value="Next" />
+            <div class="page">Page <span class="page-num"></span> </div>
+            <input type="submit" id="previous" class="previous" onclick="previousPage()" value="Prev" />
+            <input type="submit" id="last" class="last" onclick="lastPage()" value="Last" />
+        </div>
+
     </section>
-
-    <div class="page-single" style="background-color: rgb(16, 16, 41) !important">
-        <div class="container">
-            <div class="row ipad-width2">
-
-                <div class="col-md-9 col-sm-12 col-xs-12">
-                    <div class="topbar-filter">
-                    </div>
-                    <%data.forEach(item=>{%>
-
-                        <div class="movie movie-item-style-2 userrate">
-                            <img src="https://image.tmdb.org/t/p/w500<%=item.poster%>" alt="">
-                            <div class="mv-item-infor">
-                                <h6>
-                                    <a class="moviename" href="<%=path%>moviedetails?id=<%=item.movieid%>">
-                                        <%=item.name%>
-                                    </a>
-                                </h6>
-                                <p class="time sm-text">your rate :
-                                    <%=item.userrating%>/10
-                                </p><br>
-                                <p class="rate"><i class="ion-android-star"></i><span>
-                                        <%=item.rating%>
-                                    </span> /10</p>
-                                <p class="time sm-text">your reviews :</p><br>
-                                <h6>
-                                    <%=item.title%>
-                                </h6>
-                                <!-- <p class="time sm">02 April 2017</p> -->
-                                <p>
-                                    <%=item.text%>
-                                </p>
-                            </div>
-                        </div>
-                        <%})%>
-
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script>
         function searchName() {
@@ -314,79 +253,160 @@
         }
     </script>
 
-    <script src="/js/jquery.js"></script>
-    <script src="/js/plugins.js"></script>
-    <script src="/js/plugins2.js"></script>
-    <script src="/js/custom.js"></script>
-</body>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/plugins.js"></script>
+    <script src="../js/plugins2.js"></script>
+    <script src="../js/custom.js"></script>
 
 
+    <script type="text/javascript">
+        var list = new Array();
+        var pageList = new Array();
+        var currentPage = 1;
+        var numberPerPage = 2;
+        var numberOfPages = 0;
+        const page = document.querySelector(".page-num");
 
-<script>
-    const galleryItems = document.querySelector(".gallery-items").children;
-    const prev = document.querySelector(".prev");
-    const next = document.querySelector(".next");
-    const page = document.querySelector(".page-num");
-    const maxItem = 3;
-    let index = 1;
+        function makeList() {
+            let movie1 = {
+                name: 'oblivion',
+                rate: '8.1',
+                profilepic: '../assets/img/profile.png',
+                describe: 'Earths mightiest heroes must come together and learn to fight as a team if they are to stop the mischievous Loki and his alien army from enslaving humanity...'
+            };
 
-    const pagination = Math.ceil(galleryItems.length / maxItem);
-    console.log(pagination)
+            let movie2 = {
+                name: 'into the wild',
+                rate: '7.8',
+                profilepic: '../assets/img/profile.png',
+                describe: 'As Steve Rogers struggles to embrace his role in the modern world, he teams up with a fellow Avenger and S.H.I.E.L.D agent, Black Widow, to battle a new threat...'
+            };
 
-    prev.addEventListener("click", function() {
-        index--;
-        check();
-        showItems();
-    })
-    next.addEventListener("click", function() {
-        index++;
-        check();
-        showItems();
-    })
+            let movie3 = {
+                name: 'blade runner',
+                rate: '7.3',
+                profilepic: '../assets/img/profile.png',
+                describe: 'Armed with a super-suit with the astonishing ability to shrink in scale but increase in strength, cat burglar Scott Lang must embrace his inner hero and help..'
+            };
 
-    function check() {
-        if (index == pagination) {
-            next.classList.add("disabled");
-        } else {
-            next.classList.remove("disabled");
+            let movie4 = {
+                name: 'blade runner',
+                rate: '7.3',
+                profilepic: '../assets/img/profile.png',
+                describe: 'Armed with a super-suit with the astonishing ability to shrink in scale but increase in strength, cat burglar Scott Lang must embrace his inner hero and help..'
+            };
+
+            let movie5 = {
+                name: 'blade runner',
+                rate: '7.3',
+                profilepic: '../assets/img/profile.png',
+                describe: 'Armed with a super-suit with the astonishing ability to shrink in scale but increase in strength, cat burglar Scott Lang must embrace his inner hero and help..'
+            };
+
+            list.push(movie1);
+            list.push(movie2);
+            list.push(movie3);
+            list.push(movie4);
+            list.push(movie5);
+
+            numberOfPages = getNumberOfPages();
         }
 
-        if (index == 1) {
-            prev.classList.add("disabled");
-        } else {
-            prev.classList.remove("disabled");
+        function getNumberOfPages() {
+            return Math.ceil(list.length / numberPerPage);
         }
-    }
 
-    function showItems() {
-        for (let i = 0; i < galleryItems.length; i++) {
-            galleryItems[i].classList.remove("show");
-            galleryItems[i].classList.add("hide");
+        function nextPage() {
+            currentPage += 1;
+            loadList();
+        }
 
+        function previousPage() {
+            currentPage -= 1;
+            loadList();
+        }
 
-            if (i >= (index * maxItem) - maxItem && i < index * maxItem) {
-                // if i greater than and equal to (index*maxItem)-maxItem;
-                // means  (1*8)-8=0 if index=2 then (2*8)-8=8
-                galleryItems[i].classList.remove("hide");
-                galleryItems[i].classList.add("show");
+        function firstPage() {
+            currentPage = 1;
+            loadList();
+        }
+
+        function lastPage() {
+            currentPage = numberOfPages;
+            loadList();
+        }
+
+        function loadList() {
+            var begin = ((currentPage - 1) * numberPerPage);
+            var end = begin + numberPerPage;
+
+            pageList = list.slice(begin, end);
+            drawList();
+            check();
+        }
+
+        function drawList() {
+            document.getElementById("list").innerHTML = "";
+
+            for (let r = 0; r < pageList.length; r++) {
+                let obj = pageList[r];
+                let div = document.createElement('div');
+
+                div.innerHTML = `
+                    <div class="flex-wrap-movielist user-fav-list">
+                        <div class="movie movie-item-style-2">
+                            <img src="${obj.profilepic}" alt="">
+                            <div class="mv-item-infor">
+                                <h6><a href="#"> ${obj.name} </a></h6>
+                                <p class="rate"><i class="ion-android-star"></i><span>  ${obj.rate}  </span> /10</p>
+                                <p class="describe"> ${obj.describe} </p>
+                            </div>
+                        </div>
+                    </div>      `
+
+                div.className = 'col-md-9 col-sm-12 col-xs-12 item';
+
+                document.getElementById("list").appendChild(div);
+                page.innerHTML = currentPage;
             }
-            page.innerHTML = index;
         }
 
+        function check() {
+            if (currentPage == numberOfPages) {
+                next.classList.add("disabled");
+            } else {
+                next.classList.remove("disabled");
+            }
 
-    }
+            if (currentPage == numberOfPages) {
+                last.classList.add("disabled");
+            } else {
+                last.classList.remove("disabled");
+            }
 
-    window.onload = function() {
-        showItems();
-        check();
-    }
-</script>
+            if (currentPage == 1) {
+                first.classList.add("disabled");
+            } else {
+                first.classList.remove("disabled");
+            }
 
+            if (currentPage == 1) {
+                previous.classList.add("disabled");
+            } else {
+                previous.classList.remove("disabled");
+            }
+        }
 
+        function load() {
+            makeList();
+            loadList();
+            typeText();
+        }
 
+        window.onload = load;
+    </script>
 
-
-
+</body>
 
 <script>
     // Typing Effect

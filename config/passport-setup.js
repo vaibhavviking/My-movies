@@ -36,9 +36,9 @@ passport.use(
                 done(null, result[0]);
 
             } else {
-                let obj=new User({
+                let obj = new User({
                     email: req.email,
-                    name: req.name+" "+req.fname
+                    name: req.name + " " + req.fname
                 })
                 obj.save().then(response => {
                     done(null, { _id: response._id });
