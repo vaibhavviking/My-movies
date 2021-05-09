@@ -249,46 +249,6 @@
 
         </div>
     </section>
-    <div class="page-single" style="background-color: rgb(16, 16, 41) !important">
-        <div class="container">
-            <div class="row ipad-width2">
-
-                <div class="col-md-9 col-sm-12 col-xs-12">
-                    <div class="topbar-filter">
-                    </div>
-                    <%data.forEach(item=>{%>
-
-                        <div class="movie movie-item-style-2 userrate">
-                            <img src="https://image.tmdb.org/t/p/w500<%=item.poster%>" alt="">
-                            <div class="mv-item-infor">
-                                <h6>
-                                    <a class="moviename" href="<%=path%>moviedetails?id=<%=item.movieid%>">
-                                        <%=item.name%>
-                                    </a>
-                                </h6>
-                                <p class="time sm-text">your rate :
-                                    <%=item.userrating%>/10
-                                </p><br>
-                                <p class="rate"><i class="ion-android-star"></i><span>
-                                        <%=item.rating%>
-                                    </span> /10</p>
-                                <p class="time sm-text">your reviews :</p><br>
-                                <h6>
-                                    <%=item.title%>
-                                </h6>
-                                <!-- <p class="time sm">02 April 2017</p> -->
-                                <p>
-                                    <%=item.text%>
-                                </p>
-                            </div>
-                        </div>
-                        <%})%>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
         function searchName() {
             var mess = (document.getElementById('search').value);

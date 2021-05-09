@@ -30,15 +30,15 @@ passport.use(
         callbackURL: '/auth/google/redirect',
         passReqToCallback: true
     }, (req, accessToken, refreshToken, profile, email, done) => {
-        let sql = 'select * from account where email = ?';
         User.find({ email: email.emails[0].value }).then(result => {
             if (result.length) {
                 done(null, result[0]);
 
             } else {
                 let obj=new User({
-                    email: req.email,
-                    name: req.name+" "+req.fname
+                    email: email.emails[0].value,
+                    name: email.name.givenName+" "+email.name.familyName,
+                    active: true
                 })
                 obj.save().then(response => {
                     done(null, { _id: response._id });
