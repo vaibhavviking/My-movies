@@ -3,7 +3,7 @@ const path = '../views/user/';
 const Usermovies = require('../models/user_movies');
 const domain = require('./domain')
 const fetch = require('node-fetch');
-const keys = require('../keys');
+const keys = require('../keys2');
 // const movies= require('./movies');
 const Movie = require('../models/movies');
 const href = domain.href;
@@ -79,7 +79,12 @@ router.post('/getmoviedetails', async (req, res) => {
 router.post('/markfav', async (req, res) => {
     let movieid = req.body.id;
     console.log(movieid);
-    let email = req.user.email;
+    let email;
+    if(!req.user){
+        email='test';
+    }else{
+        email = req.user.email;
+    }
     let {name,rating,poster,overview}=req.body;
     await checkmovie(movieid,name,rating,poster,overview);
     // console.log(movieid,name,rating,poster);
@@ -106,7 +111,12 @@ router.post('/markfav', async (req, res) => {
 router.post('/unmarkfav', async (req, res) => {
     let movieid = req.body.id;
     // let email = req.user.email;
-    let email = req.user.email;
+    let email;
+    if(!req.user){
+        email='test';
+    }else{
+        email = req.user.email;
+    }
     let res1 = await Usermovies.find({ email, movieid });
     console.log(res1);
     if (res1.length) {
@@ -154,8 +164,14 @@ router.post('/review', async (req, res) => {
 
 router.post('/submitreview', async (req,res)=>{
     let data = req.body.data;
-    let email = req.user.email;
+    let email;
+    if(req.user){
+        email = req.user.email;
+    }else{
+        email='test';
+    }
     let movieid=req.body.id;
+    console.log(movieid);
     let {name,poster,overview}=req.body;
     let obj = (Object.fromEntries([...new URLSearchParams(data)]));
     // console.log(obj);
@@ -215,6 +231,7 @@ router.get('/favourite',async (req,res)=>{
 
 router.get('/raterev',async (req,res)=>{
     let email = req.user.email;
+    console.log(email); 
     let result = await Usermovies.find({email});
     let len=result.length;
     let data = [];
@@ -225,11 +242,11 @@ router.get('/raterev',async (req,res)=>{
             temp.userrating = result[i].rating;
             temp.title=result[i].reviewtitle;
             temp.text=result[i].reviewtext;
-            // console.log(temp);
+            console.log(temp);
             data.push(temp);
         }
     }
-    console.log(data);
+    console.log('here',result);
     res.render(path + 'user_rate_reviews.ejs',{path : href, data});
 })
 

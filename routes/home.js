@@ -4,7 +4,7 @@ const domain = require('./domain')
 const Genre = require('../models/genres');
 const href = domain.href;
 const fetch = require('node-fetch')
-const keys = require('../keys');
+const keys = require('../keys2');
 const fs = require('fs');
 const User = require('../models/user');
 const Usermovies = require('../models/user_movies')
@@ -77,7 +77,7 @@ router.post('/getmoviedetails', async (req, res) => {
 })
 
 router.get('/search', async (req, res) => {
-    res.render(path + 'search_movies.ejs', { path: href });
+    res.render(path + 'search_movies.ejs', { path: href, user: req.user });
 })
 
 router.post('/searchmovie', async (req, res) => {

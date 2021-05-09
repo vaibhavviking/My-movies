@@ -24,21 +24,21 @@
         input[type="submit"] {
             background-color: rgb(12, 128, 243) !important;
         }
-        
+
         input[type="submit"]:hover {
             background-color: rgb(243, 183, 12) !important;
         }
-        
+
         .navButton:hover {
             color: white;
         }
-        
+
         .col-md-9 {
             position: relative;
             width: 75%;
             left: 12.5%;
         }
-        
+
         .nav-tabs>li.active>a,
         .nav-tabs>li.active>a:hover,
         .nav-tabs>li.active>a:focus {
@@ -46,7 +46,7 @@
             background-color: transparent !important;
             color: #dcf836 !important;
         }
-        
+
         .nav-tabs>li>a:hover,
         .nav-tabs>li>a:focus {
             border: none !important;
@@ -109,11 +109,15 @@
 
     <div id="container" style="height: 150px;">
 
-        <img id="collapse" onclick="toggle()" style="width: 5rem; margin: 1rem 1rem; position: fixed; right: 0.5rem; top: 0.5rem;z-index: 1000; cursor: pointer; border-radius: 6px;" src="../assets/img/hamburger.png" alt="">
+        <img id="collapse" onclick="toggle()"
+            style="width: 5rem; margin: 1rem 1rem; position: fixed; right: 0.5rem; top: 0.5rem;z-index: 1000; cursor: pointer; border-radius: 6px;"
+            src="../assets/img/hamburger.png" alt="">
 
         <div id="nav">
             <div id="navbar">
-                <a href="" class="navLink">
+                <%if(typeof user == 'undefined'){%>
+
+                <a href="<%=path%>user/home" class="navLink">
                     <div class="navButton" onclick="navClick()">
                         HOME
                     </div>
@@ -137,6 +141,47 @@
                     </div>
                 </a>
                 <div id="genre"></div>
+                <%}else{%>
+                    <a href="<%=path%>search" class="navLink">
+                        <div class="navButton" onclick="navClick()">
+                            SEARCH MOVIES
+                        </div>
+                    </a>
+    
+                    <div class="navHead" style="margin-top: 0.5rem;">
+                        PROFILE
+                    </div>
+    
+                    <div id="profile">
+                        <div id="profilePicture">
+                            <img src="../assets/img/profile.png" alt="">
+                        </div>
+    
+                        <a href="#" class="navLink">
+                            <div class="navButton" onclick="navClick()">
+                                HOME
+                            </div>
+                        </a>
+    
+                        <a href="<%=path%>user/favourite" class="navLink">
+                            <div class="navButton" onclick="navClick()">
+                                MY FAVOURITES
+                            </div>
+                        </a>
+    
+                        <a href="<%=path%>user/raterev" class="navLink" onclick="navClick()">
+                            <div class="navButton">
+                                MY RATING AND REVIEW
+                            </div>
+                        </a>
+    
+                        <a href="<%=path%>auth/logout" class="navLink" onclick="navClick()">
+                            <div class="navButton">
+                                LOG OUT
+                            </div>
+                        </a>
+                    </div>
+                <%}%>
             </div>
         </div>
 
@@ -172,11 +217,12 @@
                             <label>Search Movie</label>
                             <div class="row">
                                 <div class="col-md-6" style="margin-bottom: 20px;">
-                                    <input type="text" placeholder="Enter Keywords" id="query">
+                                    <input id="query" type="text" placeholder="Enter Keywords">
                                 </div>
                                 <div class="col-md-6">
-                                    <select name="criteria" id="criteria" style="background-image: url(../assets/img/drop-icon.png)">
-                                        <option value="movie"> Search By Name</option> 
+                                    <select name="criteria" id="criteria"
+                                        style="background-image: url(../assets/img/drop-icon.png)">
+                                        <option value="movie"> Search By Name</option>
                                         <option value="person"> Search By Person</option>
                                     </select>
                                 </div>
@@ -190,59 +236,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <div class="page-single" style="background-color: rgb(16, 16, 41) !important">
         <div class="container">

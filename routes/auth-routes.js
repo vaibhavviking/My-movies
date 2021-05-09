@@ -4,7 +4,7 @@ const domain = require('./domain')
 const passport = require('passport');
 const href = domain.href;
 const bcrypt = require('bcrypt');
-const keys = require('../keys');
+const keys = require('../keys2');
 const saltRounds = keys.salt;
 const User = require('../models/user');
 const Token = require('../models/token');
@@ -133,7 +133,14 @@ router.get('/checktoken', async (req, res) => {
     let email = req.query.email;
     let hash = req.query.hash;
     let mess = await checktoken(email, hash);
-    res.send(mess);
+    let head;
+    if(mess[0]=='Your'){
+        head='Success!';
+    }else{
+        head='Sorry!';
+    }
+    res.render(path+'token_verify', {head,data : mess});
+    // res.send(mess);
 })
 
 const checktoken = async (email, hash) => {
