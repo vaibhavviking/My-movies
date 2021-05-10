@@ -104,4 +104,8 @@ router.post('/searchmovie', async (req, res) => {
     res.send(data);
 })
 
+router.get('/page', (req,res)=>{
+    res.render(path+'pagination.ejs', { path: href, user: req.user });
+})
+
 module.exports = router;
