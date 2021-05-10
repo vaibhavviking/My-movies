@@ -16,7 +16,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const customStrategy = require('./config/custom-strategy');
 const schedule = require('node-schedule');
 const passportSetup = require('./config/passport-setup');
-const { updatelist,readlist } = require('./storage/update');
+const { updatelist, readlist } = require('./storage/update');
 var fs = require('fs');
 require("dotenv").config();
 const keys = require('./keys2')
@@ -25,7 +25,7 @@ const Genre = require('./models/genres');
 const port = process.env.PORT || 5000;
 
 app.use(cookieSession({
-    maxAge: 3* 60 * 60 * 1000,
+    maxAge: 3 * 60 * 60 * 1000,
     keys: [keys.sessionKey]
 }))
 
@@ -38,7 +38,7 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(express.json())
 
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
     res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
     res.header('Expires', '-1');
     res.header('Pragma', 'no-cache');
@@ -50,10 +50,10 @@ app.set('view engine', 'ejs');
 app.use(express.static('views'));
 app.set('views', __dirname + '/views');
 
-if(process.env.NODE_ENV != 'test'){
+if (process.env.NODE_ENV != 'test') {
     console.log('not a test');
     mongoose.connect(keys.mongo_uri1, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
-}else{
+} else {
     console.log('just a test');
     mongoose.connect(keys.mongo_uri2, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
 }
@@ -77,18 +77,18 @@ const auth = (req, res, next) => {
 
 app.use("/", homeRouter);
 app.use('/auth', authRouter);
-if(process.env.NODE_ENV != 'test'){
+if (process.env.NODE_ENV != 'test') {
     app.use('/user', auth, userRouter);
-}else{
+} else {
     app.use('/user', userRouter);
 }
 
-schedule.scheduleJob('0 0 0 * * *', async ()=>{
+schedule.scheduleJob('0 0 0 * * *', async() => {
     updatelist();
 })
 
 
-if(process.env.NODE_ENV != 'test'){
+if (process.env.NODE_ENV != 'test') {
 
     app.listen(port, () => {
         console.log("Server is running at port : ", port);
