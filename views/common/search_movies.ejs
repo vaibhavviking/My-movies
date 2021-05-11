@@ -66,23 +66,12 @@
             <div id="navbar">
                 <%if(typeof user == 'undefined'){%>
 
-                <a href="<%=path%>" class="navLink">
-                    <div class="navButton" onclick="navClick()">
-                        HOME
-                    </div>
-                </a>
+                    <a href="<%=path%>" class="navLink">
+                        <div class="navButton" onclick="navClick()">
+                            HOME
+                        </div>
+                    </a>
 
-                <a href="<%=path%>search" class="navLink">
-                    <div class="navButton" onclick="navClick()">
-                        SEARCH MOVIES
-                    </div>
-                </a>
-
-                <a href="<%=path%>auth/login" class="navLink" onclick="navClick()">
-                    <div class="navButton">
-                        LOG IN
-                    </div>
-                </a>
 
                     <a href="<%=path%>search" class="navLink">
                         <div class="navButton" onclick="navClick()" style="background-color: rgb(12, 128, 243);">
@@ -114,7 +103,7 @@
                         </div>
 
                         <div id="profile">
-                            
+
 
                             <a href="<%=path%>user/home" class="navLink">
                                 <div class="navButton" onclick="navClick()">
@@ -153,7 +142,7 @@
                 <div id="logoCont" style="margin-top: 1rem; margin-left: 1.2rem;">
                     <img src="/assets/img/logo.png" alt="" id="logo">
                 </div>
-                <div id="type" style="margin: 0;"></div>
+                <div id="type" style="margin: 0; width: 100%;"></div>
             </div>
         </div>
 
