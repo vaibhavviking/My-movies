@@ -37,7 +37,11 @@ router.get('/login', async (req, res) => {
 
 router.post('/login', passport.authenticate('local', { failureRedirect: '/auth/login', failureFlash: true, passReqToCallback: true }), async (req, res) => {
     let id = req.user._id;
-    res.redirect('/user/home');
+    if(process.env.NODE_ENV=='test'){
+        res.send('authenticated');
+    }else{
+        res.redirect('/user/home');
+    }
 })
 
 router.get('/logout', (req, res) => {
