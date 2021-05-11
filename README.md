@@ -80,6 +80,8 @@ This project is developed by
 3. Purnadip Chakrabarti (ChakPC)
 4. Vaibhav Chandra (vaibhavviking) (Owner of repo)
 
-## Everything you need to know about GitHub
+## Disclaimer
 
-Getting started is the hardest part. If there’s anything you’d like to know as you get started with GitHub, try searching [GitHub Help](https://help.github.com). Our documentation has tutorials on everything from changing your repository settings to configuring GitHub from your command line.
+Content(Movie details) shown on website may be explicit and may require parental discretion. It is to be noted that Developers/Contributors of this project shall not be considered responsible for the same. All data is fetched through external API and rendered without any censorship. The purpose of this project is to exploit data received by API and render the same in a stylish and attractive Front End.
+
+## We hope that you like our project. If you have any issues/suggestions you can open a new issue and we will try our best to resolve/adapt that. 
