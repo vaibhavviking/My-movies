@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
     <script src="../js/movieBG.js"></script>
     <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/footer.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 
@@ -251,14 +252,14 @@
                             map[currId] = 1;
                             console.log("Content loaded " + currId);
                         }
-                        if(currId >0){
+                        if(currId > 0 && screen.width > 900){
                             if(!map[`${parseInt(currId)-1}`]){
                                 loadContent(parseInt(currId) - 1);
                                 map[`${parseInt(currId)-1}`] = 1;
                                 console.log("Content loaded " + (parseInt(currId)-1));
                             }
                         }
-                        if(currId < 17){
+                        if(currId < 17 && screen.width > 900){
                             if(!map[`${parseInt(currId)+1}`]){
                                 loadContent(parseInt(currId) + 1);
                                 map[`${parseInt(currId)+1}`] = 1;
@@ -281,7 +282,37 @@
         </script>
     </div>
     <div id="footer">
-
+        <div id="developers">
+            Developers
+        </div>
+        <div id="footerContent">
+            <ul>
+                <li>
+                    <div>
+                        <img src="../assets/img/KK.jpeg" alt="">
+                        Komal Kumar
+                    </div>
+                    <div>
+                        <img src="../assets/img/PU.jpeg" alt="">
+                        Priyanshu Uttam
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <img src="../assets/img/PC.jpeg" alt="">
+                        Purnadip Chakrabarti
+                    </div>
+                    <div>
+                        <img src="../assets/img/VC.jpeg" alt="">
+                        Vaibhav Chandra
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div id="disclaimer">
+            NOTE: This website may contain explicit content and developers shall not be held responsible for the same.
+            All data shown on this website are fetched from external API and are rendered without any censorship.
+        </div>
     </div>
 </body>
 
