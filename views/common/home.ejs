@@ -3,17 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Movies</title>
     <link rel="stylesheet" href="../css/jquery.flipster.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@1,500&display=swap" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="../js/movieBG.js"></script>
     <link rel="stylesheet" href="../css/index.css">
+    <script src="../js/movieBG.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 
 <body onload="typeText()">
@@ -66,7 +63,7 @@
                 </a>
             </div>
         </div>
-        <p style="display: none;" class="movies">
+        <p style="display: none;" class="movies-list-from-backend">
             <%=movies%>
         </p>
         <script>
@@ -81,8 +78,9 @@
 
             loadMovieBG();
         </script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="../js/jquery.flipster.min.js"></script>
         <script>
-            // Load Data into website
             let path = window.location.origin;
             var mapIndexToGenre = {
                 "0": "Action",
@@ -105,14 +103,36 @@
                 "17": "Western"
             };
             var noOfGenres = 17;
+            var movies = JSON.parse(document.getElementsByClassName("movies-list-from-backend")[0].innerHTML);
+
+            var scroll = window.requestAnimationFrame || function(callback){ window.setTimeout(callback, 1000/30)};
+            function isElementInViewport(el) {
+                // special bonus for those using jQuery
+                if (typeof jQuery === "function" && el instanceof jQuery) {
+                    el = el[0];
+                }
+                var rect = el.getBoundingClientRect();
+                return (
+                    (rect.top <= 0
+                    && rect.bottom >= 0)
+                    ||
+                    (rect.bottom >= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.top <= (window.innerHeight || document.documentElement.clientHeight))
+                    ||
+                    (rect.top >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight))
+                );
+            }
+
+
             var k = 0;
-            while (k < noOfGenres) {
+            while (k <= noOfGenres) {
                 document.getElementById("main").innerHTML += `
                 <div class="genreTitle" id="${mapIndexToGenre[k]}">
                     ${mapIndexToGenre[k]}
                     <hr>
                 </div>
-                <div class="banner">
+                <div class="banner" id="${'g' + k}">
                     <div class="carousel">
                         <ul>
 
@@ -129,11 +149,11 @@
                 `;
                 k++;
             }
-            var j = 0;
-            while (j < noOfGenres) {
-                var movies = JSON.parse(document.getElementsByClassName('movies')[0].innerHTML);
-                var obj = movies[mapIndexToGenre[j]];
-                if (obj == undefined) {
+            console.log(movies["Action"]);
+
+            function loadContent(Bid){
+                let obj = movies[mapIndexToGenre[Bid]];
+                if(obj == undefined){
                     let str1 = `
                     <li>
                         <a href=# style="text-decoration: none;">
@@ -146,69 +166,114 @@
                         </a>
                     </li>
                     `;
-                    document.getElementsByClassName("carousel")[j].childNodes[1].innerHTML += str1;
-                    j++;
-                    continue;
+                    document.getElementsByClassName("banner")[Bid].childNodes[1].childNodes[1].innerHTML += str1;
                 }
-                var n = obj.length;
-                var i = 0;
-                while (i < n) {
-                    var poster = "img/logo.png";
-                    var title = "Movie";
-                    var rating = 0;
-                    var id = obj[i].id;
-                    if (obj[i].poster_path != null) poster = obj[i].poster_path;
-                    else if (obj[i].backdrop_path != null) poster = obj[i].backdrop_path;
-                    if (obj[i].title != null) title = obj[i].title;
-                    if (obj[i].vote_average != null) rating = obj[i].vote_average;
-                    let str = `
-                    <li>
-                        <a href="${path}/moviedetails?id=${id}" style="text-decoration: none;">
-                            <card class="card">
-                                <div class="cardImage">
-                                    <img src=${'https://image.tmdb.org/t/p/w500'+poster} alt="">
-                                </div>
-                                <div class="cardContent">
-                                    <div class="movieTitle">${title}</div>
-                                    <div class="movieRating">
-                                        ${rating}
-                                        <span style="font-size: 1rem; color:rgb(243 183 12)">
-                                            &#9733
-                                        </span>
+                else{
+                    var n = obj.length;
+                    var i = 0;
+                    while(i < n){
+                        var title = "Movie";
+                        var rating = 0;
+                        var id = obj[i].id;
+                        var poster = "img/logo.png";
+                        if (obj[i].poster_path != null) poster = obj[i].poster_path;
+                        else if (obj[i].backdrop_path != null) poster = obj[i].backdrop_path;
+                        if (obj[i].title != null) title = obj[i].title;
+                        if (obj[i].vote_average != null) rating = obj[i].vote_average;
+                        let str = `
+                        <li>
+                            <a href="${path}/moviedetails?id=${id}" style="text-decoration: none;">
+                                <div class="card">
+                                    <div class="cardImage">
+                                        <img src=${'https://image.tmdb.org/t/p/w500'+poster} alt="">
+                                    </div>
+                                    <div class="cardContent">
+                                        <div class="movieTitle">${title}</div>
+                                        <div class="movieRating">
+                                            ${rating}
+                                            <span style="font-size: 1rem; color:rgb(243 183 12)">
+                                                &#9733
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </card>
-                        </a>
-                    </li>
-                    `;
-                    document.getElementsByClassName("carousel")[j].childNodes[1].innerHTML += str;
-                    i++;
+                            </a>
+                        </li>
+                        `;
+                        document.getElementsByClassName("banner")[Bid].childNodes[1].childNodes[1].innerHTML += str;
+                        i++;
+                    }
                 }
-                j++;
+                var displayButton = false;
+                if(screen.width > 900) displayButton = true;
+                $(`#${'g' + Bid}`).flipster({
+                    itemContainer: 'ul',
+                    itemSelector: 'li',
+                    style: 'coverflow',
+                    start: 'center',
+                    fadeIn: 400,
+                    loop: true,
+                    autoplay: false,
+                    pauseOnHover: true,
+                    spacing: -0.6,
+                    click: true,
+                    keyboard: true,
+                    scrollwheel: true,
+                    touch: true,
+                    buttons: displayButton,
+                });
             }
+            var map = {};
+            function loop() {
+                elementsToShow1.forEach(function (element) {
+                    if (isElementInViewport(element)) {
+                        element.style.opacity = 0;
+                        element.classList.add('visibleGenreTitle');
+                        element.style.opacity = 1;
+                    } else {
+                        element.classList.remove('visibleGenreTitle');
+                    }
+                });
+                elementsToShow2.forEach(function(element){
+                    if (isElementInViewport(element)) {
+                        let currId = element.id.substring(1);
+                        let currObj = document.getElementsByClassName("banner")[currId].childNodes[1].childNodes[1].childNodes[1];
+                        if(!map[currId]){
+                            loadContent(currId);
+                            map[currId] = 1;
+                            console.log("Content loaded " + currId);
+                        }
+                        if(currId >0){
+                            if(!map[`${parseInt(currId)-1}`]){
+                                loadContent(parseInt(currId) - 1);
+                                map[`${parseInt(currId)-1}`] = 1;
+                                console.log("Content loaded " + (parseInt(currId)-1));
+                            }
+                        }
+                        if(currId < 17){
+                            if(!map[`${parseInt(currId)+1}`]){
+                                loadContent(parseInt(currId) + 1);
+                                map[`${parseInt(currId)+1}`] = 1;
+                                console.log("Content loaded " + (parseInt(currId)+1));
+                            }
+                        }
+                        element.style.opacity = 0;
+                        element.classList.add('visibleGenreTitle2');
+                        element.style.opacity = 1;
+                    } else {
+                        element.classList.remove('visibleGenreTitle2');
+                    }
+                });
+                scroll(loop);
+            }
+
+            var elementsToShow1 = document.querySelectorAll('.genreTitle');
+            var elementsToShow2 = document.querySelectorAll('.banner');
+            loop();
         </script>
+
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="../js/jquery.flipster.min.js"></script>
-        <script>
-            var displayButton = false;
-            if(screen.width > 900) displayButton = true;
-            $('.carousel').flipster({
-                itemContainer: 'ul',
-                itemSelector: 'li',
-                style: 'coverflow',
-                start: 'center',
-                fadeIn: 400,
-                loop: true,
-                autoplay: false,
-                pauseOnHover: true,
-                spacing: -0.6,
-                click: true,
-                keyboard: true,
-                scrollwheel: true,
-                touch: true,
-                buttons: displayButton,
-            });
-        </script>
     </div>
     <div id="footer">
 
@@ -292,48 +357,5 @@
     }
 
 </script>
-<script>
-    var scroll = window.requestAnimationFrame || function(callback){ window.setTimeout(callback, 1000/40)};
-    var elementsToShow1 = document.querySelectorAll('.genreTitle');
-    var elementsToShow2 = document.querySelectorAll('.banner');
-    function isElementInViewport(el) {
-        // special bonus for those using jQuery
-        if (typeof jQuery === "function" && el instanceof jQuery) {
-            el = el[0];
-        }
-        var rect = el.getBoundingClientRect();
-        return (
-            (rect.top <= 0
-            && rect.bottom >= 0)
-            ||
-            (rect.bottom >= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.top <= (window.innerHeight || document.documentElement.clientHeight))
-            ||
-            (rect.top >= 0 &&
-            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight))
-        );
-    }
-    function loop() {
-        elementsToShow1.forEach(function (element) {
-            if (isElementInViewport(element)) {
-                element.style.opacity = 0;
-                element.classList.add('visibleGenreTitle');
-                element.style.opacity = 1;
-            } else {
-                element.classList.remove('visibleGenreTitle');
-            }
-        });
-        elementsToShow2.forEach(function(element){
-            if (isElementInViewport(element)) {
-                element.style.opacity = 0;
-                element.classList.add('visibleGenreTitle2');
-                element.style.opacity = 1;
-            } else {
-                element.classList.remove('visibleGenreTitle2');
-            }
-        });
-        scroll(loop);
-    }
-    loop();
-</script>
+
 </html>
