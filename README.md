@@ -12,7 +12,7 @@ My Movies is a website which is all about movies. It fetches data from external 
 ## Tech Stack
 
 Following technologies are used while making this project
-1. Front End: HTML, CSS, JS, JQuery
+1. Front End: HTML, EJS, CSS, JS, JQuery
 2. Back End: NodeJS. Express, Passport
 3. Database: MongoDB
 4. Testing: Jest
@@ -57,9 +57,11 @@ Follow these steps to set up the project
 10. This project requires 2 files which are not uploaded on this repository namely node_modules and keys2.js without which the project can not run locally.
 11. Type "npm install" (without quotes) in terminal and node_modules will be qutomatically downloaded 
 12. For keys2.js, you can request the same by mailing to teammahismati@gmail.com and any one of the four contributors will(may) respond back. However, it will be solely contributor's choice to give keys2.js file. However, you can make your own keys2.js file which contains database details. You have to keep the file at the level of server.js in folder hierarchy.
-13.  
+13. Now, after doing all above steps, type "node server" (without quotes) in terminal. If everything is set up correctly then server will start and you can access the website at localhost:5000 in your browser.
+14. If you change any file in the project then you should restart the server by pressing Ctrl + C to terminate the process and then you have to follow step-13 to restart the server with the changes you have done
+15. If you don't want to restart server everytime when you make a change then you can type "nodemon server" (without quotes) in terminal instead of "node server". Everytime you make changes to EJS/CSS/JS files the server will restart automatically
 
-## Practice: Customize your first GitHub website by writing HTML code
+## Contributions
 
 Want to edit the site you just published? Let’s practice commits by introducing yourself in your `index.html` file. Don’t worry about getting it right the first time—you can always build on your introduction later.
 
