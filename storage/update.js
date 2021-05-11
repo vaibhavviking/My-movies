@@ -11,7 +11,9 @@ const updatelist = () => {
         let name = arr[i].name;
         fetch(`https://api.themoviedb.org/3/discover/movie?api_key=0aa29159f6dd2a6237127a2053adc853&language=en-US&sort_by=popularity.desc&with_genres=${id}`).then(response => response.json()).then(data => {
             data = data["results"];
-            
+            if(id==28){
+                console.log(data);
+            }
             // console.log(data);
             movies[`${name}`] = data;
             fs.writeFile('./storage/movieslist.json', JSON.stringify(movies, null, 4), (err) => {

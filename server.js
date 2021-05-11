@@ -87,9 +87,6 @@ schedule.scheduleJob('0 0 0 * * *', async() => {
     updatelist();
 })
 
-// updatelist();
-
-
 if (process.env.NODE_ENV != 'test') {
 
     app.listen(port, () => {
