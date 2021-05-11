@@ -27,11 +27,9 @@ This project has following dependencies
 4. MongoDB Atlas to host database
 5. Heroku for FREE hosting 
 
-## Your first website
+## Website Link
 
-**GitHub Pages** is a free and easy way to create a website using the code that lives in your GitHub repositories. You can use GitHub Pages to build a portfolio of your work, create a personal website, or share a fun project that you coded with the world. GitHub Pages is automatically enabled in this repository, but when you create new repositories in the future, the steps to launch a GitHub Pages website will be slightly different.
-
-[Learn more about GitHub Pages](https://pages.github.com/)
+The website is hosted at https://my-movies-420.herokuapp.com/. However, due to basic Free package of hosting and large amount of data handled by website, the hosted site is slower than usual. For better experience, hosting package can be upgraded or user can set up environment and run it locally.
 
 ## Rename this repository to publish your site
 
