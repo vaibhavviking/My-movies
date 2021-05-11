@@ -1,0 +1,32 @@
+input[type="submit"] {
+    background-color: rgb(12, 128, 243) !important;
+}
+
+input[type="submit"]:hover {
+    background-color: rgb(243, 183, 12) !important;
+}
+
+.navButton:hover {
+    color: white;
+}
+
+.col-md-9 {
+    position: relative;
+    width: 75%;
+    left: 12.5%;
+}
+
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:hover,
+.nav-tabs>li.active>a:focus {
+    border: none !important;
+    background-color: transparent !important;
+    color: #dcf836 !important;
+}
+
+.nav-tabs>li>a:hover,
+.nav-tabs>li>a:focus {
+    border: none !important;
+    background-color: transparent !important;
+    color: #dcf836 !important;
+}

@@ -1,0 +1,193 @@
+.details::before {
+    background: none
+}
+
+html,
+body {
+    margin: 0rem;
+    padding: 0rem;
+    background-color: rgb(16, 16, 41) !important;
+    color: white;
+}
+
+.details:before {
+    background: rgb(16, 16, 41) !important;
+}
+
+#container_nav {
+    padding: 0.01px 0.01px;
+    display: flex;
+}
+
+#nav {
+    height: 100vh;
+    z-index: 1000;
+}
+
+#navbar {
+    margin: 0.5rem;
+    padding: 1rem 0rem;
+    height: 93vh;
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: fixed;
+    border: 0.2rem solid rgb(10, 10, 37);
+    border-radius: 1rem;
+    background-color: rgb(5, 5, 23);
+    box-shadow: 0 1rem 0.5rem 0 rgb(10, 10, 37), 0 1.5rem 1rem 0 rgb(10, 10, 37);
+}
+
+#navbar:hover {
+    box-shadow: 0 0.1rem 1rem 0 rgb(12, 128, 243), 0 0.5rem 2rem 0 rgb(12, 128, 243);
+}
+
+#profile {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+}
+
+#profilePicture {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#profilePicture img {
+    width: 5rem;
+    border-radius: 1000px;
+    margin-bottom: 2rem;
+}
+
+.navButton {
+    padding: 0.85rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Roboto Slab', serif;
+    border: 0.01rem solid rgb(10, 10, 37);
+}
+
+.navButton:hover {
+    background-color: rgb(16, 16, 41);
+}
+
+.navLink {
+    text-decoration: none;
+    color: white;
+}
+
+.navHead {
+    margin: 1rem 0rem;
+    padding: 0.5rem 0rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(12, 128, 243);
+}
+
+#main {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    flex-direction: column;
+}
+
+#title {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
+    margin-bottom: 6rem;
+}
+
+#logoCont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#logo {
+    width: 12rem;
+    border-radius: 30rem;
+}
+
+#type {
+    margin: 2.5rem 1rem;
+    margin-left: 0rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 7rem;
+    width: 100%;
+    color: rgb(243 183 12);
+    font-size: 3rem;
+    font-family: 'Vollkorn', serif;
+}
+
+@media(min-width: 1311px) {
+    #title {
+        flex-direction: row;
+    }
+}
+
+@media(max-width: 900px) {
+    #type {
+        font-size: 2rem;
+        height: 5rem;
+        margin-left: 1rem;
+    }
+}
+
+@media(max-height: 600px) {
+    #profilePicture {
+        display: none;
+    }
+    #profilePicture img {
+        display: none;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-xl-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 700px) and (min-width: 400px) {
+    iframe {
+        height: 330px;
+    }
+}
+
+@media (max-width: 400px) {
+    iframe {
+        height: 230px;
+    }
+}
+
+.transformers-right i::before {
+    -webkit-text-fill-color: rgb(243, 183, 12);
+    margin-right: 5px;
+}
+
+button {
+    background: rgb(12, 128, 243) !important;
+}
+
+button:hover {
+    background-color: rgb(243, 183, 12) !important;
+}
+
+.transformers-left {
+    color: rgb(243, 183, 12);
+}
