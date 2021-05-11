@@ -20,7 +20,7 @@
         <section>
             <div class="container" id="cont">
 
-                <a href="<%=path%>home"><input type="submit" value="HOME" style="margin: 0; position: absolute; left: 4%; top: 4%;"></a>
+                <a href="<%=path%>"><input type="submit" value="HOME" style="margin: 0; position: absolute; left: 4%; top: 4%;"></a>
 
                 <h1>REGISTRATION</h1>
 
@@ -36,8 +36,8 @@
                                 <div class="mess">
                                     <div class="w3-container">
 
-                                        <div class="w3-panel w3-red w3-display-container">
-                                            <span onclick="this.parentElement.style.display='none'" class="w3-button w3-large w3-display-topright">&times;</span>
+                                        <div class="w3-panel w3-red w3-display-container" style="border-radius: 10px;">
+                                            <span onclick="this.parentElement.style.display='none'" class="w3-button w3-large w3-display-topright" style="border-radius: 10px;">&times;</span>
                                             <h3>Alert</h3>
                                             <p>
                                                 <%=error[0]%>
@@ -51,8 +51,8 @@
                                         <div class="mess">
                                             <div class="w3-container">
 
-                                                <div class="w3-panel w3-green w3-display-container">
-                                                    <span onclick="this.parentElement.style.display='none'" class="w3-button w3-large w3-display-topright">&times;</span>
+                                                <div class="w3-panel w3-green w3-display-container" style="border-radius: 10px;">
+                                                    <span onclick="this.parentElement.style.display='none'" class="w3-button w3-large w3-display-topright" style="border-radius: 10px;">&times;</span>
                                                     <h3>Warning!</h3>
                                                     <p>
                                                         <%=message[0]%>

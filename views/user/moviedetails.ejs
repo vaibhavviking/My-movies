@@ -25,6 +25,8 @@
 
     <link rel="stylesheet" type="text/css" href="/css/md.css" media="all" />
     <script src="https://kit.fontawesome.com/ad214375d6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 
     <style>
         .details::before {
@@ -409,7 +411,7 @@
                     </div>
 
                     <div class="col-12 col-xl-6" style="margin-top: 50px;">
-                        <iframe id="trailer" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe id="trailer" width="560" height="515" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
 
                 </div>
@@ -596,7 +598,16 @@
                                 overview: result['overview']
                             },
                             success: (result) => {
-                                $('.rmess').html(`<div class="mess">${result.message}</div>`);
+                                $('.rmess').html(`<div class="mess">
+                                                    <div class="w3-container" style="border-radius: 10px;">
+                                                        <div class="w3-panel w3-green w3-display-container">
+                                                            <span onclick="this.parentElement.style.display='none'" class="w3-button w3-large w3-display-topright" style="border-radius: 10px">&times;</span>
+                                                            <p>
+                                                                ${result.message}
+                                                            </p>
+                                                        </div>                                
+                                                    </div>
+                                                </div> `);
                             }
                         })
                     })
