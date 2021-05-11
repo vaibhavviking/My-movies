@@ -78,4 +78,3 @@ test('rate/review movie working', async ()=>{
     expect(result.reviewtext).toBe("TEXT");
     expect(result.reviewtitle).toBe("TITLE");
 })
-

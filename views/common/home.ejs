@@ -152,6 +152,7 @@
                 }
                 var n = obj.length;
                 var i = 0;
+                
                 while (i < n) {
                     var poster = "img/logo.png";
                     var title = "Movie";
@@ -161,13 +162,17 @@
                     else if (obj[i].backdrop_path != null) poster = obj[i].backdrop_path;
                     if (obj[i].title != null) title = obj[i].title;
                     if (obj[i].vote_average != null) rating = obj[i].vote_average;
+                    let img='';
+                    if(window.screen.width >768){
+                        img=`<div class="cardImage">
+                                    <img src=${'https://image.tmdb.org/t/p/w500'+poster} alt="">
+                                </div>`;
+                    }
                     let str = `
                     <li>
                         <a href="${path}/moviedetails?id=${id}" style="text-decoration: none;">
                             <card class="card">
-                                <div class="cardImage">
-                                    <img src=${'https://image.tmdb.org/t/p/w500'+poster} alt="">
-                                </div>
+                                ${img}
                                 <div class="cardContent">
                                     <div class="movieTitle">${title}</div>
                                     <div class="movieRating">
