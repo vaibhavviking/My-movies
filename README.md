@@ -1,90 +1,87 @@
-# Welcome to GitHub
+# My Movies
 
-Welcome to GitHub—where millions of developers work together on software. Ready to get started? Let’s learn how this all works by building and publishing your first GitHub Pages website!
+## Functionalities
 
-## Repositories
+My Movies is a website which is all about movies. It fetches data from external API and renders it in a very stylish and attractive UI. It has following functionalities
+1. Website shows popular movies of different genres
+2. Website also shows various details of a movie along with its poster and trailer/teaser
+3. User can sign up/sign in to the website
+4. User can mark any movie as favourite
+5. User can rate and review any movie
 
-Right now, we’re in your first GitHub **repository**. A repository is like a folder or storage space for your project. Your project's repository contains all its files such as code, documentation, images, and more. It also tracks every change that you—or your collaborators—make to each file, so you can always go back to previous versions of your project if you make any mistakes.
+## Tech Stack
 
-This repository contains three important files: The HTML code for your first website on GitHub, the CSS stylesheet that decorates your website with colors and fonts, and the **README** file. It also contains an image folder, with one image file.
+Following technologies are used while making this project
+1. Front End: HTML, EJS, CSS, JS, JQuery
+2. Back End: NodeJS. Express, Passport
+3. Database: MongoDB
+4. Testing: Jest
+5. Documentation: Overleaf (LaTeX)
 
-## Describe your project
+## Dependencies
 
-You are currently viewing your project's **README** file. **_README_** files are like cover pages or elevator pitches for your project. They are written in plain text or [Markdown language](https://guides.github.com/features/mastering-markdown/), and usually include a paragraph describing the project, directions on how to use it, who authored it, and more.
+This project has following dependencies
+1. Various Node packages managed by NPM
+2. The Movie DB API as external API to fetch movie data
+3. Cloudinary for cloud storage of Video assets
+4. MongoDB Atlas to host database
+5. Heroku for FREE hosting 
 
-[Learn more about READMEs](https://help.github.com/en/articles/about-readmes)
+## Website Link
 
-## Your first website
+The website is hosted at https://my-movies-420.herokuapp.com/. However, due to basic Free package of hosting and large amount of data handled by website, the hosted site is slower than usual. For better experience, hosting package can be upgraded or user can set up environment and run it locally.
 
-**GitHub Pages** is a free and easy way to create a website using the code that lives in your GitHub repositories. You can use GitHub Pages to build a portfolio of your work, create a personal website, or share a fun project that you coded with the world. GitHub Pages is automatically enabled in this repository, but when you create new repositories in the future, the steps to launch a GitHub Pages website will be slightly different.
+## Important Project files and Folder Structure
 
-[Learn more about GitHub Pages](https://pages.github.com/)
+1. Documentation: Contains files related to documentation including Software Requirement Specifications, Software Design Documents and User Manual.
+2. config: Contains files related to Authentications
+3. models: Database Schema related files
+4. routes: NodeJS files containing routes to various pages of the website
+5. storage: Store the data which is rendered on website
+6. tests: All testing files
+7. views: All Front End files
+8. server.js: NodeJS file for main server
 
-## Rename this repository to publish your site
+## Setting Up Environment on local machine
 
-We've already set-up a GitHub Pages website for you, based on your personal username. This repository is called `hello-world`, but you'll rename it to: `username.github.io`, to match your website's URL address. If the first part of the repository doesn’t exactly match your username, it won’t work, so make sure to get it right.
+Follow these steps to set up the project
+1. You should have NodeJS installed in your local machine. If you don't have NodeJS then you can install NodeJS from https://nodejs.org/en/
+2. You should have installed git and configured it. If you haven't then you can install git from https://git-scm.com/. After downloading, you can follow steps given at https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup to configure Git
+3. You should have preferably installed an IDE to see/edit the code. We recommend to use VS Code ( Download link: https://code.visualstudio.com/ )
+4. On the main page of this repository, click on the button "Code" and copy the link
+5. Choose or make a new folder in your local machine where you want to clone this repository
+6. Open terminal and go to the path where you want to clone this repo. If you are using VS Code then you can directly open terminal in VS Code.
+7. Type "git init" (without quotes)
+8. Type "git clone <paste the copied link here>" (without quotes and angular brackets)
+9. The repository will be cloned into your local machine. Then you can type "cd My-Movies" (without quotes) to navigate to the cloned repository.
+10. This project requires 2 files which are not uploaded on this repository namely node_modules and keys2.js without which the project can not run locally.
+11. Type "npm install" (without quotes) in terminal and node_modules will be qutomatically downloaded 
+12. For keys2.js, you can request the same by mailing to teammahismati@gmail.com and any one of the four contributors will(may) respond back. However, it will be solely contributor's choice to give keys2.js file. However, you can make your own keys2.js file which contains database details. You have to keep the file at the level of server.js in folder hierarchy.
+13. Now, after doing all above steps, type "node server" (without quotes) in terminal. If everything is set up correctly then server will start and you can access the website at localhost:5000 in your browser.
+14. If you change any file in the project then you should restart the server by pressing Ctrl + C to terminate the process and then you have to follow step-13 to restart the server with the changes you have done
+15. If you don't want to restart server everytime when you make a change then you can type "nodemon server" (without quotes) in terminal instead of "node server". Everytime you make changes to EJS/CSS/JS files the server will restart automatically
 
-Let's get started! To update this repository’s name, click the `Settings` tab on this page. This will take you to your repository’s settings page. 
+## Contributions
 
-![repo-settings-image](https://user-images.githubusercontent.com/18093541/63130482-99e6ad80-bf88-11e9-99a1-d3cf1660b47e.png)
+COntributions will be encouraged. If you want to contribute then follow these steps:
+1. Fork this repository and make a copy of your own or make a new branch on this repository
+2. Follow the steps given in previous section to clone from forked repo/new branch and set up the project
+3. Make changes to the project
+4. Always remember to pull before you commit
+5. Commit final changes to forked repository/new branch
+6. Create a pull request and if contributors agree then your code will be merged with the main repository
+7. You can refer https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/setting-guidelines-for-repository-contributors for more details regarding contributions
 
-Under the **Repository Name** heading, type: `username.github.io`, where username is your username on GitHub. Then click **Rename**—and that’s it. When you’re done, click your repository name or browser’s back button to return to this page.
+## Developers
 
-<img width="1039" alt="rename_screenshot" src="https://user-images.githubusercontent.com/18093541/63129466-956cc580-bf85-11e9-92d8-b028dd483fa5.png">
+This project is developed by
+1. Komal Kumar (kkomalk)
+2. Priyanshu Uttam (uttam509)
+3. Purnadip Chakrabarti (ChakPC)
+4. Vaibhav Chandra (vaibhavviking) (Owner of repo)
 
-Once you click **Rename**, your website will automatically be published at: https://your-username.github.io/. The HTML file—called `index.html`—is rendered as the home page and you'll be making changes to this file in the next step.
+## Disclaimer
 
-Congratulations! You just launched your first GitHub Pages website. It's now live to share with the entire world
+Content(Movie details) shown on website may be explicit and may require parental discretion. It is to be noted that Developers/Contributors of this project shall not be considered responsible for the same. All data is fetched through external API and rendered without any censorship. The purpose of this project is to exploit data received by API and render the same in a stylish and attractive Front End.
 
-## Making your first edit
-
-When you make any change to any file in your project, you’re making a **commit**. If you fix a typo, update a filename, or edit your code, you can add it to GitHub as a commit. Your commits represent your project’s entire history—and they’re all saved in your project’s repository.
-
-With each commit, you have the opportunity to write a **commit message**, a short, meaningful comment describing the change you’re making to a file. So you always know exactly what changed, no matter when you return to a commit.
-
-## Practice: Customize your first GitHub website by writing HTML code
-
-Want to edit the site you just published? Let’s practice commits by introducing yourself in your `index.html` file. Don’t worry about getting it right the first time—you can always build on your introduction later.
-
-Let’s start with this template:
-
-```
-<p>Hello World! I’m [username]. This is my website!</p>
-```
-
-To add your introduction, copy our template and click the edit pencil icon at the top right hand corner of the `index.html` file.
-
-<img width="997" alt="edit-this-file" src="https://user-images.githubusercontent.com/18093541/63131820-0794d880-bf8d-11e9-8b3d-c096355e9389.png">
-
-
-Delete this placeholder line:
-
-```
-<p>Welcome to your first GitHub Pages website!</p>
-```
-
-Then, paste the template to line 15 and fill in the blanks.
-
-<img width="1032" alt="edit-githuboctocat-index" src="https://user-images.githubusercontent.com/18093541/63132339-c3a2d300-bf8e-11e9-8222-59c2702f6c42.png">
-
-
-When you’re done, scroll down to the `Commit changes` section near the bottom of the edit page. Add a short message explaining your change, like "Add my introduction", then click `Commit changes`.
-
-
-<img width="1030" alt="add-my-username" src="https://user-images.githubusercontent.com/18093541/63131801-efbd5480-bf8c-11e9-9806-89273f027d16.png">
-
-Once you click `Commit changes`, your changes will automatically be published on your GitHub Pages website. Refresh the page to see your new changes live in action.
-
-:tada: You just made your first commit! :tada:
-
-## Extra Credit: Keep on building!
-
-Change the placeholder Octocat gif on your GitHub Pages website by [creating your own personal Octocat emoji](https://myoctocat.com/build-your-octocat/) or [choose a different Octocat gif from our logo library here](https://octodex.github.com/). Add that image to line 12 of your `index.html` file, in place of the `<img src=` link.
-
-Want to add even more code and fun styles to your GitHub Pages website? [Follow these instructions](https://github.com/github/personal-website) to build a fully-fledged static website.
-
-![octocat](./images/create-octocat.png)
-
-## Everything you need to know about GitHub
-
-Getting started is the hardest part. If there’s anything you’d like to know as you get started with GitHub, try searching [GitHub Help](https://help.github.com). Our documentation has tutorials on everything from changing your repository settings to configuring GitHub from your command line.
+## We hope that you like our project. If you have any issues/suggestions you can open a new issue and we will try our best to resolve/adapt that. 
