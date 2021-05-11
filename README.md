@@ -42,11 +42,18 @@ The website is hosted at https://my-movies-420.herokuapp.com/. However, due to b
 7. views: All Front End files
 8. server.js: NodeJS file for main server
 
-## Making your first edit
+## Setting Up project on local environment
 
-When you make any change to any file in your project, you’re making a **commit**. If you fix a typo, update a filename, or edit your code, you can add it to GitHub as a commit. Your commits represent your project’s entire history—and they’re all saved in your project’s repository.
-
-With each commit, you have the opportunity to write a **commit message**, a short, meaningful comment describing the change you’re making to a file. So you always know exactly what changed, no matter when you return to a commit.
+Follow these steps to set up the project
+1. You should have NodeJS installed in your local machine. If you don't have NodeJS then you can install NodeJS from https://nodejs.org/en/
+2. You should have installed git and configured it. If you haven't then you can install git from https://git-scm.com/. After downloading, you can follow steps given at https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup to configure Git
+3. You should have preferably installed an IDE to see/edit the code. We recommend to use VS Code ( Download link: https://code.visualstudio.com/ )
+4. On the main page of this repository, click on the button "Code" and copy the link
+5. Choose or make a new folder in your local machine where you want to clone this repository
+6. Open terminal and go to the path where you want to clone this repo. If you are using VS Code then you can directly open terminal in VS Code.
+7. Type "git init" (without quotes)
+8. Type "git clone <paste the copied link here>" (without quotes and angular brackets)
+9. The repository will be cloned into your local machine. Then you can type "cd My-Movies" (without quotes) to navigate to the cloned repository.
 
 ## Practice: Customize your first GitHub website by writing HTML code
 
