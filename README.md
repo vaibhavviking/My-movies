@@ -42,7 +42,7 @@ The website is hosted at https://my-movies-420.herokuapp.com/. However, due to b
 7. views: All Front End files
 8. server.js: NodeJS file for main server
 
-## Setting Up project on local environment
+## Setting Up Environment on local machine
 
 Follow these steps to set up the project
 1. You should have NodeJS installed in your local machine. If you don't have NodeJS then you can install NodeJS from https://nodejs.org/en/
@@ -54,6 +54,10 @@ Follow these steps to set up the project
 7. Type "git init" (without quotes)
 8. Type "git clone <paste the copied link here>" (without quotes and angular brackets)
 9. The repository will be cloned into your local machine. Then you can type "cd My-Movies" (without quotes) to navigate to the cloned repository.
+10. This project requires 2 files which are not uploaded on this repository namely node_modules and keys2.js without which the project can not run locally.
+11. Type "npm install" (without quotes) in terminal and node_modules will be qutomatically downloaded 
+12. For keys2.js, you can request the same by mailing to teammahismati@gmail.com and any one of the four contributors will(may) respond back. However, it will be solely contributor's choice to give keys2.js file. However, you can make your own keys2.js file which contains database details. You have to keep the file at the level of server.js in folder hierarchy.
+13.  
 
 ## Practice: Customize your first GitHub website by writing HTML code
 
