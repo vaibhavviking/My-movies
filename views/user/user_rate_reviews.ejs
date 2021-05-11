@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 
@@ -119,7 +118,7 @@
                 <div id="logoCont" style="margin-top: 1rem; margin-left: 1.2rem;">
                     <img src="/assets/img/logo.png" alt="" id="logo">
                 </div>
-                <div id="type" style="margin: 0;"></div>
+                <div id="type" style="margin: 0; width: 100%;"></div>
             </div>
         </div>
 
@@ -241,6 +240,7 @@
     var typeDirection = 1;
     var speed = 50;
     var index = 0;
+
     function typeText() {
         if (typeDirection) {
             document.getElementById("type").innerHTML += texts[textSelector].charAt(index);
@@ -264,6 +264,7 @@
             setTimeout(typeText, speed);
         }
     }
+
     function pause(milliseconds) {
         var dt = new Date();
         while ((new Date()) - dt <= milliseconds) { /* Do nothing */ }
@@ -278,6 +279,7 @@
     } else {
         smallWidth = 0;
     }
+
     function toggle() {
         if (smallWidth) {
             if (defaultCollapse) {
@@ -299,6 +301,7 @@
             }
         }
     }
+
     function navClick() {
         if (screen.width < 900)
             toggle();
