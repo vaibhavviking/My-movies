@@ -196,6 +196,18 @@
             }
         }
         
+        @media (min-width: 1200px) {
+            .col-xl-6 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+        
+        .transformers-right i::before {
+            -webkit-text-fill-color: rgb(243, 183, 12);
+            margin-right: 5px;
+        }
+        
         button {
             background: rgb(12, 128, 243) !important;
         }
@@ -215,6 +227,13 @@
         .noUi-connect {
             background-image: linear-gradient( 90deg, rgb(12, 243, 243)0%, rgb(12, 128, 243) 100%);
         }
+        
+        textarea,
+        input,
+        textarea::-webkit-input-placeholder,
+        input::-webkit-input-placeholder {
+            color: #949393;
+        }
     </style>
 
 </head>
@@ -233,16 +252,11 @@
                     </div>
                 </a>
 
-                <div class="navHead" style="margin-top: 0.5rem;">
-                    PROFILE
-                </div>
+
 
                 <div id="profile">
-                    <div id="profilePicture">
-                        <img src="../assets/img/profile.png" alt="">
-                    </div>
 
-                    <a href="#" class="navLink">
+                    <a href="<%=path%>user/home" class="navLink">
                         <div class="navButton" onclick="navClick()">
                             HOME
                         </div>
@@ -293,8 +307,6 @@
     </div><br><br>
 
     <section class="section details" style="background-color: rgb(16, 16, 41) !important;">
-
-        <!-- <div class="details__bg" data-bg="img/home/home__bg.jpg"></div> -->
 
         <div class="container" style="background-color: rgb(16, 16, 41) !important;">
             <div class="transformers-box" style="background-color: #010913c4;">
@@ -372,7 +384,7 @@
                                                     Rating:
                                                 </div>
                                                 <div class="transformers-right">
-                                                    <span class="card__rate"></span>
+                                                    <i class='fas fa-star'></i> <span class="card__rate"> </span>
                                                 </div>
                                             </li>
                                             <li>
@@ -396,21 +408,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-xl-6">
-                        <!-- <video controls crossorigin playsinline poster="../../../cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg" id="player">
-                        						
-						    <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" type="video/mp4" size="576">
-						    <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4" type="video/mp4" size="720">
-						    <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4" type="video/mp4" size="1080">
-						    <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1440p.mp4" type="video/mp4" size="1440">
-
-						    <track kind="captions" label="English" srclang="en" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt"
-    						    default>
-	    					<track kind="captions" label="Français" srclang="fr" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt">
-
-						    <a href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" download>Download</a>
-                        
-                        </video> -->
+                    <div class="col-12 col-xl-6" style="margin-top: 50px;">
                         <iframe id="trailer" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
 
@@ -442,7 +440,7 @@
 
                                 <form id="rform" class="form" style="background-color: rgb(26, 27, 29);">
 
-                                    <input required="true" type="text" name="title" class="form__input" placeholder="Title">
+                                    <input required="true" type="text" name="title" class="form__input" placeholder="Title" style="color: #fff;">
 
                                     <textarea required="true" class="form__textarea" name="text" placeholder="Review"></textarea>
 

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 
@@ -24,21 +25,21 @@
         input[type="submit"] {
             background-color: rgb(12, 128, 243) !important;
         }
-
+        
         input[type="submit"]:hover {
             background-color: rgb(243, 183, 12) !important;
         }
-
+        
         .navButton:hover {
             color: white;
         }
-
+        
         .col-md-9 {
             position: relative;
             width: 75%;
             left: 12.5%;
         }
-
+        
         .nav-tabs>li.active>a,
         .nav-tabs>li.active>a:hover,
         .nav-tabs>li.active>a:focus {
@@ -46,60 +47,12 @@
             background-color: transparent !important;
             color: #dcf836 !important;
         }
-
+        
         .nav-tabs>li>a:hover,
         .nav-tabs>li>a:focus {
             border: none !important;
             background-color: transparent !important;
             color: #dcf836 !important;
-        }
-
-        .gallery {
-            width: 100%;
-            padding: 30px 15px;
-        }
-
-        .gallery .gallery-items .item.hide {
-            display: none;
-        }
-
-        .gallery .gallery-items .item.show {
-            display: block;
-            animation: show .5s ease;
-        }
-
-        .gallery .pagination {
-            width: 100%;
-            float: left;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .gallery .pagination div {
-            display: inline-block;
-            margin: 0 10px;
-        }
-
-        .gallery .pagination .page {
-            color: gray;
-        }
-
-        .gallery .pagination .prev,
-        .gallery .pagination .next {
-            color: #000;
-            border: 1px solid #000;
-            border-radius: 5px;
-            font-size: 15px;
-            padding: 7px 13px;
-            cursor: pointer;
-        }
-
-        .gallery .pagination .prev.disabled,
-        .gallery .pagination .next.disabled {
-            border-color: gray;
-            background-color: rgb(115, 115, 165) !important;
-            color: rgb(31, 3, 3);
-            pointer-events: none;
         }
     </style>
 
@@ -109,9 +62,7 @@
 
     <div id="container" style="height: 150px;">
 
-        <img id="collapse" onclick="toggle()"
-            style="width: 5rem; margin: 1rem 1rem; position: fixed; right: 0.5rem; top: 0.5rem;z-index: 1000; cursor: pointer; border-radius: 6px;"
-            src="../assets/img/hamburger.png" alt="">
+        <img id="collapse" onclick="toggle()" style="width: 5rem; margin: 1rem 1rem; position: fixed; right: 0.5rem; top: 0.5rem;z-index: 1000; cursor: pointer; border-radius: 6px;" src="../assets/img/hamburger.png" alt="">
 
         <div id="nav">
             <div id="navbar">
@@ -121,10 +72,14 @@
                     </div>
                 </a>
 
-
+                <div class="navHead" style="margin-top: 0.5rem;">
+                    PROFILE
+                </div>
 
                 <div id="profile">
-
+                    <div id="profilePicture">
+                        <img src="../assets/img/profile.png" alt="">
+                    </div>
 
                     <a href="<%=path%>user/home" class="navLink">
                         <div class="navButton" onclick="navClick()">
@@ -138,7 +93,7 @@
                         </div>
                     </a>
 
-                    <a href="<%=path%>user/raterev" class="navLink" onclick="navClick()">
+                    <a href="<%=path%>user/raterev" class="navLink" onclick="navClick()" style="background-color: rgb(12, 128, 243);">
                         <div class="navButton">
                             MY RATING AND REVIEW
                         </div>
@@ -189,8 +144,7 @@
                             <div class="row">
 
                                 <div class="col-md-12" style="margin-bottom: 20px;">
-                                    <input onkeyup="searchName()" type="text" id="search"
-                                        placeholder="Enter Movie Name">
+                                    <input onkeyup="searchName()" type="text" id="search" placeholder="Enter Movie Name">
                                 </div>
 
                             </div>
@@ -206,50 +160,7 @@
         </div>
     </div>
 
-    <section class="gallery">
-        <div class="page-single" style="background-color: rgb(16, 16, 41) !important; ">
-            <div class="container">
-                <div class="gallery-items">
-
-                    <div class="col-md-9 col-sm-12 col-xs-12 item">
-                        <!-- <div class="topbar-filter">
-                        </div> -->
-                        <%data.forEach(item=>{%>
-
-                            <div class="movie movie-item-style-2 userrate">
-                                <img src="https://image.tmdb.org/t/p/w500<%=item.poster%>" alt="">
-                                <div class="mv-item-infor">
-                                    <h6>
-                                        <a class="moviename" href="<%=path%>moviedetails?id=<%=item.movieid%>">
-                                            <%=item.name%>
-                                        </a>
-                                    </h6>
-                                    <p class="time sm-text">Your Rate :
-                                        <%=item.userrating%>/10
-                                    </p><br>
-                                    <p class="rate"><i class="ion-android-star"></i><span>
-                                            <%=item.rating%>
-                                        </span> /10</p>
-                                    <p class="time sm-text">Your reviews :</p><br>
-                                    <h6>
-                                        <%=item.title%>
-                                    </h6>
-                                    <!-- <p class="time sm">02 April 2017</p> -->
-                                    <p>
-                                        <%=item.text%>
-                                    </p>
-                                </div>
-                            </div>
-                            <%})%>
-                    </div>
-
-
-                </div>
-            </div>
-
-        </div>
-    </section>
-    <div class="page-single" style="background-color: rgb(16, 16, 41) !important">
+    <div class="page-single" style="margin-top: 20px; background-color: rgb(16, 16, 41) !important">
         <div class="container">
             <div class="row ipad-width2">
 
@@ -257,7 +168,6 @@
                     <div class="topbar-filter">
                     </div>
                     <%data.forEach(item=>{%>
-
                         <div class="movie movie-item-style-2 userrate">
                             <img src="https://image.tmdb.org/t/p/w500<%=item.poster%>" alt="">
                             <div class="mv-item-infor">
@@ -276,7 +186,6 @@
                                 <h6>
                                     <%=item.title%>
                                 </h6>
-                                <!-- <p class="time sm">02 April 2017</p> -->
                                 <p>
                                     <%=item.text%>
                                 </p>
@@ -299,7 +208,6 @@
                     // console.log(document.getElementsByClassName('friendname')[i].innerHTML, document.getElementsByClassName('friendname')[i].innerHTML.indexOf(mess));
                     if (document.getElementsByClassName('moviename')[i].innerHTML.toUpperCase().indexOf(mess) != -1) {
                         document.getElementsByClassName('movie')[i].style.display = '';
-
                     } else {
                         document.getElementsByClassName('movie')[i].style.display = 'none';
                     }
@@ -309,7 +217,6 @@
                 var i = 0;
                 while (document.getElementsByClassName('moviename')[i]) {
                     document.getElementsByClassName('movie')[i].style.display = '';
-
                     i = i + 1;
                 }
             }
@@ -321,74 +228,6 @@
     <script src="/js/plugins2.js"></script>
     <script src="/js/custom.js"></script>
 </body>
-
-
-
-<script>
-    const galleryItems = document.querySelector(".gallery-items").children;
-    const prev = document.querySelector(".prev");
-    const next = document.querySelector(".next");
-    const page = document.querySelector(".page-num");
-    const maxItem = 3;
-    let index = 1;
-
-    const pagination = Math.ceil(galleryItems.length / maxItem);
-    console.log(pagination)
-
-    prev.addEventListener("click", function () {
-        index--;
-        check();
-        showItems();
-    })
-    next.addEventListener("click", function () {
-        index++;
-        check();
-        showItems();
-    })
-
-    function check() {
-        if (index == pagination) {
-            next.classList.add("disabled");
-        } else {
-            next.classList.remove("disabled");
-        }
-
-        if (index == 1) {
-            prev.classList.add("disabled");
-        } else {
-            prev.classList.remove("disabled");
-        }
-    }
-
-    function showItems() {
-        for (let i = 0; i < galleryItems.length; i++) {
-            galleryItems[i].classList.remove("show");
-            galleryItems[i].classList.add("hide");
-
-
-            if (i >= (index * maxItem) - maxItem && i < index * maxItem) {
-                // if i greater than and equal to (index*maxItem)-maxItem;
-                // means  (1*8)-8=0 if index=2 then (2*8)-8=8
-                galleryItems[i].classList.remove("hide");
-                galleryItems[i].classList.add("show");
-            }
-            page.innerHTML = index;
-        }
-
-
-    }
-
-    window.onload = function () {
-        showItems();
-        check();
-    }
-</script>
-
-
-
-
-
-
 
 <script>
     // Typing Effect
@@ -402,7 +241,6 @@
     var typeDirection = 1;
     var speed = 50;
     var index = 0;
-
     function typeText() {
         if (typeDirection) {
             document.getElementById("type").innerHTML += texts[textSelector].charAt(index);
@@ -426,7 +264,6 @@
             setTimeout(typeText, speed);
         }
     }
-
     function pause(milliseconds) {
         var dt = new Date();
         while ((new Date()) - dt <= milliseconds) { /* Do nothing */ }
@@ -441,7 +278,6 @@
     } else {
         smallWidth = 0;
     }
-
     function toggle() {
         if (smallWidth) {
             if (defaultCollapse) {
@@ -463,7 +299,6 @@
             }
         }
     }
-
     function navClick() {
         if (screen.width < 900)
             toggle();

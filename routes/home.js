@@ -8,10 +8,10 @@ const keys = require('../keys2');
 const fs = require('fs');
 const User = require('../models/user');
 const Usermovies = require('../models/user_movies')
-// const movies = require('./movies');
+    // const movies = require('./movies');
 const { readlist } = require('../storage/update');
 
-router.get('/', async (req, res) => {
+router.get('/', async(req, res) => {
     let movies = await readlist();
     res.render(path + 'home.ejs', { path: href, movies: JSON.stringify(movies) });
 })
@@ -26,12 +26,14 @@ router.get('/moviedetails', (req, res) => {
     }
 })
 
-router.post('/getmoviedetails', async (req, res) => {
+router.post('/getmoviedetails', async(req, res) => {
     let movieid = req.body.id;
     console.log(movieid);
     let d1 = await fetch(`https://api.themoviedb.org/3/movie/${movieid}?api_key=0aa29159f6dd2a6237127a2053adc853&language=en-US&append_to_response=videos,credits`);
     let data1 = await d1.json();
-    let fav = 0, rate = 0, review = "";
+    let fav = 0,
+        rate = 0,
+        review = "";
     if (req.user) {
 
         let email = req.user.email;
@@ -76,32 +78,36 @@ router.post('/getmoviedetails', async (req, res) => {
     res.send(data1);
 })
 
-router.get('/search', async (req, res) => {
+router.get('/search', async(req, res) => {
     res.render(path + 'search_movies.ejs', { path: href, user: req.user });
 })
 
-router.post('/searchmovie', async (req, res) => {
+router.post('/searchmovie', async(req, res) => {
     let query = req.body.query;
     let criteria = req.body.criteria;
     let d1 = await fetch(`https://api.themoviedb.org/3/search/${criteria}?api_key=0aa29159f6dd2a6237127a2053adc853&query=${query}`);
     let temp = await d1.json();
-    let data=[];
-    if(criteria=='movie'){
-        data=temp.results;
-    }else{
-        temp=temp.results;
-        let len=temp.length;
-        for(let i=0;i<len;i++){
-            let temp2=temp[i].known_for;
-            let len2=temp2.length;
-            for(let j=0;j<len2;j++){
-                if(temp2[j].media_type=='movie'){
+    let data = [];
+    if (criteria == 'movie') {
+        data = temp.results;
+    } else {
+        temp = temp.results;
+        let len = temp.length;
+        for (let i = 0; i < len; i++) {
+            let temp2 = temp[i].known_for;
+            let len2 = temp2.length;
+            for (let j = 0; j < len2; j++) {
+                if (temp2[j].media_type == 'movie') {
                     data.push(temp2[j]);
                 }
             }
         }
     }
     res.send(data);
+})
+
+router.get('/page', (req,res)=>{
+    res.render(path+'pagination.ejs', { path: href, user: req.user });
 })
 
 module.exports = router;

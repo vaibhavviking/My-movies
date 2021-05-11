@@ -33,20 +33,31 @@ passport.use('local', new LocalStrategy({ usernameField: 'email', passwordField:
         console.log(username, password);
         let result = await User.find({"email" : username});
         if(result.length){
-            let check = await bcrypt.compare(password, result[0].password);
-            console.log(check);
-            if(check){
-                if(result[0].active!=true){
-                    done(null,false,req.flash("error", 'Please complete verification for '+username));
-                }else{
-                    done(null,result[0]);
+
+            bcrypt.compare(password, result[0].password, (err, result2) => {
+                console.log(result2);
+                if (result2 == true) {
+                    if(result[0].active!=true){
+                        done(null,false,req.flash("error", 'Please complete verification for '+username));
+                    }else{
+                        done(null,result[0]);
+                    }
+                } else {
+                    console.log('boom1');
+                    done(null, false, req.flash("error", 'Wrong email or password'));
                 }
-            }else{
-                console.log('boom');
-                done(null, false, req.flash("error", 'Wrong email or password'));
-            }
+            })
+
+
+            // let check = await bcrypt.compare(password, result[0].password);
+            // console.log(check);
+            // if(check){
+            // }else{
+            //     console.log('boom1');
+            //     done(null, false, req.flash("error", 'Wrong email or password'));
+            // }
         }else{
-            console.log('boom');
+            console.log('boom2');
             done(null, false, req.flash("error", 'Wrong email or password'));
         }
     }

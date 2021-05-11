@@ -53,54 +53,6 @@
             background-color: transparent !important;
             color: #dcf836 !important;
         }
-        
-        .gallery {
-            width: 100%;
-            padding: 30px 15px;
-        }
-        
-        .gallery .gallery-items .item.hide {
-            display: none;
-        }
-        
-        .gallery .gallery-items .item.show {
-            display: block;
-            animation: show .5s ease;
-        }
-        
-        .gallery .pagination {
-            width: 100%;
-            float: left;
-            padding: 15px;
-            text-align: center;
-        }
-        
-        .gallery .pagination div {
-            display: inline-block;
-            margin: 0 10px;
-        }
-        
-        .gallery .pagination .page {
-            color: gray;
-        }
-        
-        .gallery .pagination .prev,
-        .gallery .pagination .next {
-            color: #000;
-            border: 1px solid #000;
-            border-radius: 5px;
-            font-size: 15px;
-            padding: 7px 13px;
-            cursor: pointer;
-        }
-        
-        .gallery .pagination .prev.disabled,
-        .gallery .pagination .next.disabled {
-            border-color: gray;
-            background-color: rgb(115, 115, 165) !important;
-            color: rgb(31, 3, 3);
-            pointer-events: none;
-        }
     </style>
 
 </head>
@@ -119,10 +71,14 @@
                     </div>
                 </a>
 
-               
+                <div class="navHead" style="margin-top: 0.5rem;">
+                    PROFILE
+                </div>
 
                 <div id="profile">
-                    
+                    <div id="profilePicture">
+                        <img src="../assets/img/profile.png" alt="">
+                    </div>
 
                     <a href="<%=path%>user/home" class="navLink">
                         <div class="navButton" onclick="navClick()">
@@ -130,7 +86,7 @@
                         </div>
                     </a>
 
-                    <a href="<%=path%>user/favourite" class="navLink">
+                    <a href="<%=path%>user/favourite" class="navLink" style="background-color: rgb(12, 128, 243);">
                         <div class="navButton" onclick="navClick()">
                             MY FAVOURITES
                         </div>
@@ -193,9 +149,6 @@
                             </div>
 
                         </div>
-                        <div class="col-md-12 " style="width: 54%; position: relative; left: 23%; ">
-                            <input class="submit" type="submit" value="search">
-                        </div>
 
                     </div>
                 </form>
@@ -203,67 +156,7 @@
         </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="page-single" style="background-color: rgb(16, 16, 41) !important">
+    <div class="page-single" style="margin-top: 20px; background-color: rgb(16, 16, 41) !important">
         <div class="container">
             <div class="row ipad-width2">
                 <div class="col-md-9 col-sm-12 col-xs-12">
@@ -285,21 +178,6 @@
                             </div>
                             <%})%>
                     </div>
-
-                    <!-- <div class="topbar-filter">
-                        <label>Movies per page:</label>
-                        <div class="pagination2">
-                            <span>Page 1 of 2:</span>
-                            <a class="active" href="#">1</a>
-                            <a href="#">2</a>
-                            <a href="#">3</a>
-                            <a href="#">...</a>
-                            <a href="#">78</a>
-                            <a href="#">79</a>
-                            <a href="#"><i class="ion-arrow-right-b"></i></a>
-                        </div>
-                    </div> -->
-
                 </div>
             </div>
         </div>
@@ -335,75 +213,6 @@
     <script src="/js/plugins.js"></script>
     <script src="/js/plugins2.js"></script>
     <script src="/js/custom.js"></script>
-
-
-
-
-
-
-    <script>
-        const galleryItems = document.querySelector(".gallery-items").children;
-        const prev = document.querySelector(".prev");
-        const next = document.querySelector(".next");
-        const page = document.querySelector(".page-num");
-        const maxItem = 3;
-        let index = 1;
-
-        const pagination = Math.ceil(galleryItems.length / maxItem);
-        console.log(pagination)
-
-        prev.addEventListener("click", function() {
-            index--;
-            check();
-            showItems();
-        })
-        next.addEventListener("click", function() {
-            index++;
-            check();
-            showItems();
-        })
-
-        function check() {
-            if (index == pagination) {
-                next.classList.add("disabled");
-            } else {
-                next.classList.remove("disabled");
-            }
-
-            if (index == 1) {
-                prev.classList.add("disabled");
-            } else {
-                prev.classList.remove("disabled");
-            }
-        }
-
-        function showItems() {
-            for (let i = 0; i < galleryItems.length; i++) {
-                galleryItems[i].classList.remove("show");
-                galleryItems[i].classList.add("hide");
-
-
-                if (i >= (index * maxItem) - maxItem && i < index * maxItem) {
-                    // if i greater than and equal to (index*maxItem)-maxItem;
-                    // means  (1*8)-8=0 if index=2 then (2*8)-8=8
-                    galleryItems[i].classList.remove("hide");
-                    galleryItems[i].classList.add("show");
-                }
-                page.innerHTML = index;
-            }
-
-
-        }
-
-        window.onload = function() {
-            showItems();
-            check();
-        }
-    </script>
-
-
-
-
 
 </body>
 

@@ -185,6 +185,18 @@
             }
         }
         
+        @media (min-width: 1200px) {
+            .col-xl-6 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+        
+        .transformers-right i::before {
+            -webkit-text-fill-color: rgb(243, 183, 12);
+            margin-right: 5px;
+        }
+        
         button {
             background: rgb(12, 128, 243) !important;
         }
@@ -209,7 +221,7 @@
         <div id="nav">
             <div id="navbar">
 
-                <a href="" class="navLink">
+                <a href="<%=path%>" class="navLink">
                     <div class="navButton" onclick="navClick()">
                         HOME
                     </div>
@@ -257,8 +269,6 @@
     </div><br><br>
 
     <section class="section details" style="background-color: rgb(16, 16, 41) !important;">
-
-        <!-- <div class="details__bg" data-bg="img/home/home__bg.jpg"></div> -->
 
         <div class="container" style="background-color: rgb(16, 16, 41) !important;">
             <div class="transformers-box" style="background-color: #010913c4;">
@@ -336,7 +346,7 @@
                                                     Rating:
                                                 </div>
                                                 <div class="transformers-right">
-                                                    <span class="card__rate"></span>
+                                                    <i class='fas fa-star'></i> <span class="card__rate"> </span>
                                                 </div>
                                             </li>
 
@@ -352,7 +362,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-xl-6">
+                    <div class="col-12 col-xl-6" style="margin-top: 50px;">
                         <iframe id="trailer" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
 
