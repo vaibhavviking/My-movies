@@ -20,6 +20,8 @@ const { updatelist, readlist } = require('./storage/update');
 var fs = require('fs');
 require("dotenv").config();
 const keys = require('./keys2')
+require('dotenv').config();
+// const keys=process.env; 
 const app = express();
 const Genre = require('./models/genres');
 const port = process.env.PORT || 5000;
@@ -52,7 +54,7 @@ app.set('views', __dirname + '/views');
 
 if (process.env.NODE_ENV != 'test') {
     console.log('not a test');
-    mongoose.connect(keys.mongo_uricloud, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
+    mongoose.connect(keys.mongo_uri1, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
 } else {
     console.log('just a test');
     mongoose.connect(keys.mongo_uri2, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
@@ -66,7 +68,7 @@ connection.once("open", () => {
 // updatelist();
 
 const auth = (req, res, next) => {
-    // console.log(req.user);
+    console.log(req.user);
     if (req.user) {
         next();
     } else {
@@ -86,9 +88,6 @@ if (process.env.NODE_ENV != 'test') {
 schedule.scheduleJob('0 0 0 * * *', async() => {
     updatelist();
 })
-
-// updatelist();
-
 
 if (process.env.NODE_ENV != 'test') {
 
