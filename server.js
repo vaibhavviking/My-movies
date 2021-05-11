@@ -63,7 +63,7 @@ connection.once("open", () => {
     console.log("MongoDB database linked successfully!");
 });
 
-updatelist();
+// updatelist();
 
 const auth = (req, res, next) => {
     // console.log(req.user);
