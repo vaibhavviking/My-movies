@@ -20,6 +20,8 @@ const { updatelist, readlist } = require('./storage/update');
 var fs = require('fs');
 require("dotenv").config();
 const keys = require('./keys2')
+require('dotenv').config();
+// const keys=process.env; 
 const app = express();
 const Genre = require('./models/genres');
 const port = process.env.PORT || 5000;
@@ -66,7 +68,7 @@ connection.once("open", () => {
 // updatelist();
 
 const auth = (req, res, next) => {
-    // console.log(req.user);
+    console.log(req.user);
     if (req.user) {
         next();
     } else {
