@@ -31,6 +31,11 @@ This project has following dependencies
 
 The website is hosted at https://my-movies-420.herokuapp.com/. However, due to basic Free package of hosting and large amount of data handled by website, the hosted site is slower than usual. For better experience, hosting package can be upgraded or user can set up environment and run it locally.
 
+## Documentation and Demonstration
+
+The complete demonstration of the website can be found at https://drive.google.com/file/d/1Fy_5AdZ_82nEMzl950DnAOlpm-o94OnS/view?usp=sharing
+Documentation includes Software Requirement Specification and Software Design Documents both of them are kept in Documentation Folder.
+
 ## Important Project files and Folder Structure
 
 1. Documentation: Contains files related to documentation including Software Requirement Specifications, Software Design Documents and User Manual.
