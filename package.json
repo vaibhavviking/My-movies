@@ -49,5 +49,9 @@
   "bugs": {
     "url": "https://github.com/vaibhavviking/workspace-organizer/issues"
   },
-  "homepage": "https://github.com/vaibhavviking/workspace-organizer#readme"
+  "homepage": "https://github.com/vaibhavviking/workspace-organizer#readme",
+  "engines":{
+    "node": "12.22.9",
+    "npm": "8.5.1"
+  }
 }

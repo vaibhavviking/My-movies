@@ -162,6 +162,26 @@ router.post('/review', async (req, res) => {
     }
 })
 
+const groupParamsByKey = (params) => [...params.entries()].reduce((acc, tuple) => {
+    // getting the key and value from each tuple
+    const [key, val] = tuple;
+    if(acc.hasOwnProperty(key)) {
+       // if the current key is already an array, we'll add the value to it
+       if(Array.isArray(acc[key])) {
+         acc[key] = [...acc[key], val]
+       } else {
+         // if it's not an array, but contains a value, we'll convert it into an array
+         // and add the current value to it
+         acc[key] = [acc[key], val];
+       }
+    } else {
+     // plain assignment if no special case is present
+     acc[key] = val;
+    }
+   
+   return acc;
+   }, {});
+
 router.post('/submitreview', async (req,res)=>{
     let data = req.body.data;
     let email;
@@ -173,7 +193,7 @@ router.post('/submitreview', async (req,res)=>{
     let movieid=req.body.id;
     console.log(movieid);
     let {name,poster,overview}=req.body;
-    let obj = (Object.fromEntries([...new URLSearchParams(data)]));
+    let obj = groupParamsByKey(new URLSearchParams(data));
     // console.log(obj);
     let title=obj.title;
     let text=obj.text;

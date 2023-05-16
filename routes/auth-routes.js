@@ -72,18 +72,25 @@ router.post('/signup', async (req, res) => {
     } else {
         // let flag = await cquery(`select * from account where email = '${email}';`, req, res);
         let flag = await User.find({ email });
-        if (flag.length) {
+        if (flag.length && flag[0].active==true) {
+            console.log("flag1 "+flag);
             req.flash('error', 'email is already registered');
             res.redirect(`/auth/signup/?name=${name}&email=${email}`);
         } else {
-            pass = await hash(pass);
-            let user = new User({
-                name,
-                password: pass,
-                email,
-                active: false
-            })
-            let result = await user.save();
+            console.log("flag2 " + flag);
+            console.log("pass " + pass);
+            if(flag.length==0){
+                pass = await hash(pass);
+                console.log(pass);
+                let user = new User({
+                    name,
+                    password: pass,
+                    email,
+                    active: false
+                })
+                console.log(user);
+                let result = await user.save();
+            }
             await verifyemail(email);
             req.flash('message', 'Please complete email verification.');
             res.redirect('/auth/login');
@@ -138,7 +145,7 @@ router.get('/checktoken', async (req, res) => {
     let hash = req.query.hash;
     let mess = await checktoken(email, hash);
     let head;
-    if(mess[0]=='Your'){
+    if(mess[0]=='Y'){
         head='Success!';
     }else{
         head='Sorry!';
@@ -156,7 +163,8 @@ const checktoken = async (email, hash) => {
         await User.updateOne({ email }, { $set: { "active": true } });
         return 'Your token was verified! You may close this window now.';
     } else {
-        return 'Token expired. Please try again.'
+        await verifyemail(email);
+        return 'Token expired. Please try again. New Verification mail sent.'
     }
 }
 
