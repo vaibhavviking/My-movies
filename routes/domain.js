@@ -1,4 +1,4 @@
 const info = {
-    href : 'http://localhost:5000/'
+    href : 'https://my-movies-123.herokuapp.com/'
 }
 module.exports = info;
