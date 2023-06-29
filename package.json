@@ -39,7 +39,7 @@
   "name": "workspace-organizer",
   "version": "1.0.0",
   "description": "Welcome to GitHub—where millions of developers work together on software. Ready to get started? Let’s learn how this all works by building and publishing your first GitHub Pages website!",
-  "main": "index.js",
+  "main": "server.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vaibhavviking/workspace-organizer.git"
