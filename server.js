@@ -40,7 +40,7 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(express.json())
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
     res.header('Expires', '-1');
     res.header('Pragma', 'no-cache');
@@ -85,16 +85,16 @@ if (process.env.NODE_ENV != 'test') {
     app.use('/user', userRouter);
 }
 
-schedule.scheduleJob('0 0 0 * * *', async() => {
+schedule.scheduleJob('0 0 0 * * *', async () => {
     updatelist();
 })
 
-if (process.env.NODE_ENV != 'test') {
 
-    app.listen(port, () => {
-        console.log("Server is running at port : ", port);
-    });
-}
+
+app.listen(port, () => {
+    console.log("Server is running at port : ", port);
+});
+
 
 exports.app = app;
 
