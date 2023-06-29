@@ -1,4 +1,4 @@
 const info = {
-    href : 'https://my-movies-123.herokuapp.com/'
+    href : 'https://proud-gold-umbrella.cyclic.app/'
 }
 module.exports = info;
